@@ -20,3 +20,14 @@ The 200 challenges are not 200 wholly independent game engines. They use 20 reus
 
 ## Data budget
 No external assets or libraries are downloaded. The setup archive is very small compared with 1 GB. Total data still includes the archive download, uploads, and testing visits.
+
+
+## Challenge upgrade
+This edition adds a visible challenge-rule card and several gameplay modifiers:
+- Snake: reversed controls in the mirror challenge and fixed hazard blocks in later challenges.
+- Target Tap: smaller targets and moving-target pressure in advanced variants.
+- Mole Mayhem: increased scoring/penalties and shorter advanced rounds.
+- Maze Runner: larger layouts in advanced challenges.
+- Minefield Logic: larger boards and denser mine layouts in advanced challenges.
+
+The 200 entries are 200 named challenges built on 20 reusable game families. This is a progressive upgrade, not a claim that every challenge has a completely separate engine.

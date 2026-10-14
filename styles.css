@@ -56,3 +56,15 @@
 .challenge-rule{display:flex;flex-direction:column;gap:5px;margin:10px 0 14px;padding:12px 14px;border:1px solid color-mix(in srgb,var(--game-accent,#51f3ff) 45%,transparent);border-radius:12px;background:color-mix(in srgb,var(--game-accent,#51f3ff) 8%,#0b0e1d);color:#f2f5ff}
 .challenge-rule strong{font-size:.72rem;letter-spacing:.11em;color:var(--game-accent,#51f3ff)}
 .challenge-rule span{font-size:.9rem;line-height:1.45;color:#c7cde3}
+
+/* Personal arcade progression */
+.progress-strip{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:18px 0 20px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(110deg,rgba(81,243,255,.07),rgba(168,121,255,.07))}
+.progress-strip>div{display:flex;align-items:center;gap:10px;min-width:120px}
+.progress-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#20223b;color:var(--cyan);font-size:1.1rem}
+.progress-strip b{display:block;font-size:1.12rem}
+.progress-strip small{display:block;color:var(--muted);font-size:.64rem;letter-spacing:.08em}
+.progress-strip p{margin-left:auto;color:var(--muted);font-size:.8rem}
+.favorite-toggle{position:absolute;z-index:2;right:12px;top:38px;width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(8,9,20,.72);color:#fff;font-size:1.25rem;cursor:pointer;backdrop-filter:blur(8px)}
+.favorite-toggle.is-favorite{color:#ffcf5a;border-color:#ffcf5a;background:rgba(255,207,90,.12)}
+.filters button[data-cat="Favorites"]{border-color:rgba(255,207,90,.35)}
+@media(max-width:620px){.progress-strip{gap:12px}.progress-strip p{width:100%;margin:0}}

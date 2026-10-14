@@ -31,3 +31,11 @@ This edition adds a visible challenge-rule card and several gameplay modifiers:
 - Minefield Logic: larger boards and denser mine layouts in advanced challenges.
 
 The 200 entries are 200 named challenges built on 20 reusable game families. This is a progressive upgrade, not a claim that every challenge has a completely separate engine.
+
+
+## Personal Arcade Progression
+- Favorite any challenge with the star button on its card.
+- Filter the catalogue to Favorites.
+- Recently played challenges can be brought to the top using the sort menu.
+- The dashboard shows how many unique challenges have been opened and how many are favorited.
+- Favorites and recent plays are stored locally in this browser using localStorage; they are not uploaded to a server.

@@ -39,3 +39,11 @@ The 200 entries are 200 named challenges built on 20 reusable game families. Thi
 - Recently played challenges can be brought to the top using the sort menu.
 - The dashboard shows how many unique challenges have been opened and how many are favorited.
 - Favorites and recent plays are stored locally in this browser using localStorage; they are not uploaded to a server.
+
+
+## Achievements, completion and personal bests
+- Six unlockable badges cover first play, exploration, favorites, completion, and score records.
+- Players can mark a challenge complete from its play screen. Completion is user-confirmed rather than independently verified by every game engine.
+- Score text is observed during play and the best detected score is saved per challenge.
+- The dashboard reports completed challenges and the number of challenges with a personal best.
+- All progression is stored locally in the browser. Clearing browser site data may reset it, and it does not sync between devices.

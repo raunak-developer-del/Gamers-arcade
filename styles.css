@@ -68,3 +68,26 @@
 .favorite-toggle.is-favorite{color:#ffcf5a;border-color:#ffcf5a;background:rgba(255,207,90,.12)}
 .filters button[data-cat="Favorites"]{border-color:rgba(255,207,90,.35)}
 @media(max-width:620px){.progress-strip{gap:12px}.progress-strip p{width:100%;margin:0}}
+
+/* Achievement and score progression */
+.achievements{margin:18px 0 22px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(125deg,rgba(168,121,255,.075),rgba(81,243,255,.045))}
+.achievement-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.achievement-head h3{margin:4px 0 0;font-size:1.15rem;letter-spacing:.04em}
+.achievement-head h3 span{font-size:.72rem;color:var(--muted);font-weight:500;margin-left:8px}
+.badge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.badge-card{display:flex;align-items:center;gap:10px;min-width:0;padding:12px;border-radius:13px;border:1px solid var(--line);background:rgba(8,9,20,.45)}
+.badge-card.locked{opacity:.55;filter:saturate(.35)}
+.badge-icon{font-size:1.55rem}
+.badge-card>div{min-width:0;flex:1}
+.badge-card b,.badge-card small{display:block}
+.badge-card b{font-size:.83rem}
+.badge-card small{font-size:.7rem;color:var(--muted);line-height:1.4;margin-top:3px}
+.badge-state{font-size:.58rem;letter-spacing:.06em;color:var(--muted)}
+.badge-card.unlocked{border-color:rgba(81,243,255,.35);box-shadow:inset 0 0 20px rgba(81,243,255,.035)}
+.badge-card.unlocked .badge-state{color:var(--green)}
+.badge-notice{padding:7px 10px;border-radius:9px;background:rgba(140,255,193,.1);border:1px solid rgba(140,255,193,.25);color:var(--green);font-size:.78rem}
+.best-score{margin:0 0 9px;color:var(--green);font-size:.68rem;font-weight:700;letter-spacing:.07em}
+.complete-button{display:block;width:100%;margin:10px 0;padding:11px 14px;border-radius:11px;border:1px solid rgba(140,255,193,.38);background:rgba(140,255,193,.08);color:var(--green);font:inherit;font-weight:700;cursor:pointer}
+.complete-button:disabled{opacity:.8;cursor:default}
+@media(max-width:760px){.badge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.badge-grid{grid-template-columns:1fr}.badge-state{font-size:.54rem}.achievement-head h3{font-size:1rem}}

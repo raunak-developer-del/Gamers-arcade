@@ -1,21 +1,21 @@
-# Gamers' Arcade — Part 2: 200 Games
+# Gamers' Arcade — Part 3: 300 Games
 
-This is a complete replacement website package containing the original Part 1 files plus 100 new catalogue entries (games 101–200). It is intended to be uploaded to the root of the existing GitHub Pages repository.
+This expanded website package contains the Part 1 and Part 2 catalogue plus 100 new entries (games 201–300). Upload these files to the root/published folder of your existing GitHub Pages repository.
 
-## Included
-- `index.html`: responsive game library with search and category filters for 200 games.
-- `games-data.js`: 200 unique catalogue entries; new Part 2 entries are numbered 101–200.
-- `app.js` and `styles.css`: library behaviour and styling.
-- `pacman.html`: preserved original Pac-Man HTML from Part 1.
-- `candy-crush.html`: standalone match-3 game from Part 1.
-- `play.html` and `microgames.js`: launcher and lightweight browser game implementations/challenges.
+## Included files
+- `index.html`: responsive library updated for 300 game entries.
+- `games-data.js`: 300 unique catalogue entries, including new games 201–300.
+- `app.js` and `styles.css`: library filtering, search, and styling.
+- `pacman.html`: preserved original Pac-Man HTML carried forward from the previous package.
+- `candy-crush.html`: standalone match-3 game.
+- `play.html` and `microgames.js`: launcher and lightweight browser-game mechanics/prototypes.
 
 ## Upload to GitHub Pages
-1. Extract this ZIP on your laptop.
+1. Download and extract this ZIP.
 2. Open your existing GitHub repository.
-3. Choose Add file → Upload files.
-4. Upload the files inside this folder to the same published root folder as your existing `index.html`, replacing the matching Part 1 files.
-5. Commit the changes. Keep GitHub Pages settings and the repository itself. Back up any unrelated files before replacing anything.
+3. Select **Add file → Upload files**.
+4. Upload the nine files inside this folder to the same published folder as your current `index.html`, replacing the matching project files.
+5. Commit the changes. Keep your repository and GitHub Pages settings. Back up unrelated files first. If your repository has an extra `engine.js`, leave it in place unless you have confirmed nothing uses it.
 
 ## Build note
-The catalogue contains 200 distinct game titles. Some entries use lightweight generic challenges/prototypes and may need deeper game-specific mechanics and testing. Pac-Man and Candy Cascade remain included from Part 1.
+The catalogue contains 300 distinct titles. Some entries use lightweight generic challenges/prototypes rather than fully bespoke mechanics and can be expanded and tested further. Pac-Man and Candy Cascade remain included.

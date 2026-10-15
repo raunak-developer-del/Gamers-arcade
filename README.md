@@ -47,3 +47,27 @@ The 200 entries are 200 named challenges built on 20 reusable game families. Thi
 - Score text is observed during play and the best detected score is saved per challenge.
 - The dashboard reports completed challenges and the number of challenges with a personal best.
 - All progression is stored locally in the browser. Clearing browser site data may reset it, and it does not sync between devices.
+
+
+## Ultimate legacy + distinct-variant edition
+This edition preserves the full 200-challenge catalogue from the previous versions: 20 game families with 10 entries each. Every entry has its own name, goal, variant rule, objective key, and difficulty tier. Variant rules are labelled Standard Objective, Time Attack, Precision Trial, Limited Attempts, Combo Chain, Mirror Mode, Hazard Survival, Key Objective, Endurance Run, and Boss Challenge. Gameplay is tuned across families where supported; the catalogue still uses 20 reusable game engines rather than 200 unrelated codebases.
+
+### Achievements
+The original six badges remain: First Steps, Arcade Explorer, Favorite Collector, Challenge Finisher, Arcade Champion, and Record Breaker. New harder badges include Deep Explorer (50 distinct challenges opened), Star Hoarder (25 favorites), Veteran Finisher (50 completed), Century Club (100 completed), Hard Mode Hero (10 hard challenges completed), Family Master (all 10 challenges in one family), All-Rounder (a completion in all 20 families), Score Hunter (personal bests in 25 challenges), Arcade Legend (150 completed), and Ultimate Completionist (all 200 completed).
+
+Completion is still user-confirmed using the “Mark Challenge Complete” button; it is not automatically verified by every game's win state. Personal best detection uses the score text rendered by each game and therefore may not recognize every score format. Progress stays in local browser storage and does not sync between devices.
+
+
+## Raunak Arcade merge — 330 challenge edition
+This build preserves the previous 200-challenge catalogue and adds 130 Raunak Arcade challenges across 13 named families, each with ten separately named variants and ten distinct goal descriptions:
+- Original Raunak games: Vector Pac-Man, Galactic Strike, Block Drop, Neon Racer, and Indian Bike Rush.
+- Raunak Arcade starter games: Neon Snake, Memory Match, Reflex Rush, Tic-Tac-Toe, Number Hunter, Rock Paper Scissors, Target Tap, and 2048 Mini.
+
+The five classic games have lightweight original browser implementations in the shared engine. The eight starter games use the corresponding existing game mechanics under their Raunak Arcade names. Variants include different goals, rule labels, and tuned difficulty/parameters where supported. This is 330 challenge entries across 33 reusable game families, not 330 separate codebases. Some objectives are guidance rather than independently enforced win checks; test the published site before treating every variant as fully distinct in mechanics.
+
+The previous six achievements and all earlier hard achievements remain. Additional Raunak achievements are:
+- Raunak Legacy Keeper: complete one challenge in each of the five classic games.
+- Raunak Arcade Master: complete all 130 Raunak Arcade challenges.
+- Legacy Explorer: complete at least one challenge in each of the 13 Raunak families.
+
+All progression remains in local browser storage.

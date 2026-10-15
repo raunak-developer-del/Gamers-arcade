@@ -1,20 +1,21 @@
-# Gamers' Arcade — Part 1: 100 Games
+# Gamers' Arcade — Part 2: 200 Games
+
+This is a complete replacement website package containing the original Part 1 files plus 100 new catalogue entries (games 101–200). It is intended to be uploaded to the root of the existing GitHub Pages repository.
 
 ## Included
-- `index.html`: responsive neon game library with 100 game cards, search, and category filters.
-- `games-data.js`: 100 unique game titles, categories, descriptions, and mechanics identifiers.
+- `index.html`: responsive game library with search and category filters for 200 games.
+- `games-data.js`: 200 unique catalogue entries; new Part 2 entries are numbered 101–200.
 - `app.js` and `styles.css`: library behaviour and styling.
-- `pacman.html`: exact original Pac-Man HTML supplied by the user, copied byte-for-byte.
-- `candy-crush.html`: standalone playable match-3 game with swapping, matches, falling pieces, cascades, score, and a move limit.
-- `play.html` and `microgames.js`: launcher and lightweight playable implementations for the other catalogue entries.
+- `pacman.html`: preserved original Pac-Man HTML from Part 1.
+- `candy-crush.html`: standalone match-3 game from Part 1.
+- `play.html` and `microgames.js`: launcher and lightweight browser game implementations/challenges.
 
-## Run on laptop
-1. Extract the ZIP.
-2. Open `index.html` in a modern browser.
-3. Search/filter the 100-game library and launch a game.
+## Upload to GitHub Pages
+1. Extract this ZIP on your laptop.
+2. Open your existing GitHub repository.
+3. Choose Add file → Upload files.
+4. Upload the files inside this folder to the same published root folder as your existing `index.html`, replacing the matching Part 1 files.
+5. Commit the changes. Keep GitHub Pages settings and the repository itself. Back up any unrelated files before replacing anything.
 
-## GitHub Pages
-Upload all files in this folder to the root of your repository. Keep them together in the same directory.
-
-## Build status
-Part 1 now contains 100 distinct catalogue entries. Some of the lightweight implementations are prototypes and will need deeper, game-specific polish in subsequent testing batches. Pac-Man remains byte-for-byte identical to the uploaded original. Total package is far below 5 GB.
+## Build note
+The catalogue contains 200 distinct game titles. Some entries use lightweight generic challenges/prototypes and may need deeper game-specific mechanics and testing. Pac-Man and Candy Cascade remain included from Part 1.

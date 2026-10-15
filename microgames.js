@@ -2,12 +2,12 @@
 const p=new URLSearchParams(location.search),id=+(p.get('id')||3),g=ARCADE_GAMES.find(x=>x.id===id);
 const $=id=>document.getElementById(id),root=$('game-root'),scoreEl=$('score'),statusEl=$('status'),msg=$('message'),help=$('help');
 if(!g){$('title').textContent='Game not found';throw Error('Bad game id')}
-$('title').textContent=g.title;$('desc').textContent=g.description;$('category').textContent=g.category.toUpperCase();
-let score=0,cleanup=()=>{},restart=()=>start(),helpText='Use the on-screen controls or the keyboard instructions shown below.';
-const scoreSet=n=>{score=n;scoreEl.textContent='SCORE: '+score},say=t=>msg.textContent=t;
+$('title').textContent=g.title;$('desc').textContent=g.description;$('category').textContent=g.category.toUpperCase();const gameNumber=$('game-number');if(gameNumber)gameNumber.textContent='GAME '+String(g.id).padStart(3,'0');const levelDisplay=$('level-display');if(levelDisplay&&window.ArcadeProfile)levelDisplay.textContent='LEVEL '+window.ArcadeProfile.level();if(window.ArcadeProfile){const result=window.ArcadeProfile.recordPlay(g.id,g.category,g.title);const best=$('best-score');if(best)best.textContent='BEST: '+window.ArcadeProfile.getBest(g.id);if(result.first){const toast=$('progress-toast');if(toast){toast.hidden=false;toast.textContent='+10 XP · New game discovered!';setTimeout(()=>{toast.hidden=true},2600)}}}
+let score=0,cleanup=()=>{},restart=()=>start(),helpText='Use the on-screen controls or the keyboard instructions shown below.';window.arcadePaused=false;
+const scoreSet=n=>{score=n;scoreEl.textContent='SCORE: '+score;const bestEl=$('best-score');if(bestEl)bestEl.textContent='BEST: '+(window.ArcadeProfile?window.ArcadeProfile.getBest(g.id):0);if(window.ArcadeProfile)window.ArcadeProfile.recordScore(g.id,score)},say=t=>msg.textContent=t;
 function btn(text,fn,cls='cell'){let b=document.createElement('button');b.className=cls;b.textContent=text;b.onclick=fn;return b}
 function board(n,labels,fn,cols=4){root.innerHTML='';let b=document.createElement('div');b.className='text-board';b.style.gridTemplateColumns=`repeat(${cols},minmax(0,1fr))`;labels.forEach((v,i)=>b.appendChild(btn(v,()=>fn(i))));root.appendChild(b);return b}
-function canvas(draw,step){root.innerHTML='';let c=document.createElement('canvas');c.width=700;c.height=380;root.appendChild(c);let x=c.getContext('2d'),keys={},live=true,last=0;function kd(e){keys[e.key.toLowerCase()]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault()}function ku(e){keys[e.key.toLowerCase()]=false}window.addEventListener('keydown',kd);window.addEventListener('keyup',ku);function loop(t){if(!live)return;let dt=Math.min((t-last)/16.67||1,2);last=t;step?.(dt,keys);x.clearRect(0,0,700,380);draw(x,c);requestAnimationFrame(loop)}requestAnimationFrame(loop);cleanup=()=>{live=false;window.removeEventListener('keydown',kd);window.removeEventListener('keyup',ku)};return {c,x,keys}}
+function canvas(draw,step){root.innerHTML='';let c=document.createElement('canvas');c.width=700;c.height=380;root.appendChild(c);let x=c.getContext('2d'),keys={},live=true,last=0;function kd(e){keys[e.key.toLowerCase()]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault()}function ku(e){keys[e.key.toLowerCase()]=false}window.addEventListener('keydown',kd);window.addEventListener('keyup',ku);function loop(t){if(!live)return;let dt=Math.min((t-last)/16.67||1,2);last=t;if(!window.arcadePaused)step?.(dt,keys);x.clearRect(0,0,700,380);draw(x,c);if(window.arcadePaused){x.fillStyle='#07101acc';x.fillRect(0,0,700,380);x.fillStyle='#55edff';x.font='bold 24px system-ui';x.textAlign='center';x.fillText('PAUSED',350,195);x.textAlign='left'}requestAnimationFrame(loop)}requestAnimationFrame(loop);cleanup=()=>{live=false;window.removeEventListener('keydown',kd);window.removeEventListener('keyup',ku)};return {c,x,keys}}
 function start(){cleanup();root.innerHTML='';scoreSet(0);statusEl.textContent='READY';say('');const k=g.kind;
 if(k==='tetris'){let grid=Array.from({length:16},()=>Array(10).fill(0)),pieces=[[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[1,0,0],[1,1,1]]],piece,over=false,tick=0;function spawn(){let s=pieces[Math.random()*pieces.length|0];piece={s:s.map(r=>r.slice()),x:3,y:0};if(hit(piece.x,piece.y,piece.s))over=true}function hit(px,py,s){return s.some((r,y)=>r.some((v,x)=>v&&(px+x<0||px+x>=10||py+y>=16||(py+y>=0&&grid[py+y][px+x]))))}function lock(){piece.s.forEach((r,y)=>r.forEach((v,x)=>{if(v&&piece.y+y>=0)grid[piece.y+y][piece.x+x]=1}));let n=grid.filter(r=>r.every(Boolean)).length;grid=grid.filter(r=>!r.every(Boolean));while(grid.length<16)grid.unshift(Array(10).fill(0));scoreSet(score+n*100);spawn()}spawn();canvas(x=>{x.fillStyle='#080c18';x.fillRect(0,0,700,380);for(let y=0;y<16;y++)for(let a=0;a<10;a++){x.fillStyle=grid[y][a]?'#35e6ff':'#171b2c';x.fillRect(170+a*23,8+y*22,21,20)}if(piece&&!over){x.fillStyle='#b18cff';piece.s.forEach((r,y)=>r.forEach((v,a)=>{if(v)x.fillRect(170+(piece.x+a)*23,8+(piece.y+y)*22,21,20)}))}if(over){x.fillStyle='white';x.font='26px sans-serif';x.fillText('GAME OVER — RESTART',210,190)}},(dt,keys)=>{if(over)return;tick+=dt;if((keys.arrowleft||keys.a)&&!keys._l){if(!hit(piece.x-1,piece.y,piece.s))piece.x--;keys._l=true}else if(!(keys.arrowleft||keys.a))keys._l=false;if((keys.arrowright||keys.d)&&!keys._r){if(!hit(piece.x+1,piece.y,piece.s))piece.x++;keys._r=true}else if(!(keys.arrowright||keys.d))keys._r=false;if((keys.arrowup||keys.w)&&!keys._u){let r=piece.s[0].map((_,i)=>piece.s.map(row=>row[i]).reverse());if(!hit(piece.x,piece.y,r))piece.s=r;keys._u=true}else if(!(keys.arrowup||keys.w))keys._u=false;if(keys.arrowdown||keys.s||tick>24){tick=0;if(!hit(piece.x,piece.y+1,piece.s))piece.y++;else lock()}});helpText='Move ←/→ or A/D, rotate ↑/W, soft-drop ↓/S. Complete rows.';return}
 if(k==='snake'){let body=[{x:8,y:8},{x:7,y:8},{x:6,y:8}],dir={x:1,y:0},food={x:14,y:9},over=false,t=0;canvas(x=>{x.fillStyle='#080c18';x.fillRect(0,0,700,380);x.fillStyle='#ff76b5';x.fillRect(food.x*20,food.y*20,18,18);body.forEach((p,i)=>{x.fillStyle=i?'#35e6ff':'#baff67';x.fillRect(p.x*20+1,p.y*20+1,18,18)});if(over){x.fillStyle='white';x.font='26px sans-serif';x.fillText('CRASH — RESTART',240,190)}},(dt,keys)=>{if(over)return;t+=dt;for(const [key,d] of [['arrowup',{x:0,y:-1}],['w',{x:0,y:-1}],['arrowdown',{x:0,y:1}],['s',{x:0,y:1}],['arrowleft',{x:-1,y:0}],['a',{x:-1,y:0}],['arrowright',{x:1,y:0}],['d',{x:1,y:0}]])if(keys[key]&&!keys['_'+key]&&!(d.x===-dir.x&&d.y===-dir.y)){dir=d;keys['_'+key]=true}if(t>7){t=0;let h={x:body[0].x+dir.x,y:body[0].y+dir.y};if(h.x<0||h.x>=35||h.y<0||h.y>=19||body.some(q=>q.x===h.x&&q.y===h.y)){over=true;return}body.unshift(h);if(h.x===food.x&&h.y===food.y){scoreSet(score+10);food={x:Math.random()*35|0,y:Math.random()*19|0}}else body.pop()}});helpText='Steer with arrow keys/WASD. Eat the pink food; avoid walls and your tail.';return}
@@ -30,145 +30,25 @@ if(['stack','towerdefense','tower'].includes(k)){let x=200,w=300,dir=1,y=80,leve
 if(['pinball','airhockey','dodgeball','wallbounce','lastlight'].includes(k)){let px=350,balls=[],t=0;canvas(x=>{x.fillStyle='#080c18';x.fillRect(0,0,700,380);x.fillStyle='#35e6ff';x.fillRect(px-15,330,30,25);balls.forEach(b=>{x.fillStyle='#ff527d';x.beginPath();x.arc(b.x,b.y,10,0,7);x.fill()})},(dt,keys)=>{if(keys.arrowleft||keys.a)px=Math.max(15,px-5*dt);if(keys.arrowright||keys.d)px=Math.min(685,px+5*dt);t+=dt;if(t>14){t=0;balls.push({x:Math.random()*700,y:-10})}balls.forEach(b=>b.y+=4*dt);balls=balls.filter(b=>b.y<390);if(balls.some(b=>b.y>320&&Math.abs(b.x-px)<22))say('Collision! Move to avoid the ball.');scoreSet(score+Math.round(dt))});helpText='Move left and right to avoid the incoming balls. Survive for a high score.';return}
 if(['robot','traffic','train','stealth','rewind','dungeon','escape','pipes','laser','portal','circuit','towerdefense','compass','vault','magnet','grapple'].includes(k)){let pos=0,goal=15,blocks=new Set([5,6,9,10]),n=16;let b;function render(){b=board(n,Array.from({length:n},(_,i)=>i===pos?'◆':i===goal?'★':blocks.has(i)?'■':''),i=>{let dist=Math.abs(i%4-pos%4)+Math.abs((i/4|0)-(pos/4|0));if(dist!==1||blocks.has(i)){say('Choose one adjacent open tile.');return}pos=i;scoreSet(score+1);render();if(pos===goal)say('Goal reached!')},4)}render();helpText='Move one adjacent tile at a time to reach the star without crossing blocked tiles.';return}
 if(['balance','bubblebalance'].includes(k)){let tilt=0;canvas(x=>{x.fillStyle='#080c18';x.fillRect(0,0,700,380);x.save();x.translate(350,180);x.rotate(tilt*.01);x.fillStyle='#35e6ff';x.fillRect(-200,-8,400,16);x.restore();x.fillStyle='#b18cff';x.fillRect(335,180,30,120);x.fillStyle='white';x.fillText('Balance '+Math.round(tilt),20,28)},()=>{tilt+=(Math.random()-.5)*1.4;tilt=Math.max(-100,Math.min(100,tilt))});root.appendChild(btn('ADD WEIGHT',()=>{tilt+=Math.random()*30-15;scoreSet(score+10);if(Math.abs(tilt)>75)say('The platform tipped! Restart.')},'control-btn'));helpText='Add weight carefully and keep the beam near level.';return}
-if(['robot','courier','traffic','train','escape','portal','circuit','hacker','compass','vault'].includes(k))return;
 if(['dig','miner'].includes(k)){let cells=Array.from({length:48},()=>Math.random()<.2?'💎':'🟫');board(48,cells,i=>{if(cells[i]==='💎'){scoreSet(score+20);say('Gem found!')}else say('Dug through soil.');cells[i]='';},8);helpText='Dig through the grid and uncover hidden gems.';return}
-if(['flood','colorsort','watersort','sort'].includes(k))return;
 if(['blackjack','cardwar','solitaire','dice'].includes(k)){let total=0;const h=document.createElement('h2'),controls=document.createElement('div');controls.className='actions';root.append(h,controls);function render(){h.textContent='Your total: '+total;controls.innerHTML='';controls.append(btn('DRAW',()=>{total+=1+(Math.random()*11|0);render();if(total===21){scoreSet(score+100);say('Exactly 21!')}else if(total>21)say('Bust! Restart to deal again.')},'control-btn'),btn('STAND',()=>say(total<=21?'You stand on '+total+'.':'You have busted.'),'control-btn'))}total=2+(Math.random()*14|0);render();helpText='Draw values to approach 21 without going over, or stand on your total.';return}
 if(['bubble','bubblebalance'].includes(k)){let vals=Array.from({length:36},()=>Math.random()*5|0),cols=['#35e6ff','#b18cff','#ff76b5','#baff67','#ffbe69'];let b=board(36,vals.map(()=>''),i=>{let old=vals[0],v=vals[i];vals=vals.map(x=>x===old?v:x);scoreSet(score+10);render()},6);function render(){b=board(36,vals.map(()=>''),i=>{let old=vals[0],v=vals[i];vals=vals.map(x=>x===old?v:x);scoreSet(score+10);render()},6);b.querySelectorAll('button').forEach((e,i)=>e.style.background=cols[vals[i]])}render();helpText='Choose a colour to expand the connected region and fill the board.';return}
 if(['checkers','reversi'].includes(k)){let vals=Array(64).fill('');vals[27]='●';vals[28]='○';vals[35]='○';vals[36]='●';let b=board(64,vals,i=>{if(vals[i])return;vals[i]='●';let j=vals.findIndex(v=>!v);if(j>=0)vals[j]='○';scoreSet(score+1);render()},8);function render(){b=board(64,vals,i=>{if(vals[i])return;vals[i]='●';let j=vals.findIndex(v=>!v);if(j>=0)vals[j]='○';scoreSet(score+1);render()},8);b.querySelectorAll('button').forEach((e,i)=>{e.textContent=vals[i];if(vals[i])e.style.color=vals[i]==='●'?'#35e6ff':'#ff76b5'})}helpText='Place pieces on the board and try to occupy more squares than the opponent.';return}
-if(['flappy','runner','onebutton'].includes(k))return;
-if(['flood','colorsort','watersort','sort'].includes(k))return;
-if(['farm','city','potion','kitchen','survival','ecosystem','aquarium'].includes(k))return;
-if(['maze','stealth','shadow','dungeon'].includes(k))return;
-if(['bridge','marble','gears'].includes(k))return;
-if(['mines','minefield'].includes(k))return;
-if(['wordle','hangman'].includes(k))return;
-if(['dice','domino'].includes(k))return;
 if(['mastermind'].includes(k)){let secret=Array.from({length:4},()=>Math.random()*4|0),vals=['●','◆','▲','■'],sel=[];let b=board(4,vals,i=>{sel.push(i);say('Guess: '+sel.map(j=>vals[j]).join(' '));if(sel.length===4){let exact=sel.filter((v,j)=>v===secret[j]).length;say('Exact positions: '+exact+' / 4');if(exact===4){scoreSet(100);statusEl.textContent='CRACKED'}sel=[]}},2);helpText='Pick a four-symbol code; use position feedback to solve the secret.';return}
-if(['flood','colorsort','watersort','sort'].includes(k))return;
-if(['farm','city','potion','kitchen','survival','ecosystem','aquarium'].includes(k))return;
 if(['knight'].includes(k)){let pos=0,visited=new Set([0]);let b=board(64,Array(64).fill(''),i=>{let r=pos/8|0,c=pos%8,rr=i/8|0,cc=i%8;if((Math.abs(r-rr)===2&&Math.abs(c-cc)===1)||(Math.abs(r-rr)===1&&Math.abs(c-cc)===2)){pos=i;visited.add(i);scoreSet(visited.size);render()}else say('A knight moves in an L shape.')},8);function render(){b=board(64,Array.from({length:64},(_,i)=>visited.has(i)?'✓':i===pos?'♞':''),i=>{let r=pos/8|0,c=pos%8,rr=i/8|0,cc=i%8;if((Math.abs(r-rr)===2&&Math.abs(c-cc)===1)||(Math.abs(r-rr)===1&&Math.abs(c-cc)===2)){pos=i;visited.add(i);scoreSet(visited.size);render()}else say('A knight moves in an L shape.')},8)}render();helpText='Move the knight in an L shape and visit as many new squares as possible.';return}
-if(['flappy','runner','onebutton'].includes(k))return;
-if(['color','colorgate'].includes(k))return;
-if(['dig'].includes(k))return;
-if(['flood','colorsort','watersort','sort'].includes(k))return;
-if(['farm','city','potion','kitchen','survival','ecosystem','aquarium'].includes(k))return;
-if(['robot','traffic','train','stealth','rewind','dungeon','escape','pipes','laser','portal','circuit','compass','vault','magnet','grapple'].includes(k))return;
-if(['mathmeteor','prime','fraction','binary','equation'].includes(k))return;
-if(['rhythm','beat','drum','melody'].includes(k))return;
-if(['balance','bubblebalance'].includes(k))return;
-if(['shapes','pattern','pixel','jigsaw','nonogram','inventory'].includes(k))return;
-if(['minefield','mines'].includes(k))return;
-if(['dodgeball'].includes(k))return;
-if(['airhockey'].includes(k))return;
-if(['bubble'].includes(k))return;
-if(['tictactoe','connect4'].includes(k))return;
-if(['mahjong'].includes(k))return;
-if(['battleship'].includes(k))return;
-if(['blackjack'].includes(k))return;
-if(['domino'].includes(k))return;
-if(['peg'].includes(k))return;
-if(['solitaire','cardwar','cardpair'].includes(k))return;
-if(['ladder','crossword','anagram'].includes(k))return;
-if(['onebutton'].includes(k))return;
-if(['boss'].includes(k))return;
-if(['towerdefense'].includes(k))return;
-if(['archery','penalty','basketball','golf','bowling','catapult','fishing'].includes(k))return;
-if(['ski','raft','drone'].includes(k))return;
-if(['orbit','asteroids','gravitywell','finalorbit'].includes(k))return;
-if(['maze','dungeon'].includes(k))return;
-if(['potion','kitchen'].includes(k))return;
-if(['rewind'].includes(k))return;
-if(['magnet'].includes(k))return;
-if(['gravity'].includes(k))return;
-if(['grapple'].includes(k))return;
-if(['laser'].includes(k))return;
-if(['pipes'].includes(k))return;
-if(['robot'].includes(k))return;
-if(['bridge'].includes(k))return;
-if(['marble'].includes(k))return;
-if(['gears'].includes(k))return;
-if(['towerdefense'].includes(k))return;
-if(['survival'].includes(k))return;
-if(['terraform'].includes(k))return;
-if(['sonar'].includes(k))return;
-if(['cardpair'].includes(k))return;
-if(['mahjong'].includes(k))return;
-if(['anagram'].includes(k))return;
-if(['crossword'].includes(k))return;
-if(['ladder'].includes(k))return;
-if(['shapememory'].includes(k))return;
-if(['colorsort'].includes(k))return;
-if(['watersort'].includes(k))return;
-if(['marble'].includes(k))return;
-if(['pinball'].includes(k))return;
-if(['dodgeball'].includes(k))return;
-if(['survival'].includes(k))return;
-if(['dungeon'].includes(k))return;
-if(['reversi'].includes(k))return;
-if(['checkers'].includes(k))return;
-if(['tictactoe'].includes(k))return;
-if(['connect4'].includes(k))return;
-if(['battleship'].includes(k))return;
-if(['pipes'].includes(k))return;
-if(['laser'].includes(k))return;
-if(['stealth'].includes(k))return;
-if(['rewind'].includes(k))return;
-if(['gravity'].includes(k))return;
-if(['magnet'].includes(k))return;
-if(['orbit'].includes(k))return;
-if(['asteroids'].includes(k))return;
-if(['bubble'].includes(k))return;
-if(['flood'].includes(k))return;
-if(['domino'].includes(k))return;
-if(['peg'].includes(k))return;
-if(['jigsaw'].includes(k))return;
-if(['nonogram'].includes(k))return;
-if(['shapes'].includes(k))return;
-if(['pattern'].includes(k))return;
-if(['pixel'].includes(k))return;
-if(['bridge'].includes(k))return;
-if(['inventory'].includes(k))return;
-if(['dig'].includes(k))return;
-if(['miner'].includes(k))return;
-if(['farm'].includes(k))return;
-if(['city'].includes(k))return;
-if(['potion'].includes(k))return;
-if(['kitchen'].includes(k))return;
-if(['fishing'].includes(k))return;
-if(['archery'].includes(k))return;
-if(['penalty'].includes(k))return;
-if(['basketball'].includes(k))return;
-if(['golf'].includes(k))return;
-if(['bowling'].includes(k))return;
-if(['raft'].includes(k))return;
-if(['towerdefense'].includes(k))return;
-if(['catapult'].includes(k))return;
-if(['grapple'].includes(k))return;
-if(['wallbounce'].includes(k))return;
-if(['colorgate'].includes(k))return;
-if(['rhythm'].includes(k))return;
-if(['drum'].includes(k))return;
-if(['melody'].includes(k))return;
-if(['dice'].includes(k))return;
-if(['solitaire'].includes(k))return;
-if(['cardwar'].includes(k))return;
-if(['blackjack'].includes(k))return;
-if(['mahjong'].includes(k))return;
-if(['crossword'].includes(k))return;
-if(['mathmeteor'].includes(k))return;
-if(['prime'].includes(k))return;
-if(['fraction'].includes(k))return;
-if(['binary'].includes(k))return;
-if(['equation'].includes(k))return;
-if(['shapememory'].includes(k))return;
-if(['marble'].includes(k))return;
-if(['pinball'].includes(k))return;
-if(['boss'].includes(k))return;
-if(['survival'].includes(k))return;
-if(['dungeon'].includes(k))return;
-/* Distinct, playable fallback challenge for concepts still awaiting their deeper bespoke pass. */
-let target=3+Math.random()*7|0,progress=0;const h=document.createElement('h2'),p=document.createElement('p'),b=btn('TAKE ACTION',act,'control-btn');h.textContent='Objective: complete '+target+' successful actions';p.textContent='Each action changes the challenge state. Reach the objective to finish this round.';root.append(h,p,b);function act(){progress++;scoreSet(score+10);p.textContent='Progress: '+progress+' / '+target;if(progress>=target){say('Challenge complete!');statusEl.textContent='COMPLETE';b.disabled=true}}helpText='Complete the game-specific objective shown on screen. This lightweight implementation will be expanded in future updates.';
+/* Shared fallback modes for catalogue concepts still awaiting bespoke engines. Each mode has a real objective and changing state. */
+const mathKinds=['mathmeteor','prime','fraction','binary','equation'];
+const resourceKinds=['farm','city','potion','kitchen','survival','ecosystem','aquarium','terraform','inventory','miner','dig','fishing'];
+const logicKinds=['nonogram','shapes','pattern','pixel','jigsaw','shapememory','colorsort','watersort','sort','flood','lights','lastlight','balance','bubblebalance','peg','sliding','knight','pipes','laser','bridge','gears','circuit','vault','compass'];
+const wordKinds=['anagram','crossword','ladder','wordle','hangman','typing'];
+const tacticalKinds=['robot','courier','traffic','train','escape','portal','hacker','stealth','maze','dungeon','magnet','rewind','gravity','orbit','asteroids','sonar','towerdefense','boss','pinball','dodgeball','marble','drone','raft','ski','grapple','wallbounce','colorgate','catapult','archery','penalty','basketball','golf','bowling'];
+if(mathKinds.includes(k)){let round=0,correct=0,answer=0;const h=document.createElement('h2'),p=document.createElement('p'),opts=document.createElement('div');opts.className='actions';root.append(h,p,opts);function question(){round++;opts.innerHTML='';let a=2+(Math.random()*12|0),b=2+(Math.random()*9|0),op=['+','−','×'][Math.random()*3|0];answer=op==='+'?a+b:op==='−'?a-b:a*b;h.textContent='ROUND '+round+' / 10';p.textContent=a+' '+op+' '+b+' = ?';let choices=[answer,answer+(Math.random()*7|0)+1,answer-(Math.random()*5|0)-1,answer+3].sort(()=>Math.random()-.5);[...new Set(choices)].forEach(v=>opts.appendChild(btn(String(v),()=>{if(Number(v)===answer){correct++;scoreSet(score+10);say('Correct! '+correct+' correct so far.')}else say('Not this time — the answer was '+answer+'.');if(round>=10){statusEl.textContent='COMPLETE';p.textContent='Final result: '+correct+' / 10 correct';opts.innerHTML='';opts.appendChild(btn('PLAY ANOTHER ROUND',()=>start(),'control-btn'))}else question()},'control-btn')))}question();helpText='Solve each generated question and build your score across 10 rounds.';return}
+if(resourceKinds.includes(k)){let turn=0,energy=55,materials=35,scoreValue=0;const h=document.createElement('h2'),p=document.createElement('p'),stats=document.createElement('div'),opts=document.createElement('div');opts.className='actions';root.append(h,stats,p,opts);function draw(){h.textContent=(g.title||'Strategy Run')+' · TURN '+turn+'/12';stats.innerHTML='<span class="badge">ENERGY '+energy+'</span> <span class="badge">SUPPLIES '+materials+'</span> <span class="badge unlocked">SCORE '+scoreValue+'</span>';p.textContent='Reach 100 score before turn 12 without running out of energy or supplies.';opts.innerHTML='';[['GATHER',()=>{materials+=12;energy-=5;scoreValue+=3}],['BUILD',()=>{if(materials>=10&&energy>=8){materials-=10;energy-=8;scoreValue+=18}else say('Not enough supplies or energy.') }],['REST',()=>{energy=Math.min(100,energy+15);materials=Math.max(0,materials-3)}],['RISKY EXPEDITION',()=>{if(Math.random()>.35){materials+=8;scoreValue+=22;say('Expedition success!')}else{energy-=16;materials=Math.max(0,materials-5);say('A setback — regroup and adapt.')}}]].forEach(([label,fn])=>opts.appendChild(btn(label,()=>{if(turn>=12)return;fn();turn++;scoreSet(scoreValue);if(energy<=0||materials<0){statusEl.textContent='RUN ENDED';say('Resources depleted. Try a different strategy.');opts.innerHTML='';opts.appendChild(btn('RETRY',()=>start(),'control-btn'));return}if(scoreValue>=100||turn>=12){statusEl.textContent=scoreValue>=100?'MISSION COMPLETE':'TIME UP';say(scoreValue>=100?'Mission complete! Your plan worked.':'Time is up. Try a more efficient plan.');opts.innerHTML='';opts.appendChild(btn('PLAY AGAIN',()=>start(),'control-btn'));return}draw()},'control-btn')))}draw();helpText='Balance energy and supplies. Gather, build, rest, and take calculated risks to reach the score target.';return}
+if(wordKinds.includes(k)){const words=['ORBIT','PIXEL','LASER','ROBOT','QUEST','NINJA','SOLAR','COMET','MAZEY','RHYTHM'];const word=words[Math.random()*words.length|0];let tries=6;const h=document.createElement('h2'),p=document.createElement('p'),field=document.createElement('input'),submit=btn('SUBMIT GUESS',guess,'control-btn');field.className='field';field.maxLength=5;field.placeholder='TYPE 5 LETTERS';field.autocomplete='off';root.append(h,p,field,submit);function guess(){let v=field.value.toUpperCase().replace(/[^A-Z]/g,'');if(v.length!==5){say('Enter exactly 5 letters.');return}tries--;let marks=[...v].map((c,i)=>c===word[i]?'🟩':word.includes(c)?'🟨':'⬛').join(' ');p.textContent=marks+' · '+tries+' tries left';if(v===word){scoreSet(score+100);statusEl.textContent='SOLVED';say('Excellent deduction!');submit.disabled=true}else if(!tries){statusEl.textContent='ROUND OVER';say('The word was '+word);submit.disabled=true}field.value='';field.focus()}field.addEventListener('keydown',e=>{if(e.key==='Enter')guess()});h.textContent='CRACK THE CODE';p.textContent='Guess the hidden five-letter word in six attempts.';helpText='Green = correct letter and position. Yellow = letter is in the word, wrong position. Black = absent.';return}
+if(logicKinds.includes(k)){let cells=Array.from({length:25},()=>Math.random()>.5),moves=0;const h=document.createElement('h2'),p=document.createElement('p');root.append(h,p);function draw(){h.textContent='LIGHT GRID · '+moves+' MOVES';p.textContent='Turn every tile dark. Each move flips the selected tile and its neighbours.';const b=board(25,cells.map(v=>v?'●':'○'),i=>{const x=i%5,y=Math.floor(i/5);[[x,y],[x-1,y],[x+1,y],[x,y-1],[x,y+1]].forEach(([cx,cy])=>{if(cx>=0&&cx<5&&cy>=0&&cy<5)cells[cy*5+cx]=!cells[cy*5+cx]});moves++;scoreSet(Math.max(0,100-moves*2));if(cells.every(v=>!v)){statusEl.textContent='SOLVED';say('Grid cleared in '+moves+' moves!');p.textContent='Perfect — all tiles are dark. Restart for a new board.'}else say('Keep going — '+cells.filter(Boolean).length+' lights remain.');draw()},5);root.prepend(h,p);b.querySelectorAll('button').forEach((x,i)=>x.style.color=cells[i]?'#55edff':'#65708d')}draw();helpText='Click a tile to flip it and its four neighbours. Turn every tile off.';return}
+if(tacticalKinds.includes(k)){let player=12,goal=4,turn=0,hits=0;const h=document.createElement('h2'),p=document.createElement('p'),arena=document.createElement('div');arena.className='text-board';arena.style.gridTemplateColumns='repeat(5,minmax(0,1fr))';root.append(h,p,arena);function draw(){h.textContent='TACTICAL RUN · '+turn+'/15';p.textContent='Move your unit ✦ to the goal ◈. Avoid hazard ✖ tiles and collect energy ◆.';arena.innerHTML='';for(let i=0;i<25;i++){const b=btn(i===player?'✦':i===goal?'◈':hazards.has(i)?'✖':loot.has(i)?'◆':'·',()=>move(i));b.style.color=i===player?'#55edff':i===goal?'#b7a0ff':hazards.has(i)?'#ff7fbd':loot.has(i)?'#baff7a':'#67718e';arena.appendChild(b)}}let hazards=new Set();while(hazards.size<5){let v=Math.random()*25|0;if(v!==player&&v!==goal)hazards.add(v)}let loot=new Set();while(loot.size<4){let v=Math.random()*25|0;if(v!==player&&v!==goal&&!hazards.has(v))loot.add(v)}function move(i){if(turn>=15)return;const distance=Math.abs(i%5-player%5)+Math.abs((i/5|0)-(player/5|0));if(distance!==1){say('Move one tile at a time.');return}turn++;player=i;if(hazards.has(i)){statusEl.textContent='MISSION FAILED';say('Hazard hit. Retry and plan a safer route.');return}if(loot.has(i)){loot.delete(i);hits++;scoreSet(score+20);say('Energy collected!')}if(i===goal){statusEl.textContent='MISSION COMPLETE';scoreSet(score+100);say('You reached the extraction point!');return}draw()}draw();helpText='Use the grid to navigate one step at a time, collect energy, avoid hazards, and reach the goal.';return}
+/* Every remaining kind gets an interactive target challenge, not an empty screen. */
+let target=3+Math.random()*7|0,progress=0,sequence=[],turn=0;const h=document.createElement('h2'),p=document.createElement('p'),opts=document.createElement('div');opts.className='actions';root.append(h,p,opts);function draw(){h.textContent='CHALLENGE '+(turn+1)+' / '+target;p.textContent='Choose the signal that matches the rule: select the odd/even pattern shown below.';opts.innerHTML='';const correct=Math.random()*4|0,vals=Array.from({length:4},(_,i)=>i===correct?((turn*2+4)%9+1):((turn+i+Math.random()*5|0)%9+1));opts.dataset.answer=String(correct);vals.forEach((v,i)=>opts.appendChild(btn(String(v),()=>{if(i===Number(opts.dataset.answer)){progress++;scoreSet(score+10);say('Good read! '+progress+' successful rounds.')}else say('Missed that one — watch the pattern.');turn++;if(progress>=target){statusEl.textContent='COMPLETE';h.textContent='CHALLENGE CLEARED';p.textContent='You completed '+progress+' successful rounds.';opts.innerHTML='';opts.appendChild(btn('PLAY AGAIN',()=>start(),'control-btn'))}else draw()},'control-btn')))}draw();helpText='Read each changing signal and make the best choice. Reach the target number of successful rounds to finish.';
 }
-$('restart').onclick=()=>{restart=()=>start();start()};$('instructions').onclick=()=>say(helpText);start();
+$('restart').onclick=()=>{window.arcadePaused=false;const pb=$('pause-game');if(pb)pb.textContent='Ⅱ Pause';const po=$('pause-overlay');if(po)po.classList.remove('show');restart=()=>start();start()};$('instructions').onclick=()=>say(helpText);start();
 })();

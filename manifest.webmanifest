@@ -1,0 +1,1 @@
+{"name":"Gamers' Arcade","short_name":"Gamers Arcade","description":"A personal arcade of browser games.","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#090b16","theme_color":"#090b16","icons":[{"src":"arcade-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

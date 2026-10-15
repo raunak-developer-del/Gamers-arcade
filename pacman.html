@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realistic Vector-Physics Pac-Man</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #070711;
+    color: #eaf2ff;
+    font-family: system-ui, sans-serif;
+}
+
+.wrap {
+    width: min(96vw, 900px);
+    text-align: center;
+    padding: 14px 0;
+}
+
+h1 {
+    margin: 0 0 8px;
+    color: #00aaff;
+    letter-spacing: 3px;
+    font-size: clamp(18px, 3vw, 28px);
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #123b77;
+    border-radius: 8px;
+    background: #0a0a12;
+    box-shadow: 0 0 28px #004cff33;
+    touch-action: none;
+}
+
+p {
+    color: #a8b5d0;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px auto;
+}
+
+button {
+    background: #10213c;
+    color: #eaf2ff;
+    border: 1px solid #1675d1;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:active {
+    background: #15518c;
+}
+
+.pad {
+    display: grid;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(2, 48px);
+    gap: 5px;
+    justify-content: center;
+}
+
+.pad button {
+    padding: 5px;
+}
+
+@media (min-width: 700px) {
+    .pad { display: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<h1>VECTOR-PHYSICS PAC-MAN</h1>
+
+<canvas id="game" width="900" height="700"></canvas>
+
+<p>
+Move with WASD or arrow keys. Collect pellets and avoid the chasing ghost.
+Press R to restart.
+</p>
+
+<div class="pad">
+    <span></span>
+    <button data-key="ArrowUp">▲</button>
+    <span></span>
+    <button data-key="ArrowLeft">◀</button>
+    <button data-key="ArrowDown">▼</button>
+    <button data-key="ArrowRight">▶</button>
+</div>
+
+<div class="controls">
+    <button id="restart">Restart game</button>
+</div>
+
+</div>
+
+<script>
+(() => {
+
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+const W = 900;
+const H = 700;
+
+const bg = '#0a0a12';
+const wallColor = '#0066ff';
+const pelletColor = '#ffb8ae';
+
+const walls = [
+    [20,20,860,20],
+    [20,660,860,20],
+    [20,20,20,660],
+    [860,20,20,660],
+    [120,100,200,40],
+    [580,100,200,40],
+    [420,40,60,160],
+    [120,220,100,120],
+    [680,220,100,120],
+    [300,280,300,40],
+    [120,420,200,40],
+    [580,420,200,40],
+    [420,480,60,120]
+].map(([x,y,w,h]) => ({x,y,w,h}));
+
+const keys = {};
+
+let player;
+let ghost;
+let pellets;
+let score;
+let over;
+let last = 0;
+let mouth = 0;
+let closing = false;
+
+function reset() {
+
+    player = {
+        x: 70,
+        y: 70,
+        vx: 0,
+        vy: 0,
+        r: 18,
+        friction: 0.88,
+        max: 4.5
+    };
+
+    ghost = {
+        x: 450,
+        y: 380,
+        vx: 0,
+        vy: 0,
+        r: 18,
+        friction: 0.88,
+        max: 4.5
+    };
+
+    pellets = [];
+
+    for (let x = 70; x < 830; x += 45) {
+        for (let y = 70; y < 630; y += 45) {
+
+            if (!walls.some(w =>
+                x + 4 > w.x &&
+                x - 4 < w.x + w.w &&
+                y + 4 > w.y &&
+                y - 4 < w.y + w.h
+            )) {
+                pellets.push({x,y});
+            }
+        }
+    }
+
+    score = 0;
+    over = false;
+    mouth = 0;
+    closing = false;
+}
+
+function collide(e, w) {
+
+    const cx = Math.max(w.x, Math.min(e.x, w.x + w.w));
+    const cy = Math.max(w.y, Math.min(e.y, w.y + w.h));
+
+    return Math.hypot(e.x - cx, e.y - cy) < e.r;
+}
+
+/* Improved collision physics */
+
+function physics(e) {
+
+    e.vx *= e.friction;
+    e.vy *= e.friction;
+
+    const sp = Math.hypot(e.vx, e.vy);
+
+    if (sp > e.max) {
+        e.vx = e.vx / sp * e.max;
+        e.vy = e.vy / sp * e.max;
+    }
+
+    const steps = Math.max(
+        1,
+        Math.ceil(Math.max(
+            Math.abs(e.vx),
+            Math.abs(e.vy)
+        ) / 2)
+    );
+
+    const sx = e.vx / steps;
+    const sy = e.vy / steps;
+
+    for (let i = 0; i < steps; i++) {
+
+        e.x += sx;
+
+        for (const w of walls) {
+
+            if (collide(e, w)) {
+
+                if (sx > 0) {
+                    e.x = w.x - e.r;
+                } else if (sx < 0) {
+                    e.x = w.x + w.w;
+                }
+
+                e.vx = 0;
+            }
+        }
+
+        e.y += sy;
+
+        for (const w of walls) {
+
+            if (collide(e, w)) {
+
+                if (sy > 0) {
+                    e.y = w.y - e.r;
+                } else if (sy < 0) {
+                    e.y = w.y + w.h;
+                }
+
+                e.vy = 0;
+            }
+        }
+    }
+
+    /* Prevent characters from escaping the arena */
+
+    e.x = Math.max(
+        40 + e.r,
+        Math.min(860 - e.r, e.x)
+    );
+
+    e.y = Math.max(
+        40 + e.r,
+        Math.min(660 - e.r, e.y)
+    );
+}
+
+function drawWall(w) {
+
+    ctx.fillStyle = wallColor;
+
+    roundRect(w.x, w.y, w.w, w.h, 4);
+    ctx.fill();
+
+    ctx.fillStyle = '#001e64';
+
+    roundRect(
+        w.x + 2,
+        w.y + 2,
+        w.w - 4,
+        w.h - 4,
+        2
+    );
+
+    ctx.fill();
+}
+
+function roundRect(x, y, w, h, r) {
+
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
+}
+
+function drawPac() {
+
+    const speed = Math.hypot(player.vx, player.vy);
+
+    if (speed > 0.2) {
+
+        mouth += closing ? -4 : 4;
+
+        if (mouth >= 45) {
+            mouth = 45;
+            closing = true;
+        }
+
+        if (mouth <= 5) {
+            mouth = 5;
+            closing = false;
+        }
+    }
+
+    const heading = speed > 0.1
+        ? Math.atan2(-player.vy, player.vx)
+        : 0;
+
+    const a = mouth * Math.PI / 180;
+
+    ctx.fillStyle = '#ffee00';
+    ctx.beginPath();
+    ctx.moveTo(player.x, player.y);
+
+    ctx.arc(
+        player.x,
+        player.y,
+        player.r,
+        heading + a,
+        heading + Math.PI * 2 - a
+    );
+
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawGhost() {
+
+    const g = ghost;
+
+    ctx.fillStyle = '#ff3c3c';
+
+    ctx.beginPath();
+    ctx.arc(g.x, g.y, g.r, Math.PI, 0);
+    ctx.lineTo(g.x + g.r, g.y + g.r);
+    ctx.lineTo(g.x - g.r, g.y + g.r);
+    ctx.closePath();
+    ctx.fill();
+
+    const speed = Math.hypot(g.vx, g.vy);
+
+    const ox = speed > 0.1 ? g.vx / speed * 4 : 0;
+    const oy = speed > 0.1 ? g.vy / speed * 4 : 0;
+
+    for (const dx of [-7, 7]) {
+
+        ctx.fillStyle = 'white';
+
+        ctx.beginPath();
+        ctx.arc(
+            g.x + dx + ox,
+            g.y - 2 + oy,
+            5,
+            0,
+            Math.PI * 2
+        );
+        ctx.fill();
+
+        ctx.fillStyle = 'blue';
+
+        ctx.beginPath();
+        ctx.arc(
+            g.x + dx + ox * 1.5,
+            g.y - 2 + oy * 1.5,
+            2,
+            0,
+            Math.PI * 2
+        );
+        ctx.fill();
+    }
+}
+
+function frame(t) {
+
+    const dt = Math.min((t - last) / 16.667 || 1, 2);
+    last = t;
+
+    if (!over) {
+
+        let dx =
+            (keys.ArrowRight || keys.d ? 1 : 0) -
+            (keys.ArrowLeft || keys.a ? 1 : 0);
+
+        let dy =
+            (keys.ArrowDown || keys.s ? 1 : 0) -
+            (keys.ArrowUp || keys.w ? 1 : 0);
+
+        const len = Math.hypot(dx, dy);
+
+        if (len) {
+            player.vx += dx / len * 0.65 * dt;
+            player.vy += dy / len * 0.65 * dt;
+        }
+
+        const gx = player.x - ghost.x;
+        const gy = player.y - ghost.y;
+        const gl = Math.hypot(gx, gy);
+
+        if (gl) {
+
+            ghost.vx += gx / gl * 0.32 * dt
+                + (Math.random() - 0.5) * 0.03;
+
+            ghost.vy += gy / gl * 0.32 * dt
+                + (Math.random() - 0.5) * 0.03;
+        }
+
+        physics(player);
+        physics(ghost);
+
+        for (let i = pellets.length - 1; i >= 0; i--) {
+
+            if (
+                Math.hypot(
+                    player.x - pellets[i].x,
+                    player.y - pellets[i].y
+                ) < player.r + 4
+            ) {
+                pellets.splice(i, 1);
+                score += 10;
+            }
+        }
+
+        if (
+            Math.hypot(
+                player.x - ghost.x,
+                player.y - ghost.y
+            ) < player.r + ghost.r
+        ) {
+            over = true;
+        }
+    }
+
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    for (const w of walls) {
+        drawWall(w);
+    }
+
+    ctx.fillStyle = pelletColor;
+
+    for (const p of pellets) {
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    drawPac();
+    drawGhost();
+
+    ctx.font = 'bold 24px "Courier New", monospace';
+    ctx.fillStyle = 'white';
+
+    ctx.fillText(
+        'SCORE: ' + String(score).padStart(5, '0'),
+        35,
+        50
+    );
+
+    if (over) {
+
+        ctx.fillStyle = 'rgba(10,10,20,.78)';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.textAlign = 'center';
+
+        ctx.fillStyle = '#ff3232';
+        ctx.font = 'bold 56px "Courier New", monospace';
+        ctx.fillText('GAME OVER', W / 2, H / 2 - 30);
+
+        ctx.fillStyle = 'white';
+        ctx.font = '22px "Courier New", monospace';
+        ctx.fillText(
+            'FINAL SCORE: ' + score,
+            W / 2,
+            H / 2 + 20
+        );
+
+        ctx.fillStyle = '#00ffc8';
+        ctx.fillText(
+            'PRESS [R] TO REBOOT ENVIRONMENT',
+            W / 2,
+            H / 2 + 60
+        );
+
+        ctx.textAlign = 'left';
+    }
+
+    requestAnimationFrame(frame);
+}
+
+/* Keyboard controls */
+
+window.addEventListener('keydown', e => {
+
+    if (
+        ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ']
+        .includes(e.key)
+    ) {
+        e.preventDefault();
+    }
+
+    keys[e.key] = true;
+
+    if (e.key.toLowerCase() === 'r' && over) {
+        reset();
+    }
+});
+
+window.addEventListener('keyup', e => {
+    keys[e.key] = false;
+});
+
+/* Mobile touch controls */
+
+document.querySelectorAll('[data-key]').forEach(b => {
+
+    const k = b.dataset.key;
+
+    b.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        keys[k] = true;
+    });
+
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => {
+        b.addEventListener(ev, () => {
+            keys[k] = false;
+        });
+    });
+});
+
+document.getElementById('restart').addEventListener('click', reset);
+
+reset();
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>

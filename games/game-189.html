@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Target Pop 189 — Gamers' Arcade</title>
+<style>
+:root{--accent:#a3ff12;}*{box-sizing:border-box}body{margin:0;background:#05070e;color:#effcff;font-family:system-ui,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:14px}
+.wrap{width:min(100%,560px)}h1{font-size:clamp(20px,5vw,28px);margin:0 0 4px;color:var(--accent);text-shadow:0 0 18px var(--accent)}p{color:#9db5cb;margin:0 0 10px;font-size:13px}canvas{display:block;width:100%;height:auto;aspect-ratio:480/520;background:#080b15;border:1px solid var(--accent);border-radius:14px;box-shadow:0 0 24px #071b35;touch-action:none}#status{min-height:24px;color:#a3ff12;padding:8px 2px;font-size:13px}.controls{display:flex;gap:8px;flex-wrap:wrap}a,button{border:1px solid var(--accent);color:#effcff;background:#101729;border-radius:10px;padding:9px 12px;text-decoration:none;font-weight:650}small{display:block;color:#7189a5;margin-top:9px}
+</style></head><body><main class="wrap"><h1 id="gameTitle">Target Pop 189</h1><p>Hit moving targets before the clock expires. · Difficulty 3 · WASD/arrows or touch</p><canvas id="game" width="480" height="520" aria-label="Target Pop 189 game"></canvas><div id="status">Ready — play and try to beat the target!</div><div class="controls"><button onclick="location.reload()">Restart game</button><a href="../index.html">← Game library</a></div><small>Gamers’ Arcade · Game 189 of 500 · Original mini-game prototype</small></main>
+<script>window.GAME_CONFIG={"id": 189, "title": "Target Pop 189", "kind": "target", "description": "Hit moving targets before the clock expires.", "accent": "#a3ff12", "target": 12, "time": 52, "speed": 5, "difficulty": 3, "seed": 1496792, "variant": 0};</script><script>
+const cfg = window.GAME_CONFIG;
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const status = document.getElementById('status');
+const title = document.getElementById('gameTitle');
+title.textContent = cfg.title;
+document.documentElement.style.setProperty('--accent', cfg.accent);
+let W=canvas.width,H=canvas.height, keys={}, running=true, score=0, tick=0, timeLeft=cfg.time, state={}, last=0;
+const rand = (()=>{let s=cfg.seed>>>0; return ()=>{s=(s*1664525+1013904223)>>>0; return s/4294967296;};})();
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const text=(t,x,y,size=18,color="#eafcff",align="center")=>{ctx.fillStyle=color;ctx.font=`${size}px system-ui`;ctx.textAlign=align;ctx.fillText(t,x,y);};
+const rect=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);};
+const circle=(x,y,r,c)=>{ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();};
+const line=(x,y,x2,y2,c="#2b4964",w=1)=>{ctx.strokeStyle=c;ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();};
+function reset(){
+ score=0;tick=0;timeLeft=cfg.time;running=true;state={};
+ const k=cfg.kind;
+ if(k==="dodge"||k==="collect"||k==="shooter"||k==="target"||k==="bubble"||k==="racer"||k==="runner"||k==="orbit") {
+   state.p={x:W/2,y:H-55,r:13}; state.items=[];
+   let n=10+cfg.difficulty*3;
+   for(let j=0;j<n;j++) state.items.push({x:rand()*(W-40)+20,y:rand()*(H-80)+10,r:6+rand()*8,vx:(rand()-.5)*(1+cfg.speed),vy:(.7+rand()*1.2)*cfg.speed,good:rand()>.38, lane:Math.floor(rand()*3)});
+   state.shots=[];
+ }
+ if(k==="pong"){state.p={x:W/2,y:H-28,w:92};state.ball={x:W/2,y:H/2,vx:3+cfg.speed,vy:3+cfg.speed,r:8};state.cpu=W/2;}
+ if(k==="breakout"){state.p={x:W/2,y:H-25,w:100};state.ball={x:W/2,y:H-70,vx:3+cfg.speed*.5,vy:-4-cfg.speed*.5,r:7};state.blocks=[];for(let y=0;y<4;y++)for(let x=0;x<8;x++)state.blocks.push({x:24+x*61,y:35+y*25,w:52,h:15,on:true,c:palette[(x+y+cfg.id)%palette.length]});}
+ if(k==="memory"){state.cards=[];let vals=[];for(let n=0;n<8;n++)vals.push(n,n);vals.sort(()=>rand()-.5);state.cards=vals.map((v,i)=>({v,x:55+(i%4)*105,y:75+Math.floor(i/4)*115,open:false,done:false}));state.moves=cfg.target+10;state.flips=[];}
+ if(k==="math"){newMath();}
+ if(k==="maze"){state.grid=Array.from({length:9},()=>Array.from({length:13},()=>rand()>.22?0:1));state.grid[0][0]=0;state.grid[8][12]=0;state.p={x:0,y:0};state.exit={x:12,y:8};state.enemies=[];for(let i=0;i<cfg.difficulty+2;i++)state.enemies.push({x:Math.floor(rand()*13),y:Math.floor(rand()*9),d:1});}
+ if(k==="snake"){state.snake=[{x:6,y:5},{x:5,y:5},{x:4,y:5}];state.dir={x:1,y:0};state.food={x:Math.floor(rand()*16),y:Math.floor(rand()*10)};}
+ if(k==="reaction"){state.target=Math.floor(rand()*16);state.wait=0;state.hits=0;state.grid=16;}
+ if(k==="flood"){state.colors=Array.from({length:9},()=>Array.from({length:13},()=>Math.floor(rand()*6)));state.moves=cfg.target+8;state.filled=new Set(["0,0"]);}
+ if(k==="tactics"){state.board=Array(9).fill("");state.turn="X";state.over=false;}
+ if(k==="pattern"){state.seq=Array.from({length:3+cfg.difficulty},()=>Math.floor(rand()*4));state.input=[];state.showUntil=Date.now()+1600;}
+ if(k==="tower"){state.stack=[{x:W/2-90,w:180,y:H-50}];state.mover={x:0,w:180,dir:1};}
+ if(k==="lights"){state.lights=Array.from({length:25},()=>rand()>.5);state.moves=cfg.target+8;}
+}
+function newMath(){let a=1+Math.floor(rand()*12),b=1+Math.floor(rand()*12);state.a=a;state.b=b;state.answer=a+b;state.q=`${a} + ${b} = ?`;state.opts=[state.answer,state.answer+1+Math.floor(rand()*4),Math.max(0,state.answer-1-Math.floor(rand()*3)),state.answer+5].sort(()=>rand()-.5);}
+function end(msg){running=false;status.textContent=msg+`  •  Score: ${score}  •  Tap/click to restart`;}
+function moveP(e){const r=canvas.getBoundingClientRect();const x=(e.clientX-r.left)*W/r.width;const y=(e.clientY-r.top)*H/r.height;state.pointer={x,y};if(cfg.kind==="memory"){let c=state.cards?.find(c=>x>=c.x-35&&x<=c.x+35&&y>=c.y-35&&y<=c.y+35);if(c&&!c.done&&!c.open){c.open=true;state.flips.push(c);if(state.flips.length===2){state.moves--;if(state.flips[0].v===state.flips[1].v){state.flips.forEach(a=>a.done=true);score+=10;}else setTimeout(()=>{state.flips.forEach(a=>a.open=false);state.flips=[];},650);if(state.flips[0].v===state.flips[1].v)state.flips=[];}}}
+if(cfg.kind==="reaction"){let idx=Math.floor(y/(H/4))*4+Math.floor(x/(W/4));if(idx===state.target){score+=10;state.hits++;state.target=Math.floor(rand()*16);if(state.hits>=cfg.target)end("Grid mastered!");}else score=Math.max(0,score-2);}
+if(cfg.kind==="tactics"){let idx=Math.floor(y/(H/3))*3+Math.floor(x/(W/3));if(!state.board[idx]&&!state.over){state.board[idx]="X";checkTactics();if(!state.over){let empty=state.board.map((v,i)=>v?null:i).filter(v=>v!==null);if(empty.length){state.board[empty[Math.floor(rand()*empty.length)]]="O";checkTactics();}}}}
+if(cfg.kind==="math"){let idx=Math.floor((x-40)/((W-80)/2))+Math.floor((y-240)/70)*2;if(y>230&&idx>=0&&idx<4){if(state.opts[idx]===state.answer){score+=10;state.hits=(state.hits||0)+1;if(state.hits>=cfg.target)end("Number Forge cleared!");else newMath();}else score=Math.max(0,score-2);}}
+if(cfg.kind==="flood"){let col=state.colors[0][0];let idx=Math.floor(x/(W/6));if(idx>=0&&idx<6){let old=state.colors[0][0];if(idx!==old){let stack=[[0,0]],seen=new Set();while(stack.length){let [a,b]=stack.pop(),key=a+","+b;if(seen.has(key))continue;seen.add(key);if(state.colors[a][b]===old){state.colors[a][b]=idx;[[a+1,b],[a-1,b],[a,b+1],[a,b-1]].forEach(([u,v])=>{if(state.colors[u]?.[v]===old)stack.push([u,v]);});}}state.moves--;score+=2;if(state.colors.every(row=>row.every(c=>c===idx)))end("Board flooded!");if(state.moves<=0)end("Out of moves!");}}}
+if(cfg.kind==="lights"){let cx=Math.floor(x/(W/5)),cy=Math.floor(y/(H/5)),idx=cy*5+cx;if(idx>=0&&idx<25){[idx,idx-5,idx+5,idx-1,idx+1].forEach(j=>{if(j>=0&&j<25&&!(Math.abs((j%5)-(idx%5))>1))state.lights[j]=!state.lights[j];});state.moves--;score+=1;if(state.lights.every(v=>!v))end("Circuit powered down!");if(state.moves<=0)end("Moves exhausted!");}}
+if(cfg.kind==="pattern"&&Date.now()>state.showUntil){let idx=Math.floor(y/(H/2))*2+Math.floor(x/(W/2));state.input.push(idx);let n=state.input.length;if(idx!==state.seq[n-1]){end("Pattern broken!");}else if(n===state.seq.length){score+=20;end("Pattern mastered!");}}
+}
+function checkTactics(){let b=state.board;for(let [a,c,d] of [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]])if(b[a]&&b[a]===b[c]&&b[c]===b[d]){state.over=true;end(b[a]==="X"?"You win!":"Computer wins!");return;}if(b.every(Boolean)){state.over=true;end("Draw!");}}
+canvas.addEventListener('pointerdown',moveP);
+window.addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key))e.preventDefault();});
+window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+canvas.addEventListener('click',()=>{if(!running)reset();});
+function update(dt){
+ tick+=dt;timeLeft-=dt/1000;
+ if(timeLeft<=0&&running){end("Time up!");}
+ const k=cfg.kind, p=state.p;
+ if(p){
+  if(keys.arrowleft||keys.a)p.x-=4+cfg.speed;
+  if(keys.arrowright||keys.d)p.x+=4+cfg.speed;
+  if(keys.arrowup||keys.w)p.y-=4+cfg.speed;
+  if(keys.arrowdown||keys.s)p.y+=4+cfg.speed;
+  if(state.pointer&&k!=="memory") {if(k==="runner"||k==="racer"){p.x=state.pointer.x;}else if(k!=="maze"&&k!=="snake") {p.x=state.pointer.x;p.y=state.pointer.y;}}
+  p.x=clamp(p.x,12,W-12);p.y=clamp(p.y,12,H-12);
+ }
+ if(["dodge","collect","shooter","target","bubble","racer","runner","orbit"].includes(k)){
+  if(k==="shooter"&&keys[" "]){state.shots.push({x:p.x,y:p.y-18});}
+  state.shots=state.shots||[];
+  state.shots.forEach(s=>s.y-=7);
+  state.items.forEach(it=>{it.x+=it.vx;it.y+=it.vy;if(it.x<8||it.x>W-8)it.vx*=-1;if(it.y>H+10){it.y=-10;it.x=rand()*W;}
+    if(k==="shooter"){state.shots.forEach(s=>{if(Math.hypot(s.x-it.x,s.y-it.y)<it.r+5){it.y=-10;score+=5;}});}
+    if(Math.hypot(p.x-it.x,p.y-it.y)<p.r+it.r){if(k==="collect"||it.good){score+=5;it.y=-20;it.x=rand()*W;}else if(k==="dodge"||k==="runner"||k==="racer"||k==="bubble"||k==="orbit"){score=Math.max(0,score-2);it.y=-20;it.x=rand()*W;}else if(k==="target"){score+=it.good?5:0;it.y=-20;it.x=rand()*W;}}
+  });
+  if(k==="collect"&&score>=cfg.target*5)end("Target collected!");
+  if(k==="target"&&score>=cfg.target*5)end("Target challenge cleared!");
+  if(k==="dodge"&&score<0)end("Hit a hazard!");
+ }
+ if(k==="pong"){let b=state.ball;b.x+=b.vx;b.y+=b.vy;if(b.x<b.r||b.x>W-b.r)b.vx*=-1;if(b.y<b.r)b.vy*=-1;state.cpu+=clamp(b.x-state.cpu,-2.3,2.3);if(b.y>H-42&&Math.abs(b.x-state.p.x)<state.p.w/2+10){b.vy=-Math.abs(b.vy);score++;}if(b.y>H+10){end("Ball missed!");}if(b.y<35&&Math.abs(b.x-state.cpu)<45)b.vy=Math.abs(b.vy);}
+ if(k==="breakout"){let b=state.ball;b.x+=b.vx;b.y+=b.vy;if(b.x<b.r||b.x>W-b.r)b.vx*=-1;if(b.y<b.r)b.vy*=-1;if(b.y>H-38&&Math.abs(b.x-state.p.x)<state.p.w/2)b.vy=-Math.abs(b.vy);for(let bl of state.blocks)if(bl.on&&b.x>bl.x&&b.x<bl.x+bl.w&&b.y>bl.y&&b.y<bl.y+bl.h){bl.on=false;b.vy*=-1;score+=5;}if(b.y>H)end("Ball lost!");if(state.blocks.every(bl=>!bl.on))end("All blocks cleared!");}
+ if(k==="snake"&&tick>130/(cfg.speed*.6)){tick=0;let s=state.snake[0],d=state.dir;if(keys.arrowup||keys.w)d={x:0,y:-1};if(keys.arrowdown||keys.s)d={x:0,y:1};if(keys.arrowleft||keys.a)d={x:-1,y:0};if(keys.arrowright||keys.d)d={x:1,y:0};state.dir=d;let n={x:s.x+d.x,y:s.y+d.y};if(n.x<0||n.x>=16||n.y<0||n.y>=10||state.snake.some(a=>a.x===n.x&&a.y===n.y)){end("Circuit crashed!");}else{state.snake.unshift(n);if(n.x===state.food.x&&n.y===state.food.y){score+=10;state.food={x:Math.floor(rand()*16),y:Math.floor(rand()*10)};}else state.snake.pop();if(score>=cfg.target*10)end("Circuit target reached!");}}
+ if(k==="maze"&&state.pointer){let gx=Math.floor(state.pointer.x/(W/13)),gy=Math.floor(state.pointer.y/(H/9));if(Math.abs(gx-state.p.x)+Math.abs(gy-state.p.y)<=1&&state.grid[gy]?.[gx]===0){state.p={x:gx,y:gy};state.pointer=null;if(gx===12&&gy===8)end("Maze escaped!");}}
+ if(k==="tower"){let m=state.mover;m.x+=m.dir*(2+cfg.speed);if(m.x<0||m.x+m.w>W)m.dir*=-1;if(keys[" "]||state.pointer){let prev=state.stack[state.stack.length-1],left=Math.max(prev.x,m.x),right=Math.min(prev.x+prev.w,m.x+m.w),nw=right-left;if(nw<12)end("Tower collapsed!");else{state.stack.push({x:left,w:nw,y:H-50-state.stack.length*24});m.w=nw;m.x=0;m.dir=1;score+=10;state.pointer=null;if(state.stack.length>=cfg.target)end("Tower completed!");}}}
+ if(k==="pattern"&&Date.now()<state.showUntil){}
+ if(k==="reaction"){state.wait+=dt;if(state.wait>5000){state.target=Math.floor(rand()*16);state.wait=0;}}
+}
+function draw(){
+ ctx.clearRect(0,0,W,H);rect(0,0,W,H,"#080b15");
+ for(let x=0;x<W;x+=32)line(x,0,x,H,"#111d30",1);for(let y=0;y<H;y+=32)line(0,y,W,y,"#111d30",1);
+ const k=cfg.kind,p=state.p;
+ if(["dodge","collect","shooter","target","bubble","racer","runner","orbit"].includes(k)){state.items.forEach(it=>circle(it.x,it.y,it.r,it.good?"#a3ff12":"#ff4f87"));state.shots.forEach(s=>rect(s.x-2,s.y-8,4,12,"#00f5ff"));circle(p.x,p.y,p.r,cfg.accent);text(k==="shooter"?"SPACE TO FIRE":"MOVE WITH TOUCH OR WASD",W/2,24,13,"#7a9db7");}
+ if(k==="pong"){rect(state.p.x-state.p.w/2,H-35,state.p.w,10,cfg.accent);rect(state.cpu-45,18,90,10,"#ff4f87");circle(state.ball.x,state.ball.y,state.ball.r,"#f6fbff");text("PADDLE CLASH",W/2,H/2,14,"#57758c");}
+ if(k==="breakout"){state.blocks.forEach(b=>{if(b.on)rect(b.x,b.y,b.w,b.h,b.c);});rect(state.p.x-state.p.w/2,H-28,state.p.w,9,cfg.accent);circle(state.ball.x,state.ball.y,state.ball.r,"#fff");}
+ if(k==="memory"){state.cards.forEach(c=>{rect(c.x-35,c.y-35,70,70,c.done?"#163b40":c.open?"#203a5b":"#171d32");text(c.open||c.done?["◆","●","▲","✦","✚","⬟","♥","★"][c.v]:"?",c.x,c.y+9,27,cfg.accent);});text(`Moves left: ${state.moves}`,W/2,30,16);}
+ if(k==="math"){text(state.q,W/2,150,34,cfg.accent);state.opts.forEach((v,i)=>{let x=70+(i%2)*220,y=270+Math.floor(i/2)*75;rect(x-42,y-30,84,55,"#17223a");text(v,x,y+7,22);});text("Tap the correct answer",W/2,215,14);}
+ if(k==="maze"){for(let y=0;y<9;y++)for(let x=0;x<13;x++)if(state.grid[y][x])rect(x*W/13,y*H/9,W/13-2,H/9-2,"#2b3147");rect(12*W/13,8*H/9,W/13-2,H/9-2,"#a3ff12");circle((state.p.x+.5)*W/13,(state.p.y+.5)*H/9,10,cfg.accent);text("Tap an adjacent open tile",W/2,22,14);}
+ if(k==="snake"){state.snake.forEach((a,i)=>rect(a.x*W/16,a.y*H/10,W/16-2,H/10-2,i?cfg.accent:"#a3ff12"));circle((state.food.x+.5)*W/16,(state.food.y+.5)*H/10,7,"#ff4f87");}
+ if(k==="reaction"){for(let i=0;i<16;i++){let x=(i%4)*W/4,y=Math.floor(i/4)*H/4;rect(x+4,y+4,W/4-8,H/4-8,i===state.target?cfg.accent:"#17223a");text(i===state.target?"TAP":"",x+W/8,y+H/8+6,16,"#061018");}}
+ if(k==="flood"){let colors=["#00f5ff","#b84dff","#ff4fd8","#a3ff12","#ffb000","#58a6ff"];for(let y=0;y<9;y++)for(let x=0;x<13;x++)rect(x*W/13,y*H/9,W/13-1,H/9-1,colors[state.colors[y][x]]);text("Tap a color below to flood",W/2,H-12,14,"#fff");colors.forEach((c,i)=>rect(i*W/6,H-45,W/6-3,30,c));}
+ if(k==="tactics"){for(let i=1;i<3;i++){line(i*W/3,0,i*W/3,H,"#6b8ba9",3);line(0,i*H/3,W,i*H/3,"#6b8ba9",3);}state.board.forEach((v,i)=>text(v,(i%3+.5)*W/3,(Math.floor(i/3)+.5)*H/3+12,44,v==="X"?cfg.accent:"#ff4f87"));}
+ if(k==="pattern"){for(let i=0;i<4;i++){let x=(i%2)*W/2,y=Math.floor(i/2)*H/2;rect(x+8,y+8,W/2-16,H/2-16,palette[i]);}if(Date.now()<state.showUntil)text(state.seq.map(v=>v+1).join("  "),W/2,H/2,28,"#fff");else text("Repeat the sequence",W/2,H/2,20,"#fff");}
+ if(k==="tower"){state.stack.forEach((b,i)=>rect(b.x,b.y,b.w,20,palette[i%palette.length]));rect(state.mover.x,H-50-state.stack.length*24,state.mover.w,18,cfg.accent);text("SPACE / TAP TO STACK",W/2,25,14);}
+ if(k==="lights"){state.lights.forEach((v,i)=>{let x=(i%5)*W/5,y=Math.floor(i/5)*H/5;rect(x+3,y+3,W/5-6,H/5-6,v?cfg.accent:"#141a2b");});}
+ text(`SCORE ${score}`,18,H-12,14,"#d9f8ff","left");text(`TIME ${Math.max(0,Math.ceil(timeLeft))}`,W-18,H-12,14,"#d9f8ff","right");
+}
+function loop(t){let dt=Math.min(40,t-last||16);last=t;if(running)update(dt);draw();requestAnimationFrame(loop);}
+reset();requestAnimationFrame(loop);
+</script></body></html>

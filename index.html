@@ -1,16 +1,258 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#070711"><title>Gamers’ Arcade</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="arcade-icon.svg"><style>
-:root{--c:#00f5ff;--p:#b84dff;--bg:#070711;--panel:#121225;--muted:#9ba5c7}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#211944,transparent 50%),var(--bg);color:#f4f7ff;font:15px system-ui,Arial}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{max-width:1200px;margin:auto;padding:0 16px}nav{height:70px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff18}.brand{font-weight:950;letter-spacing:.04em}.brand b{color:var(--c)}.btn{background:#17172c;color:#fff;border:1px solid #393958;padding:11px 15px;border-radius:12px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(100deg,var(--c),#9c8bff);color:#080813;border:0}.hero{padding:42px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}.eyebrow{color:var(--c);font-size:11px;font-weight:900;letter-spacing:.13em}h1{font-size:clamp(40px,6vw,72px);line-height:.98;letter-spacing:-.05em;margin:14px 0}h1 span{background:linear-gradient(90deg,var(--c),#a78bfa,#ff4fd8);color:transparent;background-clip:text}.lead{color:var(--muted);line-height:1.7}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.art{min-height:220px;display:grid;place-items:center;border:1px solid #39335d;border-radius:24px;background:linear-gradient(140deg,#1b1740,#0a0a17);font-size:88px;text-shadow:0 0 28px #00f5ff77;animation:glow 3s ease-in-out infinite alternate}@keyframes glow{to{filter:hue-rotate(22deg);transform:translateY(-3px)}}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 30px}.stat,.game{background:linear-gradient(145deg,#15152b,#0d0d19);border:1px solid #2d2d4b;border-radius:14px;padding:14px}.stat strong{display:block;color:var(--c);font-size:22px}.stat small{color:var(--muted)}.heading{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}.heading h2{margin:0}.tools{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px}.search{flex:1;min-width:200px}input,select{background:#111123;color:#fff;border:1px solid #353552;border-radius:10px;padding:12px;width:100%}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.filter{border:1px solid #353552;border-radius:999px;background:#111123;color:#bbc3dc;padding:8px 10px;font-size:11px;cursor:pointer}.filter.active{border-color:var(--c);color:var(--c)}.result{color:var(--muted);font-size:12px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.game{display:flex;flex-direction:column;min-height:160px;transition:.15s}.game:hover{border-color:var(--c);transform:translateY(-3px)}.ghead,.gfoot{display:flex;justify-content:space-between;align-items:center;gap:8px}.gicon{font-size:24px}.gid{font-size:10px;color:#77809f}.game h3{font-size:14px;margin:12px 0 5px}.game p{font-size:11px;line-height:1.5;color:var(--muted);margin:0 0 12px;flex:1}.tag{font-size:9px;color:var(--c);border:1px solid #333b50;border-radius:99px;padding:5px 7px}.play{font-size:11px;color:var(--c);font-weight:900}.empty{grid-column:1/-1;padding:35px;text-align:center;color:var(--muted);border:1px dashed #333}.installhelp{font-size:12px;color:var(--muted);line-height:1.5}footer{margin-top:36px;padding:22px 0;border-top:1px solid #ffffff18;color:var(--muted);font-size:12px}@media(max-width:850px){.hero{grid-template-columns:1fr}.art{min-height:150px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.game{padding:11px}.stats{gap:6px}.stat{padding:10px}.navlabel{display:none}}
-</style>
-<!-- IMPORTANT: replace YOUR-GOATCOUNTER-CODE with the code from your GoatCounter account. -->
-<script data-goatcounter="https://YOUR-GOATCOUNTER-CODE.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></head><body>
-<nav class="shell"><a class="brand" href="./">✦ GAMERS’ <b>ARCADE</b></a><div><span class="navlabel" style="color:#9ba5c7;font-size:11px">TOUCH + KEYBOARD　</span><button id="installTop" class="btn" hidden>⬇ Install App</button></div></nav>
-<header class="shell"><div class="hero"><div><div class="eyebrow">● YOUR NEXT HIGH SCORE STARTS HERE</div><h1>PLAY BEYOND<br><span>LIMITS.</span></h1><p class="lead">Jump into quick challenges, sharpen your skills, and chase your next high score. Pick a game and make the arcade yours.</p><div class="actions"><a class="btn primary" href="#library">▶ Explore games</a><button class="btn" id="random">✧ Surprise me</button><button class="btn" id="installHero" hidden>⬇ Install App</button></div><p class="installhelp" id="installHelp">To install: in Chrome, open ⋮ and choose “Install app” or “Add to Home screen” if available.</p></div><div class="art">🎮</div></div><div class="stats"><div class="stat"><strong>500</strong><small>GAME PAGES</small></div><div class="stat"><strong>20</strong><small>GAMEPLAY FAMILIES</small></div><div class="stat"><strong>∞</strong><small>HIGH-SCORE HUNT</small></div></div></header>
-<main class="shell" id="library"><div class="heading"><h2>Game library</h2><span id="count" class="stat">500 GAMES</span></div><div class="tools"><input class="search" id="query" placeholder="Search games…"><select id="sort"><option value="num">Game number</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select></div><div class="filters" id="filters"></div><div class="result" id="result">Showing 500 games</div><div class="grid" id="grid"></div></main><footer class="shell">Gamers’ Arcade · Neon nights. New records. One more round.</footer>
-<script>
-const fam=[["Dodge Field","dodge","⚡","Avoid hazards and survive the timer."],["Coin Sprint","collect","💎","Collect stars before time runs out."],["Meteor Blaster","shooter","🚀","Blast incoming targets and stay alive."],["Paddle Clash","pong","🏓","Keep the ball in play."],["Brick Breaker","breakout","🧱","Break target blocks with a bouncing ball."],["Lane Runner","runner","🏃","Dodge barriers and collect energy."],["Memory Flip","memory","🧠","Match symbol pairs."],["Number Forge","math","➗","Solve quick number challenges."],["Target Pop","target","🎯","Hit moving targets."],["Maze Escape","maze","🌀","Find the exit through a maze."],["Snake Circuit","snake","🐍","Eat energy cells and avoid yourself."],["Reaction Grid","reaction","🔷","Tap the highlighted tile quickly."],["Flood Lab","flood","🌈","Flood the board with one color."],["Tic-Tac Tactics","tactics","✖️","Beat the computer in a grid duel."],["Orbit Catch","orbit","🪐","Catch sparks and avoid mines."],["Bubble Drift","bubble","🫧","Guide your bubble through gates."],["Pattern Pulse","pattern","🎵","Repeat a sequence."],["Racer Sprint","racer","🏎️","Steer through traffic."],["Tower Tap","tower","🏗️","Stack moving platforms."],["Light Link","lights","💡","Solve a light grid puzzle."]];
-const colors=["#00f5ff","#b84dff","#ff4fd8","#a3ff12","#ffb000","#58a6ff","#ff5d73","#7cffcb"],games=Array.from({length:500},(_,i)=>{let f=fam[i%20],id=i+1;return{id,title:f[0]+" "+String(id).padStart(3,"0"),kind:f[1],icon:f[2],desc:f[3],accent:colors[id*7%8],href:"games/game-"+String(id).padStart(3,"0")+".html"}});
-let active="all";const grid=document.getElementById("grid"),query=document.getElementById("query"),sort=document.getElementById("sort"),filters=document.getElementById("filters");
-function filterButton(label,value){let b=document.createElement("button");b.className="filter"+(active===value?" active":"");b.textContent=label;b.onclick=()=>{active=value;filters.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x===b));render()};filters.appendChild(b)}filterButton("All games","all");fam.forEach(f=>filterButton(f[0],f[1]));
-function render(){let list=games.filter(g=>(active==="all"||g.kind===active)&&(g.title+" "+g.desc).toLowerCase().includes(query.value.trim().toLowerCase()));if(sort.value==="az")list.sort((a,b)=>a.title.localeCompare(b.title));else if(sort.value==="za")list.sort((a,b)=>b.title.localeCompare(a.title));else list.sort((a,b)=>a.id-b.id);grid.innerHTML="";document.getElementById("count").textContent=list.length+" GAMES";document.getElementById("result").textContent="Showing "+list.length+" of 500 games";if(!list.length){grid.innerHTML='<div class="empty">No games found. Try another search or category.</div>';return}let frag=document.createDocumentFragment();list.forEach(g=>{let a=document.createElement("a");a.className="game";a.style.setProperty("--accent",g.accent);a.href=g.href;a.innerHTML='<div class="ghead"><span class="gicon">'+g.icon+'</span><span class="gid">GAME '+String(g.id).padStart(3,"0")+'</span></div><h3>'+g.title+'</h3><p>'+g.desc+'</p><div class="gfoot"><span class="tag">'+g.kind.toUpperCase()+'</span><span class="play">PLAY ↗</span></div>';frag.appendChild(a)});grid.appendChild(frag)}query.addEventListener("input",render);sort.addEventListener("change",render);document.getElementById("random").onclick=()=>location.href=games[Math.floor(Math.random()*games.length)].href;render();
-let promptEvent=null,buttons=[document.getElementById("installTop"),document.getElementById("installHero")];window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();promptEvent=e;buttons.forEach(b=>b.hidden=false);document.getElementById("installHelp").textContent="Install Gamers’ Arcade on your device for quick access."});buttons.forEach(b=>b.addEventListener("click",async()=>{if(promptEvent){promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;buttons.forEach(x=>x.hidden=true)}else document.getElementById("installHelp").textContent='Open Chrome ⋮ and select “Install app” or “Add to Home screen”.'}));if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Gamers' Arcade — play browser games, collect XP, and unlock global achievements.">
+  <title>Gamers’ Arcade</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    /* Homepage achievements section; the existing arcade stylesheet remains in charge of the rest. */
+    .global-achievements { margin: 28px 0 34px; }
+    .global-achievements .achievement-heading {
+      display:flex; align-items:flex-end; justify-content:space-between;
+      flex-wrap:wrap; gap:12px; margin-bottom:16px;
+    }
+    .global-achievements h2 { margin:0 0 6px; }
+    .global-achievements .achievement-subtitle { margin:0; opacity:.78; }
+    .achievement-summary {
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+      border:1px solid var(--line, #29334d); border-radius:14px;
+      background:var(--panel, #111827); padding:14px 16px; margin-bottom:14px;
+    }
+    .achievement-summary strong { font-size:1.1rem; }
+    .achievement-progress { flex:1 1 150px; height:9px; border-radius:99px; overflow:hidden;
+      background:var(--line, #29334d); min-width:100px; }
+    .achievement-progress > span { display:block; height:100%; width:0;
+      background:linear-gradient(90deg,#00e5ff,#a855f7); transition:width .25s ease; }
+    .achievement-filters { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px; }
+    .achievement-filters button {
+      border:1px solid var(--line, #29334d); border-radius:999px;
+      padding:8px 12px; background:transparent; color:inherit; cursor:pointer;
+    }
+    .achievement-filters button[aria-pressed="true"] {
+      background:var(--accent, #00e5ff); color:#07111b; border-color:transparent; font-weight:800;
+    }
+    .global-achievement-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:12px;
+    }
+    .global-achievement {
+      border:1px solid var(--line, #29334d); border-radius:14px; padding:15px;
+      background:var(--panel, #111827); min-height:136px;
+    }
+    .global-achievement.unlocked { border-color:#16c79a88; }
+    .global-achievement-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .global-achievement-icon { font-size:1.55rem; }
+    .global-achievement h3 { font-size:1rem; margin:10px 0 5px; }
+    .global-achievement p { font-size:.88rem; opacity:.8; margin:0 0 12px; }
+    .rarity { font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; opacity:.85; }
+    .achievement-status { font-size:.78rem; font-weight:700; }
+    .achievement-mini-progress { height:5px; border-radius:99px; background:var(--line,#29334d); overflow:hidden; margin-top:8px; }
+    .achievement-mini-progress span { display:block; height:100%; background:#00e5ff; width:0; }
+    .achievement-empty { opacity:.75; padding:16px; border:1px dashed var(--line,#29334d); border-radius:12px; }
+    @media (max-width:600px) {
+      .global-achievements .achievement-heading { align-items:flex-start; }
+      .achievement-summary { align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Gamers' Arcade home">GAMERS’ <span>ARCADE</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#library">Games</a>
+        <a href="#global-achievements">Achievements</a>
+        <button id="profile-chip" class="profile-chip" type="button" aria-label="Open player profile">Player Profile</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">YOUR NEXT HIGH SCORE STARTS HERE</p>
+          <h1>One arcade.<br><span>Hundreds of ways to play.</span></h1>
+          <p class="hero-description">Explore the game library, earn XP, set personal bests, and unlock achievements that follow you across the whole arcade.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#library">Explore games <span aria-hidden="true">→</span></a>
+            <a class="secondary-button" href="#global-achievements">View achievements</a>
+          </div>
+        </div>
+        <div class="hero-stats" aria-label="Player statistics">
+          <div class="stat-card"><span>GLOBAL XP</span><strong id="hero-xp">0</strong></div>
+          <div class="stat-card"><span>GAMES DISCOVERED</span><strong id="hero-played">0</strong><small>/ 500</small></div>
+          <div class="stat-card"><span>PERSONAL BESTS</span><strong id="hero-bests">0</strong></div>
+          <div class="stat-card"><span>ACHIEVEMENTS</span><strong id="hero-badges">0</strong></div>
+        </div>
+      </section>
+
+      <section class="global-achievements" id="global-achievements" aria-labelledby="achievements-title">
+        <div class="achievement-heading">
+          <div>
+            <p class="eyebrow">ONE SHARED PROGRESSION SYSTEM</p>
+            <h2 id="achievements-title">Global Achievements</h2>
+            <p class="achievement-subtitle">Every supported game contributes to the same arcade profile.</p>
+          </div>
+          <a class="secondary-button" href="#library">Earn more achievements</a>
+        </div>
+        <div class="achievement-summary">
+          <strong id="achievement-count">Loading achievements…</strong>
+          <div class="achievement-progress" role="progressbar" aria-label="Global achievement completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="achievement-progress">
+            <span id="achievement-progress-fill"></span>
+          </div>
+          <span id="achievement-percent">0%</span>
+        </div>
+        <div class="achievement-filters" role="group" aria-label="Filter achievements">
+          <button type="button" data-achievement-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-achievement-filter="unlocked" aria-pressed="false">Unlocked</button>
+          <button type="button" data-achievement-filter="locked" aria-pressed="false">Locked</button>
+        </div>
+        <div class="global-achievement-grid" id="global-achievement-grid">
+          <p class="achievement-empty">Your shared achievement list will appear here when the arcade profile script loads.</p>
+        </div>
+      </section>
+
+      <section class="library-section" id="library">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PICK YOUR NEXT CHALLENGE</p>
+            <h2>Game Library</h2>
+            <p>Find a favourite, try something new, and build your global profile.</p>
+          </div>
+          <div class="library-tools">
+            <label class="visually-hidden" for="game-search">Search games</label>
+            <input id="game-search" type="search" placeholder="Search games…" autocomplete="off">
+            <label class="visually-hidden" for="category-filter">Filter by category</label>
+            <select id="category-filter"><option value="all">All categories</option></select>
+          </div>
+        </div>
+        <div class="library-meta"><span id="game-count">Loading games…</span><span id="library-empty" hidden>No games match your search.</span></div>
+        <div class="game-grid" id="game-grid"></div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+
+      <section class="profile-panel" id="profile-panel" hidden aria-labelledby="profile-title">
+        <div class="profile-panel-heading">
+          <div><p class="eyebrow">YOUR ARCADE IDENTITY</p><h2 id="profile-title">Player Profile</h2></div>
+          <button id="close-profile" type="button" class="icon-button" aria-label="Close profile">✕</button>
+        </div>
+        <label for="player-name">Player name</label>
+        <input id="player-name" maxlength="24" placeholder="Arcade player">
+        <div class="profile-stats">
+          <div><span>Level</span><strong id="profile-level">1</strong></div>
+          <div><span>XP</span><strong id="profile-xp">0</strong></div>
+          <div><span>Games played</span><strong id="profile-played">0</strong></div>
+          <div><span>Personal bests</span><strong id="profile-bests">0</strong></div>
+        </div>
+        <h3>Your unlocked badges</h3>
+        <div class="badge-list" id="badge-list"></div>
+        <button id="download-achievement-card" type="button" class="secondary-button">Download achievement card</button>
+      </section>
+
+      <section class="about-section" id="about">
+        <p class="eyebrow">BUILT FOR CURIOUS PLAYERS</p>
+        <h2>Play. Improve. Collect.</h2>
+        <p>Gamers’ Arcade brings the games together with a shared player profile, global XP, personal bests, favourites, and achievements stored in this browser.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>GAMERS’ ARCADE</span><span>Made for players who keep trying.</span></footer>
+  </div>
+
+  <script src="games-data.js" defer></script>
+  <script src="profile.js" defer></script>
+  <script src="achievement-card.js" defer></script>
+  <script src="app.js" defer></script>
+  <script>
+    (() => {
+      "use strict";
+      let filter = "all";
+      let cachedBadges = [];
+
+      const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+      }[ch]));
+
+      function getBadges() {
+        try {
+          if (window.ArcadeProfile && typeof window.ArcadeProfile.badges === "function") {
+            return window.ArcadeProfile.badges().map((badge, index) => ({
+              id: badge.id || `achievement-${index}`,
+              name: badge.name || "Arcade Achievement",
+              desc: badge.desc || badge.description || "Keep playing to unlock this achievement.",
+              ok: Boolean(badge.ok),
+              rarity: badge.rarity || (badge.ok ? "Unlocked" : "Standard"),
+              icon: badge.icon || (badge.ok ? "🏆" : "🔒"),
+              current: Number(badge.current ?? (badge.ok ? 1 : 0)),
+              target: Math.max(1, Number(badge.target ?? 1)),
+              secret: Boolean(badge.secret)
+            }));
+          }
+        } catch (error) {
+          console.warn("Could not read arcade achievements:", error);
+        }
+        return [];
+      }
+
+      function renderAchievements() {
+        const grid = document.getElementById("global-achievement-grid");
+        if (!grid) return;
+        cachedBadges = getBadges();
+        const visible = cachedBadges.filter(badge =>
+          filter === "all" || (filter === "unlocked" ? badge.ok : !badge.ok)
+        );
+        const unlocked = cachedBadges.filter(badge => badge.ok).length;
+        const total = cachedBadges.length;
+        const percent = total ? Math.round(unlocked / total * 100) : 0;
+        document.getElementById("achievement-count").textContent =
+          `${unlocked} of ${total} achievements unlocked`;
+        document.getElementById("achievement-percent").textContent = `${percent}%`;
+        document.getElementById("achievement-progress-fill").style.width = `${percent}%`;
+        document.getElementById("achievement-progress").setAttribute("aria-valuenow", String(percent));
+
+        if (!visible.length) {
+          grid.innerHTML = `<p class="achievement-empty">${total ? "No achievements in this filter yet." : "Achievements will show here once profile.js is loaded."}</p>`;
+          return;
+        }
+
+        grid.innerHTML = visible.map(badge => {
+          const current = Math.max(0, badge.current);
+          const target = Math.max(1, badge.target);
+          const progress = badge.ok ? 100 : Math.max(0, Math.min(100, current / target * 100));
+          const title = badge.secret && !badge.ok ? "Secret Achievement" : badge.name;
+          const description = badge.secret && !badge.ok ? "A hidden challenge. Keep exploring the arcade." : badge.desc;
+          return `<article class="global-achievement ${badge.ok ? "unlocked" : "locked"}">
+            <div class="global-achievement-top">
+              <span class="global-achievement-icon" aria-hidden="true">${badge.ok ? escapeHTML(badge.icon) : (badge.secret ? "❔" : "🔒")}</span>
+              <span class="rarity">${escapeHTML(badge.rarity)}</span>
+            </div>
+            <h3>${escapeHTML(title)}</h3>
+            <p>${escapeHTML(description)}</p>
+            <div class="achievement-status">${badge.ok ? "✓ Unlocked" : `${Math.floor(current)} / ${Math.floor(target)} progress`}</div>
+            <div class="achievement-mini-progress" aria-label="${Math.round(progress)}% complete"><span style="width:${progress}%"></span></div>
+          </article>`;
+        }).join("");
+      }
+
+      document.querySelectorAll("[data-achievement-filter]").forEach(button => {
+        button.addEventListener("click", () => {
+          filter = button.dataset.achievementFilter || "all";
+          document.querySelectorAll("[data-achievement-filter]").forEach(item =>
+            item.setAttribute("aria-pressed", String(item === button))
+          );
+          renderAchievements();
+        });
+      });
+
+      window.ArcadeAchievements = { render: renderAchievements };
+      window.addEventListener("pageshow", renderAchievements);
+      window.addEventListener("arcade-profile-updated", renderAchievements);
+      document.addEventListener("DOMContentLoaded", renderAchievements);
+      // Deferred arcade scripts load in document order; retry once after they have initialized.
+      window.addEventListener("load", renderAchievements);
+    })();
+  </script>
+</body>
+</html>

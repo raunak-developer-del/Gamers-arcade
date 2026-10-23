@@ -1,0 +1,2106 @@
+{
+  "batch": 3,
+  "game_count": 300,
+  "games": [
+    {
+      "id": 1,
+      "title": "Reaction Neon Trial",
+      "file": "batch3-games/game-001.html",
+      "engine": "reaction",
+      "twist": "short timer"
+    },
+    {
+      "id": 2,
+      "title": "Reaction Crystal Run",
+      "file": "batch3-games/game-002.html",
+      "engine": "reaction",
+      "twist": "limited moves"
+    },
+    {
+      "id": 3,
+      "title": "Reaction Quantum Shift",
+      "file": "batch3-games/game-003.html",
+      "engine": "reaction",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 4,
+      "title": "Reaction Pulse Circuit",
+      "file": "batch3-games/game-004.html",
+      "engine": "reaction",
+      "twist": "moving target"
+    },
+    {
+      "id": 5,
+      "title": "Reaction Shadow Mode",
+      "file": "batch3-games/game-005.html",
+      "engine": "reaction",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 6,
+      "title": "Reaction Overdrive",
+      "file": "batch3-games/game-006.html",
+      "engine": "reaction",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 7,
+      "title": "Reaction Mirror Challenge",
+      "file": "batch3-games/game-007.html",
+      "engine": "reaction",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 8,
+      "title": "Reaction Tiny Arena",
+      "file": "batch3-games/game-008.html",
+      "engine": "reaction",
+      "twist": "compact board"
+    },
+    {
+      "id": 9,
+      "title": "Reaction Longshot",
+      "file": "batch3-games/game-009.html",
+      "engine": "reaction",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 10,
+      "title": "Reaction Final Orbit",
+      "file": "batch3-games/game-010.html",
+      "engine": "reaction",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 11,
+      "title": "Precision Neon Trial",
+      "file": "batch3-games/game-011.html",
+      "engine": "precision",
+      "twist": "short timer"
+    },
+    {
+      "id": 12,
+      "title": "Precision Crystal Run",
+      "file": "batch3-games/game-012.html",
+      "engine": "precision",
+      "twist": "limited moves"
+    },
+    {
+      "id": 13,
+      "title": "Precision Quantum Shift",
+      "file": "batch3-games/game-013.html",
+      "engine": "precision",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 14,
+      "title": "Precision Pulse Circuit",
+      "file": "batch3-games/game-014.html",
+      "engine": "precision",
+      "twist": "moving target"
+    },
+    {
+      "id": 15,
+      "title": "Precision Shadow Mode",
+      "file": "batch3-games/game-015.html",
+      "engine": "precision",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 16,
+      "title": "Precision Overdrive",
+      "file": "batch3-games/game-016.html",
+      "engine": "precision",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 17,
+      "title": "Precision Mirror Challenge",
+      "file": "batch3-games/game-017.html",
+      "engine": "precision",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 18,
+      "title": "Precision Tiny Arena",
+      "file": "batch3-games/game-018.html",
+      "engine": "precision",
+      "twist": "compact board"
+    },
+    {
+      "id": 19,
+      "title": "Precision Longshot",
+      "file": "batch3-games/game-019.html",
+      "engine": "precision",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 20,
+      "title": "Precision Final Orbit",
+      "file": "batch3-games/game-020.html",
+      "engine": "precision",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 21,
+      "title": "Memory Neon Trial",
+      "file": "batch3-games/game-021.html",
+      "engine": "memory",
+      "twist": "short timer"
+    },
+    {
+      "id": 22,
+      "title": "Memory Crystal Run",
+      "file": "batch3-games/game-022.html",
+      "engine": "memory",
+      "twist": "limited moves"
+    },
+    {
+      "id": 23,
+      "title": "Memory Quantum Shift",
+      "file": "batch3-games/game-023.html",
+      "engine": "memory",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 24,
+      "title": "Memory Pulse Circuit",
+      "file": "batch3-games/game-024.html",
+      "engine": "memory",
+      "twist": "moving target"
+    },
+    {
+      "id": 25,
+      "title": "Memory Shadow Mode",
+      "file": "batch3-games/game-025.html",
+      "engine": "memory",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 26,
+      "title": "Memory Overdrive",
+      "file": "batch3-games/game-026.html",
+      "engine": "memory",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 27,
+      "title": "Memory Mirror Challenge",
+      "file": "batch3-games/game-027.html",
+      "engine": "memory",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 28,
+      "title": "Memory Tiny Arena",
+      "file": "batch3-games/game-028.html",
+      "engine": "memory",
+      "twist": "compact board"
+    },
+    {
+      "id": 29,
+      "title": "Memory Longshot",
+      "file": "batch3-games/game-029.html",
+      "engine": "memory",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 30,
+      "title": "Memory Final Orbit",
+      "file": "batch3-games/game-030.html",
+      "engine": "memory",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 31,
+      "title": "Math Neon Trial",
+      "file": "batch3-games/game-031.html",
+      "engine": "math",
+      "twist": "short timer"
+    },
+    {
+      "id": 32,
+      "title": "Math Crystal Run",
+      "file": "batch3-games/game-032.html",
+      "engine": "math",
+      "twist": "limited moves"
+    },
+    {
+      "id": 33,
+      "title": "Math Quantum Shift",
+      "file": "batch3-games/game-033.html",
+      "engine": "math",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 34,
+      "title": "Math Pulse Circuit",
+      "file": "batch3-games/game-034.html",
+      "engine": "math",
+      "twist": "moving target"
+    },
+    {
+      "id": 35,
+      "title": "Math Shadow Mode",
+      "file": "batch3-games/game-035.html",
+      "engine": "math",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 36,
+      "title": "Math Overdrive",
+      "file": "batch3-games/game-036.html",
+      "engine": "math",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 37,
+      "title": "Math Mirror Challenge",
+      "file": "batch3-games/game-037.html",
+      "engine": "math",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 38,
+      "title": "Math Tiny Arena",
+      "file": "batch3-games/game-038.html",
+      "engine": "math",
+      "twist": "compact board"
+    },
+    {
+      "id": 39,
+      "title": "Math Longshot",
+      "file": "batch3-games/game-039.html",
+      "engine": "math",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 40,
+      "title": "Math Final Orbit",
+      "file": "batch3-games/game-040.html",
+      "engine": "math",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 41,
+      "title": "Word Neon Trial",
+      "file": "batch3-games/game-041.html",
+      "engine": "word",
+      "twist": "short timer"
+    },
+    {
+      "id": 42,
+      "title": "Word Crystal Run",
+      "file": "batch3-games/game-042.html",
+      "engine": "word",
+      "twist": "limited moves"
+    },
+    {
+      "id": 43,
+      "title": "Word Quantum Shift",
+      "file": "batch3-games/game-043.html",
+      "engine": "word",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 44,
+      "title": "Word Pulse Circuit",
+      "file": "batch3-games/game-044.html",
+      "engine": "word",
+      "twist": "moving target"
+    },
+    {
+      "id": 45,
+      "title": "Word Shadow Mode",
+      "file": "batch3-games/game-045.html",
+      "engine": "word",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 46,
+      "title": "Word Overdrive",
+      "file": "batch3-games/game-046.html",
+      "engine": "word",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 47,
+      "title": "Word Mirror Challenge",
+      "file": "batch3-games/game-047.html",
+      "engine": "word",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 48,
+      "title": "Word Tiny Arena",
+      "file": "batch3-games/game-048.html",
+      "engine": "word",
+      "twist": "compact board"
+    },
+    {
+      "id": 49,
+      "title": "Word Longshot",
+      "file": "batch3-games/game-049.html",
+      "engine": "word",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 50,
+      "title": "Word Final Orbit",
+      "file": "batch3-games/game-050.html",
+      "engine": "word",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 51,
+      "title": "Maze Neon Trial",
+      "file": "batch3-games/game-051.html",
+      "engine": "maze",
+      "twist": "short timer"
+    },
+    {
+      "id": 52,
+      "title": "Maze Crystal Run",
+      "file": "batch3-games/game-052.html",
+      "engine": "maze",
+      "twist": "limited moves"
+    },
+    {
+      "id": 53,
+      "title": "Maze Quantum Shift",
+      "file": "batch3-games/game-053.html",
+      "engine": "maze",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 54,
+      "title": "Maze Pulse Circuit",
+      "file": "batch3-games/game-054.html",
+      "engine": "maze",
+      "twist": "moving target"
+    },
+    {
+      "id": 55,
+      "title": "Maze Shadow Mode",
+      "file": "batch3-games/game-055.html",
+      "engine": "maze",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 56,
+      "title": "Maze Overdrive",
+      "file": "batch3-games/game-056.html",
+      "engine": "maze",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 57,
+      "title": "Maze Mirror Challenge",
+      "file": "batch3-games/game-057.html",
+      "engine": "maze",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 58,
+      "title": "Maze Tiny Arena",
+      "file": "batch3-games/game-058.html",
+      "engine": "maze",
+      "twist": "compact board"
+    },
+    {
+      "id": 59,
+      "title": "Maze Longshot",
+      "file": "batch3-games/game-059.html",
+      "engine": "maze",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 60,
+      "title": "Maze Final Orbit",
+      "file": "batch3-games/game-060.html",
+      "engine": "maze",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 61,
+      "title": "Snake Neon Trial",
+      "file": "batch3-games/game-061.html",
+      "engine": "snake",
+      "twist": "short timer"
+    },
+    {
+      "id": 62,
+      "title": "Snake Crystal Run",
+      "file": "batch3-games/game-062.html",
+      "engine": "snake",
+      "twist": "limited moves"
+    },
+    {
+      "id": 63,
+      "title": "Snake Quantum Shift",
+      "file": "batch3-games/game-063.html",
+      "engine": "snake",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 64,
+      "title": "Snake Pulse Circuit",
+      "file": "batch3-games/game-064.html",
+      "engine": "snake",
+      "twist": "moving target"
+    },
+    {
+      "id": 65,
+      "title": "Snake Shadow Mode",
+      "file": "batch3-games/game-065.html",
+      "engine": "snake",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 66,
+      "title": "Snake Overdrive",
+      "file": "batch3-games/game-066.html",
+      "engine": "snake",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 67,
+      "title": "Snake Mirror Challenge",
+      "file": "batch3-games/game-067.html",
+      "engine": "snake",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 68,
+      "title": "Snake Tiny Arena",
+      "file": "batch3-games/game-068.html",
+      "engine": "snake",
+      "twist": "compact board"
+    },
+    {
+      "id": 69,
+      "title": "Snake Longshot",
+      "file": "batch3-games/game-069.html",
+      "engine": "snake",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 70,
+      "title": "Snake Final Orbit",
+      "file": "batch3-games/game-070.html",
+      "engine": "snake",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 71,
+      "title": "Dodge Neon Trial",
+      "file": "batch3-games/game-071.html",
+      "engine": "dodge",
+      "twist": "short timer"
+    },
+    {
+      "id": 72,
+      "title": "Dodge Crystal Run",
+      "file": "batch3-games/game-072.html",
+      "engine": "dodge",
+      "twist": "limited moves"
+    },
+    {
+      "id": 73,
+      "title": "Dodge Quantum Shift",
+      "file": "batch3-games/game-073.html",
+      "engine": "dodge",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 74,
+      "title": "Dodge Pulse Circuit",
+      "file": "batch3-games/game-074.html",
+      "engine": "dodge",
+      "twist": "moving target"
+    },
+    {
+      "id": 75,
+      "title": "Dodge Shadow Mode",
+      "file": "batch3-games/game-075.html",
+      "engine": "dodge",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 76,
+      "title": "Dodge Overdrive",
+      "file": "batch3-games/game-076.html",
+      "engine": "dodge",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 77,
+      "title": "Dodge Mirror Challenge",
+      "file": "batch3-games/game-077.html",
+      "engine": "dodge",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 78,
+      "title": "Dodge Tiny Arena",
+      "file": "batch3-games/game-078.html",
+      "engine": "dodge",
+      "twist": "compact board"
+    },
+    {
+      "id": 79,
+      "title": "Dodge Longshot",
+      "file": "batch3-games/game-079.html",
+      "engine": "dodge",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 80,
+      "title": "Dodge Final Orbit",
+      "file": "batch3-games/game-080.html",
+      "engine": "dodge",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 81,
+      "title": "Catch Neon Trial",
+      "file": "batch3-games/game-081.html",
+      "engine": "catch",
+      "twist": "short timer"
+    },
+    {
+      "id": 82,
+      "title": "Catch Crystal Run",
+      "file": "batch3-games/game-082.html",
+      "engine": "catch",
+      "twist": "limited moves"
+    },
+    {
+      "id": 83,
+      "title": "Catch Quantum Shift",
+      "file": "batch3-games/game-083.html",
+      "engine": "catch",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 84,
+      "title": "Catch Pulse Circuit",
+      "file": "batch3-games/game-084.html",
+      "engine": "catch",
+      "twist": "moving target"
+    },
+    {
+      "id": 85,
+      "title": "Catch Shadow Mode",
+      "file": "batch3-games/game-085.html",
+      "engine": "catch",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 86,
+      "title": "Catch Overdrive",
+      "file": "batch3-games/game-086.html",
+      "engine": "catch",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 87,
+      "title": "Catch Mirror Challenge",
+      "file": "batch3-games/game-087.html",
+      "engine": "catch",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 88,
+      "title": "Catch Tiny Arena",
+      "file": "batch3-games/game-088.html",
+      "engine": "catch",
+      "twist": "compact board"
+    },
+    {
+      "id": 89,
+      "title": "Catch Longshot",
+      "file": "batch3-games/game-089.html",
+      "engine": "catch",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 90,
+      "title": "Catch Final Orbit",
+      "file": "batch3-games/game-090.html",
+      "engine": "catch",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 91,
+      "title": "Stack Neon Trial",
+      "file": "batch3-games/game-091.html",
+      "engine": "stack",
+      "twist": "short timer"
+    },
+    {
+      "id": 92,
+      "title": "Stack Crystal Run",
+      "file": "batch3-games/game-092.html",
+      "engine": "stack",
+      "twist": "limited moves"
+    },
+    {
+      "id": 93,
+      "title": "Stack Quantum Shift",
+      "file": "batch3-games/game-093.html",
+      "engine": "stack",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 94,
+      "title": "Stack Pulse Circuit",
+      "file": "batch3-games/game-094.html",
+      "engine": "stack",
+      "twist": "moving target"
+    },
+    {
+      "id": 95,
+      "title": "Stack Shadow Mode",
+      "file": "batch3-games/game-095.html",
+      "engine": "stack",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 96,
+      "title": "Stack Overdrive",
+      "file": "batch3-games/game-096.html",
+      "engine": "stack",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 97,
+      "title": "Stack Mirror Challenge",
+      "file": "batch3-games/game-097.html",
+      "engine": "stack",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 98,
+      "title": "Stack Tiny Arena",
+      "file": "batch3-games/game-098.html",
+      "engine": "stack",
+      "twist": "compact board"
+    },
+    {
+      "id": 99,
+      "title": "Stack Longshot",
+      "file": "batch3-games/game-099.html",
+      "engine": "stack",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 100,
+      "title": "Stack Final Orbit",
+      "file": "batch3-games/game-100.html",
+      "engine": "stack",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 101,
+      "title": "Breakout Neon Trial",
+      "file": "batch3-games/game-101.html",
+      "engine": "breakout",
+      "twist": "short timer"
+    },
+    {
+      "id": 102,
+      "title": "Breakout Crystal Run",
+      "file": "batch3-games/game-102.html",
+      "engine": "breakout",
+      "twist": "limited moves"
+    },
+    {
+      "id": 103,
+      "title": "Breakout Quantum Shift",
+      "file": "batch3-games/game-103.html",
+      "engine": "breakout",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 104,
+      "title": "Breakout Pulse Circuit",
+      "file": "batch3-games/game-104.html",
+      "engine": "breakout",
+      "twist": "moving target"
+    },
+    {
+      "id": 105,
+      "title": "Breakout Shadow Mode",
+      "file": "batch3-games/game-105.html",
+      "engine": "breakout",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 106,
+      "title": "Breakout Overdrive",
+      "file": "batch3-games/game-106.html",
+      "engine": "breakout",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 107,
+      "title": "Breakout Mirror Challenge",
+      "file": "batch3-games/game-107.html",
+      "engine": "breakout",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 108,
+      "title": "Breakout Tiny Arena",
+      "file": "batch3-games/game-108.html",
+      "engine": "breakout",
+      "twist": "compact board"
+    },
+    {
+      "id": 109,
+      "title": "Breakout Longshot",
+      "file": "batch3-games/game-109.html",
+      "engine": "breakout",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 110,
+      "title": "Breakout Final Orbit",
+      "file": "batch3-games/game-110.html",
+      "engine": "breakout",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 111,
+      "title": "Pong Neon Trial",
+      "file": "batch3-games/game-111.html",
+      "engine": "pong",
+      "twist": "short timer"
+    },
+    {
+      "id": 112,
+      "title": "Pong Crystal Run",
+      "file": "batch3-games/game-112.html",
+      "engine": "pong",
+      "twist": "limited moves"
+    },
+    {
+      "id": 113,
+      "title": "Pong Quantum Shift",
+      "file": "batch3-games/game-113.html",
+      "engine": "pong",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 114,
+      "title": "Pong Pulse Circuit",
+      "file": "batch3-games/game-114.html",
+      "engine": "pong",
+      "twist": "moving target"
+    },
+    {
+      "id": 115,
+      "title": "Pong Shadow Mode",
+      "file": "batch3-games/game-115.html",
+      "engine": "pong",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 116,
+      "title": "Pong Overdrive",
+      "file": "batch3-games/game-116.html",
+      "engine": "pong",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 117,
+      "title": "Pong Mirror Challenge",
+      "file": "batch3-games/game-117.html",
+      "engine": "pong",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 118,
+      "title": "Pong Tiny Arena",
+      "file": "batch3-games/game-118.html",
+      "engine": "pong",
+      "twist": "compact board"
+    },
+    {
+      "id": 119,
+      "title": "Pong Longshot",
+      "file": "batch3-games/game-119.html",
+      "engine": "pong",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 120,
+      "title": "Pong Final Orbit",
+      "file": "batch3-games/game-120.html",
+      "engine": "pong",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 121,
+      "title": "Lights Neon Trial",
+      "file": "batch3-games/game-121.html",
+      "engine": "lights",
+      "twist": "short timer"
+    },
+    {
+      "id": 122,
+      "title": "Lights Crystal Run",
+      "file": "batch3-games/game-122.html",
+      "engine": "lights",
+      "twist": "limited moves"
+    },
+    {
+      "id": 123,
+      "title": "Lights Quantum Shift",
+      "file": "batch3-games/game-123.html",
+      "engine": "lights",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 124,
+      "title": "Lights Pulse Circuit",
+      "file": "batch3-games/game-124.html",
+      "engine": "lights",
+      "twist": "moving target"
+    },
+    {
+      "id": 125,
+      "title": "Lights Shadow Mode",
+      "file": "batch3-games/game-125.html",
+      "engine": "lights",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 126,
+      "title": "Lights Overdrive",
+      "file": "batch3-games/game-126.html",
+      "engine": "lights",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 127,
+      "title": "Lights Mirror Challenge",
+      "file": "batch3-games/game-127.html",
+      "engine": "lights",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 128,
+      "title": "Lights Tiny Arena",
+      "file": "batch3-games/game-128.html",
+      "engine": "lights",
+      "twist": "compact board"
+    },
+    {
+      "id": 129,
+      "title": "Lights Longshot",
+      "file": "batch3-games/game-129.html",
+      "engine": "lights",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 130,
+      "title": "Lights Final Orbit",
+      "file": "batch3-games/game-130.html",
+      "engine": "lights",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 131,
+      "title": "Flood Neon Trial",
+      "file": "batch3-games/game-131.html",
+      "engine": "flood",
+      "twist": "short timer"
+    },
+    {
+      "id": 132,
+      "title": "Flood Crystal Run",
+      "file": "batch3-games/game-132.html",
+      "engine": "flood",
+      "twist": "limited moves"
+    },
+    {
+      "id": 133,
+      "title": "Flood Quantum Shift",
+      "file": "batch3-games/game-133.html",
+      "engine": "flood",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 134,
+      "title": "Flood Pulse Circuit",
+      "file": "batch3-games/game-134.html",
+      "engine": "flood",
+      "twist": "moving target"
+    },
+    {
+      "id": 135,
+      "title": "Flood Shadow Mode",
+      "file": "batch3-games/game-135.html",
+      "engine": "flood",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 136,
+      "title": "Flood Overdrive",
+      "file": "batch3-games/game-136.html",
+      "engine": "flood",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 137,
+      "title": "Flood Mirror Challenge",
+      "file": "batch3-games/game-137.html",
+      "engine": "flood",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 138,
+      "title": "Flood Tiny Arena",
+      "file": "batch3-games/game-138.html",
+      "engine": "flood",
+      "twist": "compact board"
+    },
+    {
+      "id": 139,
+      "title": "Flood Longshot",
+      "file": "batch3-games/game-139.html",
+      "engine": "flood",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 140,
+      "title": "Flood Final Orbit",
+      "file": "batch3-games/game-140.html",
+      "engine": "flood",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 141,
+      "title": "Memory Match Neon Trial",
+      "file": "batch3-games/game-141.html",
+      "engine": "memorymatch",
+      "twist": "short timer"
+    },
+    {
+      "id": 142,
+      "title": "Memory Match Crystal Run",
+      "file": "batch3-games/game-142.html",
+      "engine": "memorymatch",
+      "twist": "limited moves"
+    },
+    {
+      "id": 143,
+      "title": "Memory Match Quantum Shift",
+      "file": "batch3-games/game-143.html",
+      "engine": "memorymatch",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 144,
+      "title": "Memory Match Pulse Circuit",
+      "file": "batch3-games/game-144.html",
+      "engine": "memorymatch",
+      "twist": "moving target"
+    },
+    {
+      "id": 145,
+      "title": "Memory Match Shadow Mode",
+      "file": "batch3-games/game-145.html",
+      "engine": "memorymatch",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 146,
+      "title": "Memory Match Overdrive",
+      "file": "batch3-games/game-146.html",
+      "engine": "memorymatch",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 147,
+      "title": "Memory Match Mirror Challenge",
+      "file": "batch3-games/game-147.html",
+      "engine": "memorymatch",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 148,
+      "title": "Memory Match Tiny Arena",
+      "file": "batch3-games/game-148.html",
+      "engine": "memorymatch",
+      "twist": "compact board"
+    },
+    {
+      "id": 149,
+      "title": "Memory Match Longshot",
+      "file": "batch3-games/game-149.html",
+      "engine": "memorymatch",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 150,
+      "title": "Memory Match Final Orbit",
+      "file": "batch3-games/game-150.html",
+      "engine": "memorymatch",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 151,
+      "title": "Pathfinder Neon Trial",
+      "file": "batch3-games/game-151.html",
+      "engine": "path",
+      "twist": "short timer"
+    },
+    {
+      "id": 152,
+      "title": "Pathfinder Crystal Run",
+      "file": "batch3-games/game-152.html",
+      "engine": "path",
+      "twist": "limited moves"
+    },
+    {
+      "id": 153,
+      "title": "Pathfinder Quantum Shift",
+      "file": "batch3-games/game-153.html",
+      "engine": "path",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 154,
+      "title": "Pathfinder Pulse Circuit",
+      "file": "batch3-games/game-154.html",
+      "engine": "path",
+      "twist": "moving target"
+    },
+    {
+      "id": 155,
+      "title": "Pathfinder Shadow Mode",
+      "file": "batch3-games/game-155.html",
+      "engine": "path",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 156,
+      "title": "Pathfinder Overdrive",
+      "file": "batch3-games/game-156.html",
+      "engine": "path",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 157,
+      "title": "Pathfinder Mirror Challenge",
+      "file": "batch3-games/game-157.html",
+      "engine": "path",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 158,
+      "title": "Pathfinder Tiny Arena",
+      "file": "batch3-games/game-158.html",
+      "engine": "path",
+      "twist": "compact board"
+    },
+    {
+      "id": 159,
+      "title": "Pathfinder Longshot",
+      "file": "batch3-games/game-159.html",
+      "engine": "path",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 160,
+      "title": "Pathfinder Final Orbit",
+      "file": "batch3-games/game-160.html",
+      "engine": "path",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 161,
+      "title": "Tactics Neon Trial",
+      "file": "batch3-games/game-161.html",
+      "engine": "tactics",
+      "twist": "short timer"
+    },
+    {
+      "id": 162,
+      "title": "Tactics Crystal Run",
+      "file": "batch3-games/game-162.html",
+      "engine": "tactics",
+      "twist": "limited moves"
+    },
+    {
+      "id": 163,
+      "title": "Tactics Quantum Shift",
+      "file": "batch3-games/game-163.html",
+      "engine": "tactics",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 164,
+      "title": "Tactics Pulse Circuit",
+      "file": "batch3-games/game-164.html",
+      "engine": "tactics",
+      "twist": "moving target"
+    },
+    {
+      "id": 165,
+      "title": "Tactics Shadow Mode",
+      "file": "batch3-games/game-165.html",
+      "engine": "tactics",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 166,
+      "title": "Tactics Overdrive",
+      "file": "batch3-games/game-166.html",
+      "engine": "tactics",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 167,
+      "title": "Tactics Mirror Challenge",
+      "file": "batch3-games/game-167.html",
+      "engine": "tactics",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 168,
+      "title": "Tactics Tiny Arena",
+      "file": "batch3-games/game-168.html",
+      "engine": "tactics",
+      "twist": "compact board"
+    },
+    {
+      "id": 169,
+      "title": "Tactics Longshot",
+      "file": "batch3-games/game-169.html",
+      "engine": "tactics",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 170,
+      "title": "Tactics Final Orbit",
+      "file": "batch3-games/game-170.html",
+      "engine": "tactics",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 171,
+      "title": "Defense Neon Trial",
+      "file": "batch3-games/game-171.html",
+      "engine": "towerdefense",
+      "twist": "short timer"
+    },
+    {
+      "id": 172,
+      "title": "Defense Crystal Run",
+      "file": "batch3-games/game-172.html",
+      "engine": "towerdefense",
+      "twist": "limited moves"
+    },
+    {
+      "id": 173,
+      "title": "Defense Quantum Shift",
+      "file": "batch3-games/game-173.html",
+      "engine": "towerdefense",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 174,
+      "title": "Defense Pulse Circuit",
+      "file": "batch3-games/game-174.html",
+      "engine": "towerdefense",
+      "twist": "moving target"
+    },
+    {
+      "id": 175,
+      "title": "Defense Shadow Mode",
+      "file": "batch3-games/game-175.html",
+      "engine": "towerdefense",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 176,
+      "title": "Defense Overdrive",
+      "file": "batch3-games/game-176.html",
+      "engine": "towerdefense",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 177,
+      "title": "Defense Mirror Challenge",
+      "file": "batch3-games/game-177.html",
+      "engine": "towerdefense",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 178,
+      "title": "Defense Tiny Arena",
+      "file": "batch3-games/game-178.html",
+      "engine": "towerdefense",
+      "twist": "compact board"
+    },
+    {
+      "id": 179,
+      "title": "Defense Longshot",
+      "file": "batch3-games/game-179.html",
+      "engine": "towerdefense",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 180,
+      "title": "Defense Final Orbit",
+      "file": "batch3-games/game-180.html",
+      "engine": "towerdefense",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 181,
+      "title": "Orbit Neon Trial",
+      "file": "batch3-games/game-181.html",
+      "engine": "orbit",
+      "twist": "short timer"
+    },
+    {
+      "id": 182,
+      "title": "Orbit Crystal Run",
+      "file": "batch3-games/game-182.html",
+      "engine": "orbit",
+      "twist": "limited moves"
+    },
+    {
+      "id": 183,
+      "title": "Orbit Quantum Shift",
+      "file": "batch3-games/game-183.html",
+      "engine": "orbit",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 184,
+      "title": "Orbit Pulse Circuit",
+      "file": "batch3-games/game-184.html",
+      "engine": "orbit",
+      "twist": "moving target"
+    },
+    {
+      "id": 185,
+      "title": "Orbit Shadow Mode",
+      "file": "batch3-games/game-185.html",
+      "engine": "orbit",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 186,
+      "title": "Orbit Overdrive",
+      "file": "batch3-games/game-186.html",
+      "engine": "orbit",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 187,
+      "title": "Orbit Mirror Challenge",
+      "file": "batch3-games/game-187.html",
+      "engine": "orbit",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 188,
+      "title": "Orbit Tiny Arena",
+      "file": "batch3-games/game-188.html",
+      "engine": "orbit",
+      "twist": "compact board"
+    },
+    {
+      "id": 189,
+      "title": "Orbit Longshot",
+      "file": "batch3-games/game-189.html",
+      "engine": "orbit",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 190,
+      "title": "Orbit Final Orbit",
+      "file": "batch3-games/game-190.html",
+      "engine": "orbit",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 191,
+      "title": "Rhythm Neon Trial",
+      "file": "batch3-games/game-191.html",
+      "engine": "rhythm",
+      "twist": "short timer"
+    },
+    {
+      "id": 192,
+      "title": "Rhythm Crystal Run",
+      "file": "batch3-games/game-192.html",
+      "engine": "rhythm",
+      "twist": "limited moves"
+    },
+    {
+      "id": 193,
+      "title": "Rhythm Quantum Shift",
+      "file": "batch3-games/game-193.html",
+      "engine": "rhythm",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 194,
+      "title": "Rhythm Pulse Circuit",
+      "file": "batch3-games/game-194.html",
+      "engine": "rhythm",
+      "twist": "moving target"
+    },
+    {
+      "id": 195,
+      "title": "Rhythm Shadow Mode",
+      "file": "batch3-games/game-195.html",
+      "engine": "rhythm",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 196,
+      "title": "Rhythm Overdrive",
+      "file": "batch3-games/game-196.html",
+      "engine": "rhythm",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 197,
+      "title": "Rhythm Mirror Challenge",
+      "file": "batch3-games/game-197.html",
+      "engine": "rhythm",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 198,
+      "title": "Rhythm Tiny Arena",
+      "file": "batch3-games/game-198.html",
+      "engine": "rhythm",
+      "twist": "compact board"
+    },
+    {
+      "id": 199,
+      "title": "Rhythm Longshot",
+      "file": "batch3-games/game-199.html",
+      "engine": "rhythm",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 200,
+      "title": "Rhythm Final Orbit",
+      "file": "batch3-games/game-200.html",
+      "engine": "rhythm",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 201,
+      "title": "Mine Logic Neon Trial",
+      "file": "batch3-games/game-201.html",
+      "engine": "mines",
+      "twist": "short timer"
+    },
+    {
+      "id": 202,
+      "title": "Mine Logic Crystal Run",
+      "file": "batch3-games/game-202.html",
+      "engine": "mines",
+      "twist": "limited moves"
+    },
+    {
+      "id": 203,
+      "title": "Mine Logic Quantum Shift",
+      "file": "batch3-games/game-203.html",
+      "engine": "mines",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 204,
+      "title": "Mine Logic Pulse Circuit",
+      "file": "batch3-games/game-204.html",
+      "engine": "mines",
+      "twist": "moving target"
+    },
+    {
+      "id": 205,
+      "title": "Mine Logic Shadow Mode",
+      "file": "batch3-games/game-205.html",
+      "engine": "mines",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 206,
+      "title": "Mine Logic Overdrive",
+      "file": "batch3-games/game-206.html",
+      "engine": "mines",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 207,
+      "title": "Mine Logic Mirror Challenge",
+      "file": "batch3-games/game-207.html",
+      "engine": "mines",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 208,
+      "title": "Mine Logic Tiny Arena",
+      "file": "batch3-games/game-208.html",
+      "engine": "mines",
+      "twist": "compact board"
+    },
+    {
+      "id": 209,
+      "title": "Mine Logic Longshot",
+      "file": "batch3-games/game-209.html",
+      "engine": "mines",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 210,
+      "title": "Mine Logic Final Orbit",
+      "file": "batch3-games/game-210.html",
+      "engine": "mines",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 211,
+      "title": "Sort Neon Trial",
+      "file": "batch3-games/game-211.html",
+      "engine": "sort",
+      "twist": "short timer"
+    },
+    {
+      "id": 212,
+      "title": "Sort Crystal Run",
+      "file": "batch3-games/game-212.html",
+      "engine": "sort",
+      "twist": "limited moves"
+    },
+    {
+      "id": 213,
+      "title": "Sort Quantum Shift",
+      "file": "batch3-games/game-213.html",
+      "engine": "sort",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 214,
+      "title": "Sort Pulse Circuit",
+      "file": "batch3-games/game-214.html",
+      "engine": "sort",
+      "twist": "moving target"
+    },
+    {
+      "id": 215,
+      "title": "Sort Shadow Mode",
+      "file": "batch3-games/game-215.html",
+      "engine": "sort",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 216,
+      "title": "Sort Overdrive",
+      "file": "batch3-games/game-216.html",
+      "engine": "sort",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 217,
+      "title": "Sort Mirror Challenge",
+      "file": "batch3-games/game-217.html",
+      "engine": "sort",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 218,
+      "title": "Sort Tiny Arena",
+      "file": "batch3-games/game-218.html",
+      "engine": "sort",
+      "twist": "compact board"
+    },
+    {
+      "id": 219,
+      "title": "Sort Longshot",
+      "file": "batch3-games/game-219.html",
+      "engine": "sort",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 220,
+      "title": "Sort Final Orbit",
+      "file": "batch3-games/game-220.html",
+      "engine": "sort",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 221,
+      "title": "Balance Neon Trial",
+      "file": "batch3-games/game-221.html",
+      "engine": "balance",
+      "twist": "short timer"
+    },
+    {
+      "id": 222,
+      "title": "Balance Crystal Run",
+      "file": "batch3-games/game-222.html",
+      "engine": "balance",
+      "twist": "limited moves"
+    },
+    {
+      "id": 223,
+      "title": "Balance Quantum Shift",
+      "file": "batch3-games/game-223.html",
+      "engine": "balance",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 224,
+      "title": "Balance Pulse Circuit",
+      "file": "batch3-games/game-224.html",
+      "engine": "balance",
+      "twist": "moving target"
+    },
+    {
+      "id": 225,
+      "title": "Balance Shadow Mode",
+      "file": "batch3-games/game-225.html",
+      "engine": "balance",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 226,
+      "title": "Balance Overdrive",
+      "file": "batch3-games/game-226.html",
+      "engine": "balance",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 227,
+      "title": "Balance Mirror Challenge",
+      "file": "batch3-games/game-227.html",
+      "engine": "balance",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 228,
+      "title": "Balance Tiny Arena",
+      "file": "batch3-games/game-228.html",
+      "engine": "balance",
+      "twist": "compact board"
+    },
+    {
+      "id": 229,
+      "title": "Balance Longshot",
+      "file": "batch3-games/game-229.html",
+      "engine": "balance",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 230,
+      "title": "Balance Final Orbit",
+      "file": "batch3-games/game-230.html",
+      "engine": "balance",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 231,
+      "title": "Gravity Neon Trial",
+      "file": "batch3-games/game-231.html",
+      "engine": "gravity",
+      "twist": "short timer"
+    },
+    {
+      "id": 232,
+      "title": "Gravity Crystal Run",
+      "file": "batch3-games/game-232.html",
+      "engine": "gravity",
+      "twist": "limited moves"
+    },
+    {
+      "id": 233,
+      "title": "Gravity Quantum Shift",
+      "file": "batch3-games/game-233.html",
+      "engine": "gravity",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 234,
+      "title": "Gravity Pulse Circuit",
+      "file": "batch3-games/game-234.html",
+      "engine": "gravity",
+      "twist": "moving target"
+    },
+    {
+      "id": 235,
+      "title": "Gravity Shadow Mode",
+      "file": "batch3-games/game-235.html",
+      "engine": "gravity",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 236,
+      "title": "Gravity Overdrive",
+      "file": "batch3-games/game-236.html",
+      "engine": "gravity",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 237,
+      "title": "Gravity Mirror Challenge",
+      "file": "batch3-games/game-237.html",
+      "engine": "gravity",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 238,
+      "title": "Gravity Tiny Arena",
+      "file": "batch3-games/game-238.html",
+      "engine": "gravity",
+      "twist": "compact board"
+    },
+    {
+      "id": 239,
+      "title": "Gravity Longshot",
+      "file": "batch3-games/game-239.html",
+      "engine": "gravity",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 240,
+      "title": "Gravity Final Orbit",
+      "file": "batch3-games/game-240.html",
+      "engine": "gravity",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 241,
+      "title": "Stealth Neon Trial",
+      "file": "batch3-games/game-241.html",
+      "engine": "stealth",
+      "twist": "short timer"
+    },
+    {
+      "id": 242,
+      "title": "Stealth Crystal Run",
+      "file": "batch3-games/game-242.html",
+      "engine": "stealth",
+      "twist": "limited moves"
+    },
+    {
+      "id": 243,
+      "title": "Stealth Quantum Shift",
+      "file": "batch3-games/game-243.html",
+      "engine": "stealth",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 244,
+      "title": "Stealth Pulse Circuit",
+      "file": "batch3-games/game-244.html",
+      "engine": "stealth",
+      "twist": "moving target"
+    },
+    {
+      "id": 245,
+      "title": "Stealth Shadow Mode",
+      "file": "batch3-games/game-245.html",
+      "engine": "stealth",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 246,
+      "title": "Stealth Overdrive",
+      "file": "batch3-games/game-246.html",
+      "engine": "stealth",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 247,
+      "title": "Stealth Mirror Challenge",
+      "file": "batch3-games/game-247.html",
+      "engine": "stealth",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 248,
+      "title": "Stealth Tiny Arena",
+      "file": "batch3-games/game-248.html",
+      "engine": "stealth",
+      "twist": "compact board"
+    },
+    {
+      "id": 249,
+      "title": "Stealth Longshot",
+      "file": "batch3-games/game-249.html",
+      "engine": "stealth",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 250,
+      "title": "Stealth Final Orbit",
+      "file": "batch3-games/game-250.html",
+      "engine": "stealth",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 251,
+      "title": "Runner Neon Trial",
+      "file": "batch3-games/game-251.html",
+      "engine": "runner",
+      "twist": "short timer"
+    },
+    {
+      "id": 252,
+      "title": "Runner Crystal Run",
+      "file": "batch3-games/game-252.html",
+      "engine": "runner",
+      "twist": "limited moves"
+    },
+    {
+      "id": 253,
+      "title": "Runner Quantum Shift",
+      "file": "batch3-games/game-253.html",
+      "engine": "runner",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 254,
+      "title": "Runner Pulse Circuit",
+      "file": "batch3-games/game-254.html",
+      "engine": "runner",
+      "twist": "moving target"
+    },
+    {
+      "id": 255,
+      "title": "Runner Shadow Mode",
+      "file": "batch3-games/game-255.html",
+      "engine": "runner",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 256,
+      "title": "Runner Overdrive",
+      "file": "batch3-games/game-256.html",
+      "engine": "runner",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 257,
+      "title": "Runner Mirror Challenge",
+      "file": "batch3-games/game-257.html",
+      "engine": "runner",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 258,
+      "title": "Runner Tiny Arena",
+      "file": "batch3-games/game-258.html",
+      "engine": "runner",
+      "twist": "compact board"
+    },
+    {
+      "id": 259,
+      "title": "Runner Longshot",
+      "file": "batch3-games/game-259.html",
+      "engine": "runner",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 260,
+      "title": "Runner Final Orbit",
+      "file": "batch3-games/game-260.html",
+      "engine": "runner",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 261,
+      "title": "Aim Neon Trial",
+      "file": "batch3-games/game-261.html",
+      "engine": "aim",
+      "twist": "short timer"
+    },
+    {
+      "id": 262,
+      "title": "Aim Crystal Run",
+      "file": "batch3-games/game-262.html",
+      "engine": "aim",
+      "twist": "limited moves"
+    },
+    {
+      "id": 263,
+      "title": "Aim Quantum Shift",
+      "file": "batch3-games/game-263.html",
+      "engine": "aim",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 264,
+      "title": "Aim Pulse Circuit",
+      "file": "batch3-games/game-264.html",
+      "engine": "aim",
+      "twist": "moving target"
+    },
+    {
+      "id": 265,
+      "title": "Aim Shadow Mode",
+      "file": "batch3-games/game-265.html",
+      "engine": "aim",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 266,
+      "title": "Aim Overdrive",
+      "file": "batch3-games/game-266.html",
+      "engine": "aim",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 267,
+      "title": "Aim Mirror Challenge",
+      "file": "batch3-games/game-267.html",
+      "engine": "aim",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 268,
+      "title": "Aim Tiny Arena",
+      "file": "batch3-games/game-268.html",
+      "engine": "aim",
+      "twist": "compact board"
+    },
+    {
+      "id": 269,
+      "title": "Aim Longshot",
+      "file": "batch3-games/game-269.html",
+      "engine": "aim",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 270,
+      "title": "Aim Final Orbit",
+      "file": "batch3-games/game-270.html",
+      "engine": "aim",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 271,
+      "title": "Resource Neon Trial",
+      "file": "batch3-games/game-271.html",
+      "engine": "resource",
+      "twist": "short timer"
+    },
+    {
+      "id": 272,
+      "title": "Resource Crystal Run",
+      "file": "batch3-games/game-272.html",
+      "engine": "resource",
+      "twist": "limited moves"
+    },
+    {
+      "id": 273,
+      "title": "Resource Quantum Shift",
+      "file": "batch3-games/game-273.html",
+      "engine": "resource",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 274,
+      "title": "Resource Pulse Circuit",
+      "file": "batch3-games/game-274.html",
+      "engine": "resource",
+      "twist": "moving target"
+    },
+    {
+      "id": 275,
+      "title": "Resource Shadow Mode",
+      "file": "batch3-games/game-275.html",
+      "engine": "resource",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 276,
+      "title": "Resource Overdrive",
+      "file": "batch3-games/game-276.html",
+      "engine": "resource",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 277,
+      "title": "Resource Mirror Challenge",
+      "file": "batch3-games/game-277.html",
+      "engine": "resource",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 278,
+      "title": "Resource Tiny Arena",
+      "file": "batch3-games/game-278.html",
+      "engine": "resource",
+      "twist": "compact board"
+    },
+    {
+      "id": 279,
+      "title": "Resource Longshot",
+      "file": "batch3-games/game-279.html",
+      "engine": "resource",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 280,
+      "title": "Resource Final Orbit",
+      "file": "batch3-games/game-280.html",
+      "engine": "resource",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 281,
+      "title": "Pattern Neon Trial",
+      "file": "batch3-games/game-281.html",
+      "engine": "pattern",
+      "twist": "short timer"
+    },
+    {
+      "id": 282,
+      "title": "Pattern Crystal Run",
+      "file": "batch3-games/game-282.html",
+      "engine": "pattern",
+      "twist": "limited moves"
+    },
+    {
+      "id": 283,
+      "title": "Pattern Quantum Shift",
+      "file": "batch3-games/game-283.html",
+      "engine": "pattern",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 284,
+      "title": "Pattern Pulse Circuit",
+      "file": "batch3-games/game-284.html",
+      "engine": "pattern",
+      "twist": "moving target"
+    },
+    {
+      "id": 285,
+      "title": "Pattern Shadow Mode",
+      "file": "batch3-games/game-285.html",
+      "engine": "pattern",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 286,
+      "title": "Pattern Overdrive",
+      "file": "batch3-games/game-286.html",
+      "engine": "pattern",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 287,
+      "title": "Pattern Mirror Challenge",
+      "file": "batch3-games/game-287.html",
+      "engine": "pattern",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 288,
+      "title": "Pattern Tiny Arena",
+      "file": "batch3-games/game-288.html",
+      "engine": "pattern",
+      "twist": "compact board"
+    },
+    {
+      "id": 289,
+      "title": "Pattern Longshot",
+      "file": "batch3-games/game-289.html",
+      "engine": "pattern",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 290,
+      "title": "Pattern Final Orbit",
+      "file": "batch3-games/game-290.html",
+      "engine": "pattern",
+      "twist": "two-stage goal"
+    },
+    {
+      "id": 291,
+      "title": "Physics Neon Trial",
+      "file": "batch3-games/game-291.html",
+      "engine": "physics",
+      "twist": "short timer"
+    },
+    {
+      "id": 292,
+      "title": "Physics Crystal Run",
+      "file": "batch3-games/game-292.html",
+      "engine": "physics",
+      "twist": "limited moves"
+    },
+    {
+      "id": 293,
+      "title": "Physics Quantum Shift",
+      "file": "batch3-games/game-293.html",
+      "engine": "physics",
+      "twist": "reversing controls"
+    },
+    {
+      "id": 294,
+      "title": "Physics Pulse Circuit",
+      "file": "batch3-games/game-294.html",
+      "engine": "physics",
+      "twist": "moving target"
+    },
+    {
+      "id": 295,
+      "title": "Physics Shadow Mode",
+      "file": "batch3-games/game-295.html",
+      "engine": "physics",
+      "twist": "decoy hazards"
+    },
+    {
+      "id": 296,
+      "title": "Physics Overdrive",
+      "file": "batch3-games/game-296.html",
+      "engine": "physics",
+      "twist": "accelerating pace"
+    },
+    {
+      "id": 297,
+      "title": "Physics Mirror Challenge",
+      "file": "batch3-games/game-297.html",
+      "engine": "physics",
+      "twist": "mirrored field"
+    },
+    {
+      "id": 298,
+      "title": "Physics Tiny Arena",
+      "file": "batch3-games/game-298.html",
+      "engine": "physics",
+      "twist": "compact board"
+    },
+    {
+      "id": 299,
+      "title": "Physics Longshot",
+      "file": "batch3-games/game-299.html",
+      "engine": "physics",
+      "twist": "precision bonus"
+    },
+    {
+      "id": 300,
+      "title": "Physics Final Orbit",
+      "file": "batch3-games/game-300.html",
+      "engine": "physics",
+      "twist": "two-stage goal"
+    }
+  ]
+}

@@ -1,5 +1,28 @@
-const CACHE='gamers-arcade-shell-v4';
-const CORE=['./','./index.html','./styles.css','./games-data.js','./app.js','./profile.js','./achievement-card.js','./play.html','./microgames.js','./manifest.webmanifest','./arcade-icon.svg','./pacman.html','./candy-crush.html'];
-self.addEventListener('install',event=>{event.waitUntil((async()=>{const cache=await caches.open(CACHE);await Promise.all(CORE.map(async url=>{try{const response=await fetch(url,{cache:'reload'});if(response.ok)await cache.put(url,response)}catch(e){}}));await self.skipWaiting()})())});
-self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('gamers-arcade-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
-self.addEventListener('fetch',event=>{const req=event.request;if(req.method!=='GET')return;const url=new URL(req.url);if(url.origin!==location.origin)return;event.respondWith((async()=>{const cached=await caches.match(req);if(req.mode==='navigate'){try{const fresh=await fetch(req);if(fresh.ok)caches.open(CACHE).then(c=>c.put(req,fresh.clone()));return fresh}catch(e){return cached||caches.match('./index.html')}}if(cached)return cached;try{const fresh=await fetch(req);if(fresh.ok)caches.open(CACHE).then(c=>c.put(req,fresh.clone()));return fresh}catch(e){return cached||Response.error()}})())});
+const CACHE_NAME = 'gamers-arcade-single-player-v1';
+const CORE_FILES = [
+ './','./index.html','./play.html','./batch4-games.html',
+ './batch4-games-manifest.json','./batch4-runtime.js','./batch4-games.css',
+ './manifest.webmanifest','./arcade-icon.svg','./leaderboard.html',
+ './profile.html','./supabase-config.js'
+];
+self.addEventListener('install',event=>{
+ event.waitUntil(caches.open(CACHE_NAME).then(async cache=>{
+   await Promise.all(CORE_FILES.map(async url=>{try{await cache.add(url)}catch(e){}}));
+   await self.skipWaiting();
+ }));
+});
+self.addEventListener('activate',event=>{
+ event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
+});
+self.addEventListener('fetch',event=>{
+ if(event.request.method!=='GET')return;
+ const url=new URL(event.request.url);
+ if(url.origin!==self.location.origin)return;
+ event.respondWith(caches.match(event.request).then(cached=>{
+  const network=fetch(event.request).then(response=>{
+   if(response&&response.ok){const copy=response.clone();caches.open(CACHE_NAME).then(cache=>cache.put(event.request,copy))}
+   return response;
+  }).catch(()=>cached||caches.match('./index.html'));
+  return cached||network;
+ }));
+});

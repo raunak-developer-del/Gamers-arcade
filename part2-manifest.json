@@ -1,0 +1,83 @@
+{
+  "part": 2,
+  "cumulative": true,
+  "prior_part_retained": true,
+  "new_games": 0,
+  "dedicated_implemented_total": null,
+  "target": 500,
+  "games": [],
+  "note": "Part 2 archive contains 10 pages, but their core mechanics duplicate Part 1 games (including Tic-Tac-Toe, Connect Four, Reversi, 2048, Snake, Pong, Breakout, Checkers, Mahjong-style matching, and Sudoku). They are retained for cumulative file history but excluded from the zero-repeat game catalogue.",
+  "unique_game_additions": 0,
+  "archived_entries_not_counted_as_unique": [
+    {
+      "number": 11,
+      "slug": "tic-tac-toe",
+      "title": "Tic-Tac-Toe",
+      "description": "Take turns placing X and O. Make a row of three to win.",
+      "path": "games/unique-batch-02/tic-tac-toe.html"
+    },
+    {
+      "number": 12,
+      "slug": "connect-four",
+      "title": "Connect Four",
+      "description": "Drop discs into columns; connect four horizontally, vertically, or diagonally.",
+      "path": "games/unique-batch-02/connect-four.html"
+    },
+    {
+      "number": 13,
+      "slug": "reversi",
+      "title": "Reversi",
+      "description": "Place a disc to bracket and flip your opponent\u2019s discs. Most discs wins.",
+      "path": "games/unique-batch-02/reversi.html"
+    },
+    {
+      "number": 14,
+      "slug": "merge-2048",
+      "title": "2048 Merge",
+      "description": "Slide tiles with arrow keys or swipe. Merge equal numbers to reach 2048.",
+      "path": "games/unique-batch-02/merge-2048.html"
+    },
+    {
+      "number": 15,
+      "slug": "snake-classic",
+      "title": "Snake Classic",
+      "description": "Eat the food to grow. Avoid walls and your own tail. Arrow keys or swipe.",
+      "path": "games/unique-batch-02/snake-classic.html"
+    },
+    {
+      "number": 16,
+      "slug": "pong-duel",
+      "title": "Pong Duel",
+      "description": "Move your paddle with mouse, touch, or up/down arrows. First to 5 wins.",
+      "path": "games/unique-batch-02/pong-duel.html"
+    },
+    {
+      "number": 17,
+      "slug": "brick-breaker",
+      "title": "Brick Breaker",
+      "description": "Control the paddle and bounce the ball to clear every brick.",
+      "path": "games/unique-batch-02/brick-breaker.html"
+    },
+    {
+      "number": 18,
+      "slug": "memory-match",
+      "title": "Memory Match",
+      "description": "Flip cards and find all matching pairs using visual memory.",
+      "path": "games/unique-batch-02/memory-match.html"
+    },
+    {
+      "number": 19,
+      "slug": "checkers",
+      "title": "Checkers",
+      "description": "Move diagonally, jump opposing pieces, and promote pieces reaching the far edge. Two-player local game.",
+      "path": "games/unique-batch-02/checkers.html"
+    },
+    {
+      "number": 20,
+      "slug": "sudoku-mini",
+      "title": "Sudoku Mini",
+      "description": "Complete the 9\u00d79 Sudoku grid. Each row, column, and 3\u00d73 box must contain 1\u20139.",
+      "path": "games/unique-batch-02/sudoku-mini.html"
+    }
+  ]
+}

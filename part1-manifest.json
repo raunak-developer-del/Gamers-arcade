@@ -1,0 +1,166 @@
+{
+  "part": 1,
+  "target_games": 31,
+  "games": [
+    {
+      "id": 1,
+      "title": "Neon Needle",
+      "path": "games/unique-batch-01/unique-001.html"
+    },
+    {
+      "id": 2,
+      "title": "Wordstorm",
+      "path": "games/unique-batch-01/unique-002.html"
+    },
+    {
+      "id": 3,
+      "title": "Echo Sequence",
+      "path": "games/unique-batch-01/unique-003.html"
+    },
+    {
+      "id": 4,
+      "title": "Pixel Nonogram",
+      "path": "games/unique-batch-01/unique-004.html"
+    },
+    {
+      "id": 5,
+      "title": "Operator Lab",
+      "path": "games/unique-batch-01/unique-005.html"
+    },
+    {
+      "id": 6,
+      "title": "Lunar Landing",
+      "path": "games/unique-batch-01/unique-006.html"
+    },
+    {
+      "id": 7,
+      "title": "Mirror Maze",
+      "path": "games/unique-batch-01/unique-007.html"
+    },
+    {
+      "id": 8,
+      "title": "Beat Reactor",
+      "path": "games/unique-batch-01/unique-008.html"
+    },
+    {
+      "id": 9,
+      "title": "Skybound Platformer",
+      "path": "games/unique-batch-01/unique-009.html"
+    },
+    {
+      "id": 10,
+      "title": "Stack Sync",
+      "path": "games/unique-batch-01/unique-010.html"
+    },
+    {
+      "id": 11,
+      "title": "Tetris Classic",
+      "path": "games/unique-batch-01/unique-011.html"
+    },
+    {
+      "id": 12,
+      "title": "Snake Classic",
+      "path": "games/unique-batch-01/unique-012.html"
+    },
+    {
+      "id": 13,
+      "title": "Space Invaders",
+      "path": "games/unique-batch-01/unique-013.html"
+    },
+    {
+      "id": 14,
+      "title": "Breakout Classic",
+      "path": "games/unique-batch-01/unique-014.html"
+    },
+    {
+      "id": 15,
+      "title": "Frogger Classic",
+      "path": "games/unique-batch-01/unique-015.html"
+    },
+    {
+      "id": 16,
+      "title": "Pong Classic",
+      "path": "games/unique-batch-01/unique-016.html"
+    },
+    {
+      "id": 17,
+      "title": "Chess",
+      "path": "games/unique-batch-01/unique-017.html"
+    },
+    {
+      "id": 18,
+      "title": "Checkers",
+      "path": "games/unique-batch-01/unique-018.html"
+    },
+    {
+      "id": 19,
+      "title": "Tic-Tac-Toe",
+      "path": "games/unique-batch-01/unique-019.html"
+    },
+    {
+      "id": 20,
+      "title": "Connect Four",
+      "path": "games/unique-batch-01/unique-020.html"
+    },
+    {
+      "id": 21,
+      "title": "Reversi",
+      "path": "games/unique-batch-01/unique-021.html"
+    },
+    {
+      "id": 22,
+      "title": "2048",
+      "path": "games/unique-batch-01/unique-022.html"
+    },
+    {
+      "id": 23,
+      "title": "Sudoku Mini",
+      "path": "games/unique-batch-01/unique-023.html"
+    },
+    {
+      "id": 24,
+      "title": "Solitaire Piles",
+      "path": "games/unique-batch-01/unique-024.html"
+    },
+    {
+      "id": 25,
+      "title": "Mahjong Pairs",
+      "path": "games/unique-batch-01/unique-025.html"
+    },
+    {
+      "id": 26,
+      "title": "Asteroids Drift",
+      "path": "games/unique-batch-01/unique-026.html"
+    },
+    {
+      "id": 27,
+      "title": "Flappy Pulse",
+      "path": "games/unique-batch-01/unique-027.html"
+    },
+    {
+      "id": 28,
+      "title": "Minesweeper Classic",
+      "path": "games/unique-batch-01/unique-028.html"
+    },
+    {
+      "id": 29,
+      "title": "Gravity Flip",
+      "path": "games/unique-batch-01/unique-029.html"
+    },
+    {
+      "id": 30,
+      "title": "Drawbridge Engineer",
+      "path": "games/unique-batch-01/unique-030.html"
+    },
+    {
+      "id": 31,
+      "title": "Pulse Archery",
+      "path": "games/unique-batch-01/unique-031.html"
+    }
+  ],
+  "legacy_preserved": [
+    "pacman.html",
+    "candy-crush.html"
+  ],
+  "cumulative_rule": "Every later part must include this entire folder tree and add to it."
+}

@@ -1,0 +1,497 @@
+{
+  "part": 3,
+  "cumulative": true,
+  "goal_unique_games": 100,
+  "part1_unique_count": 33,
+  "part2_unique_additions_count": 0,
+  "part2_duplicate_entries_not_counted": 10,
+  "new_games_added": 67,
+  "cumulative_unique_count": 100,
+  "target_final": 500,
+  "games": [
+    {
+      "id": 34,
+      "title": "Hangman Hologram",
+      "description": "Guess the hidden word one letter at a time before the energy meter empties.",
+      "path": "games/unique-batch-03/034-hangman-hologram.html",
+      "mechanic": "Hangman Hologram"
+    },
+    {
+      "id": 35,
+      "title": "Word Search Nebula",
+      "description": "Find the target words hidden horizontally, vertically, or diagonally in the letter grid.",
+      "path": "games/unique-batch-03/035-word-search-nebula.html",
+      "mechanic": "Word Search Nebula"
+    },
+    {
+      "id": 36,
+      "title": "Anagram Reactor",
+      "description": "Rearrange the scrambled letters into the correct word.",
+      "path": "games/unique-batch-03/036-anagram-reactor.html",
+      "mechanic": "Anagram Reactor"
+    },
+    {
+      "id": 37,
+      "title": "Word Ladder Lab",
+      "description": "Change one letter at a time to transform COLD into WARM using valid four-letter words.",
+      "path": "games/unique-batch-03/037-word-ladder-lab.html",
+      "mechanic": "Word Ladder Lab"
+    },
+    {
+      "id": 38,
+      "title": "Cipher Vault",
+      "description": "Crack the hidden four-colour code. Feedback shows correct colour in the right place and correct colour elsewhere.",
+      "path": "games/unique-batch-03/038-cipher-vault.html",
+      "mechanic": "Cipher Vault"
+    },
+    {
+      "id": 39,
+      "title": "Lights Out Matrix",
+      "description": "Tap a tile to toggle it and its neighbours. Turn every light off.",
+      "path": "games/unique-batch-03/039-lights-out-matrix.html",
+      "mechanic": "Lights Out Matrix"
+    },
+    {
+      "id": 40,
+      "title": "Hanoi Neon Towers",
+      "description": "Move all rings from the first peg to the third. Never place a larger ring on a smaller one.",
+      "path": "games/unique-batch-03/040-hanoi-neon-towers.html",
+      "mechanic": "Hanoi Neon Towers"
+    },
+    {
+      "id": 41,
+      "title": "Peg Solitaire Star",
+      "description": "Jump pegs over neighbouring pegs into empty holes to remove the jumped peg. Finish with one peg.",
+      "path": "games/unique-batch-03/041-peg-solitaire-star.html",
+      "mechanic": "Peg Solitaire Star"
+    },
+    {
+      "id": 42,
+      "title": "Nimfire",
+      "description": "Take 1\u20133 crystals from the pile. Whoever takes the last crystal wins.",
+      "path": "games/unique-batch-03/042-nimfire.html",
+      "mechanic": "Nimfire"
+    },
+    {
+      "id": 43,
+      "title": "Matchstick Equation",
+      "description": "Move exactly one matchstick to make the displayed equation correct.",
+      "path": "games/unique-batch-03/043-matchstick-equation.html",
+      "mechanic": "Matchstick Equation"
+    },
+    {
+      "id": 44,
+      "title": "River Crossing Crew",
+      "description": "Transport the fox, chicken, and grain across the river. The boat carries you plus one item; fox and chicken or chicken and grain cannot be left alone.",
+      "path": "games/unique-batch-03/044-river-crossing-crew.html",
+      "mechanic": "River Crossing Crew"
+    },
+    {
+      "id": 45,
+      "title": "Water Sort Lab",
+      "description": "Pour the top colour between tubes. Sort each tube into a single colour.",
+      "path": "games/unique-batch-03/045-water-sort-lab.html",
+      "mechanic": "Water Sort Lab"
+    },
+    {
+      "id": 46,
+      "title": "Pipeworks Circuit",
+      "description": "Rotate pipe tiles to connect the source to the destination.",
+      "path": "games/unique-batch-03/046-pipeworks-circuit.html",
+      "mechanic": "Pipeworks Circuit"
+    },
+    {
+      "id": 47,
+      "title": "Laser Labyrinth",
+      "description": "Rotate mirrors to guide the laser from emitter to receiver.",
+      "path": "games/unique-batch-03/047-laser-labyrinth.html",
+      "mechanic": "Laser Labyrinth"
+    },
+    {
+      "id": 48,
+      "title": "Tangram Orbit",
+      "description": "Build a target silhouette by choosing and rotating geometric pieces.",
+      "path": "games/unique-batch-03/048-tangram-orbit.html",
+      "mechanic": "Tangram Orbit"
+    },
+    {
+      "id": 49,
+      "title": "Chromatic Alchemist",
+      "description": "Mix primary colours to create the requested colour.",
+      "path": "games/unique-batch-03/049-chromatic-alchemist.html",
+      "mechanic": "Chromatic Alchemist"
+    },
+    {
+      "id": 50,
+      "title": "Orbit Pattern Logic",
+      "description": "Choose the missing symbol in the evolving pattern.",
+      "path": "games/unique-batch-03/050-orbit-pattern-logic.html",
+      "mechanic": "Orbit Pattern Logic"
+    },
+    {
+      "id": 51,
+      "title": "Balance Bot",
+      "description": "Balance the scale by selecting weights that match the target mass.",
+      "path": "games/unique-batch-03/051-balance-bot.html",
+      "mechanic": "Balance Bot"
+    },
+    {
+      "id": 52,
+      "title": "Higher or Lower Galaxy",
+      "description": "Predict whether the next card will be higher or lower than the current card.",
+      "path": "games/unique-batch-03/052-higher-or-lower-galaxy.html",
+      "mechanic": "Higher or Lower Galaxy"
+    },
+    {
+      "id": 53,
+      "title": "Blackjack Neon Table",
+      "description": "Get as close to 21 as possible without busting. Dealer stands on 17.",
+      "path": "games/unique-batch-03/053-blackjack-neon-table.html",
+      "mechanic": "Blackjack Neon Table"
+    },
+    {
+      "id": 54,
+      "title": "Dice Forge Five",
+      "description": "Roll five dice up to three times. Lock dice you want to keep; aim for five of a kind.",
+      "path": "games/unique-batch-03/054-dice-forge-five.html",
+      "mechanic": "Dice Forge Five"
+    },
+    {
+      "id": 55,
+      "title": "War of the Decks",
+      "description": "Flip one card each round. Highest card wins the round; collect the most wins in ten rounds.",
+      "path": "games/unique-batch-03/055-war-of-the-decks.html",
+      "mechanic": "War of the Decks"
+    },
+    {
+      "id": 56,
+      "title": "Spelling Bee Beacon",
+      "description": "Listen to the clue and spell the word correctly.",
+      "path": "games/unique-batch-03/056-spelling-bee-beacon.html",
+      "mechanic": "Spelling Bee Beacon"
+    },
+    {
+      "id": 57,
+      "title": "Rhyme Time Arena",
+      "description": "Choose the word that rhymes with the prompt.",
+      "path": "games/unique-batch-03/057-rhyme-time-arena.html",
+      "mechanic": "Rhyme Time Arena"
+    },
+    {
+      "id": 58,
+      "title": "Cosmic Quiz Show",
+      "description": "Answer quick space and science trivia to build your score.",
+      "path": "games/unique-batch-03/058-cosmic-quiz-show.html",
+      "mechanic": "Cosmic Quiz Show"
+    },
+    {
+      "id": 59,
+      "title": "Mole Patrol",
+      "description": "Tap the glowing mole before it disappears. Earn points in 20 seconds.",
+      "path": "games/unique-batch-03/059-mole-patrol.html",
+      "mechanic": "Mole Patrol"
+    },
+    {
+      "id": 60,
+      "title": "Bubble Pop Geometry",
+      "description": "Aim a bubble into a matching cluster to pop groups of three or more.",
+      "path": "games/unique-batch-03/060-bubble-pop-geometry.html",
+      "mechanic": "Bubble Pop Geometry"
+    },
+    {
+      "id": 61,
+      "title": "Pinball Prism",
+      "description": "Launch a pinball and tap the flippers to keep it bouncing through bumpers.",
+      "path": "games/unique-batch-03/061-pinball-prism.html",
+      "mechanic": "Pinball Prism"
+    },
+    {
+      "id": 62,
+      "title": "Mini Golf Comet",
+      "description": "Put the ball into the hole with a single shot. Choose power and direction.",
+      "path": "games/unique-batch-03/062-mini-golf-comet.html",
+      "mechanic": "Mini Golf Comet"
+    },
+    {
+      "id": 63,
+      "title": "Slalom Sprint",
+      "description": "Steer left and right to pass through gates without hitting flags.",
+      "path": "games/unique-batch-03/063-slalom-sprint.html",
+      "mechanic": "Slalom Sprint"
+    },
+    {
+      "id": 64,
+      "title": "Traffic Threader",
+      "description": "Switch lanes to avoid traffic for as long as possible.",
+      "path": "games/unique-batch-03/064-traffic-threader.html",
+      "mechanic": "Traffic Threader"
+    },
+    {
+      "id": 65,
+      "title": "Cave Copter",
+      "description": "Hold to rise and release to fall. Fly through the cave without touching its walls.",
+      "path": "games/unique-batch-03/065-cave-copter.html",
+      "mechanic": "Cave Copter"
+    },
+    {
+      "id": 66,
+      "title": "Submarine Sonar",
+      "description": "Use sonar pings to locate the hidden submarine. Guess its grid coordinate in as few pings as possible.",
+      "path": "games/unique-batch-03/066-submarine-sonar.html",
+      "mechanic": "Submarine Sonar"
+    },
+    {
+      "id": 67,
+      "title": "Deep Sea Catch",
+      "description": "Tap when the bobber plunges to catch a fish; early or late taps miss.",
+      "path": "games/unique-batch-03/067-deep-sea-catch.html",
+      "mechanic": "Deep Sea Catch"
+    },
+    {
+      "id": 68,
+      "title": "Target Toss",
+      "description": "Throw a ball with a chosen angle and power to land inside the target ring.",
+      "path": "games/unique-batch-03/068-target-toss.html",
+      "mechanic": "Target Toss"
+    },
+    {
+      "id": 69,
+      "title": "Artillery Angle",
+      "description": "Set elevation and charge to hit the distant bunker. Wind changes each shot.",
+      "path": "games/unique-batch-03/069-artillery-angle.html",
+      "mechanic": "Artillery Angle"
+    },
+    {
+      "id": 70,
+      "title": "Shadow Sneak",
+      "description": "Reach the exit without stepping into a guard\u2019s line of sight.",
+      "path": "games/unique-batch-03/070-shadow-sneak.html",
+      "mechanic": "Shadow Sneak"
+    },
+    {
+      "id": 71,
+      "title": "Micro Tower Defense",
+      "description": "Place turrets along the path and stop waves of creeps reaching the base.",
+      "path": "games/unique-batch-03/071-micro-tower-defense.html",
+      "mechanic": "Micro Tower Defense"
+    },
+    {
+      "id": 72,
+      "title": "Pocket Farm Manager",
+      "description": "Plant seeds, harvest crops, and earn coins to expand your tiny farm.",
+      "path": "games/unique-batch-03/072-pocket-farm-manager.html",
+      "mechanic": "Pocket Farm Manager"
+    },
+    {
+      "id": 73,
+      "title": "Crystal Miner",
+      "description": "Mine blocks to uncover crystals. Pick the block with the strongest shimmer clue.",
+      "path": "games/unique-batch-03/073-crystal-miner.html",
+      "mechanic": "Crystal Miner"
+    },
+    {
+      "id": 74,
+      "title": "Factory Flow",
+      "description": "Rotate conveyor arrows so parts travel from the source to the assembly station.",
+      "path": "games/unique-batch-03/074-factory-flow.html",
+      "mechanic": "Factory Flow"
+    },
+    {
+      "id": 75,
+      "title": "Train Dispatcher",
+      "description": "Switch track junctions to guide each train to the matching-colour station.",
+      "path": "games/unique-batch-03/075-train-dispatcher.html",
+      "mechanic": "Train Dispatcher"
+    },
+    {
+      "id": 76,
+      "title": "Runway Control",
+      "description": "Assign incoming planes to clear runways without sending two planes to the same strip.",
+      "path": "games/unique-batch-03/076-runway-control.html",
+      "mechanic": "Runway Control"
+    },
+    {
+      "id": 77,
+      "title": "Ecosystem Balance",
+      "description": "Adjust plant, herbivore, and predator populations to keep the ecosystem balanced for five seasons.",
+      "path": "games/unique-batch-03/077-ecosystem-balance.html",
+      "mechanic": "Ecosystem Balance"
+    },
+    {
+      "id": 78,
+      "title": "Ant Colony Architect",
+      "description": "Place food sources and guide ants along the shortest route back to the nest.",
+      "path": "games/unique-batch-03/078-ant-colony-architect.html",
+      "mechanic": "Ant Colony Architect"
+    },
+    {
+      "id": 79,
+      "title": "Quantum Clicker",
+      "description": "Generate energy, buy multipliers, and reach one million energy.",
+      "path": "games/unique-batch-03/079-quantum-clicker.html",
+      "mechanic": "Quantum Clicker"
+    },
+    {
+      "id": 80,
+      "title": "Arcade Shopkeeper",
+      "description": "Buy stock, set a price, and sell items to satisfy customers while earning profit.",
+      "path": "games/unique-batch-03/080-arcade-shopkeeper.html",
+      "mechanic": "Arcade Shopkeeper"
+    },
+    {
+      "id": 81,
+      "title": "Dungeon Tactics",
+      "description": "Defeat a guard by choosing attack, defend, or potion at the right moment.",
+      "path": "games/unique-batch-03/081-dungeon-tactics.html",
+      "mechanic": "Dungeon Tactics"
+    },
+    {
+      "id": 82,
+      "title": "Grid Command Tactics",
+      "description": "Move your unit to capture the control point while avoiding enemy zones.",
+      "path": "games/unique-batch-03/082-grid-command-tactics.html",
+      "mechanic": "Grid Command Tactics"
+    },
+    {
+      "id": 83,
+      "title": "Rogue Room Run",
+      "description": "Explore a tiny dungeon, collect a key, and reach the exit while avoiding traps.",
+      "path": "games/unique-batch-03/083-rogue-room-run.html",
+      "mechanic": "Rogue Room Run"
+    },
+    {
+      "id": 84,
+      "title": "Lockpick Resonance",
+      "description": "Tune three tumblers to the correct numbers using warm/cold feedback.",
+      "path": "games/unique-batch-03/084-lockpick-resonance.html",
+      "mechanic": "Lockpick Resonance"
+    },
+    {
+      "id": 85,
+      "title": "Safecracker Dial",
+      "description": "Stop the rotating dial in the three target zones to open the safe.",
+      "path": "games/unique-batch-03/085-safecracker-dial.html",
+      "mechanic": "Safecracker Dial"
+    },
+    {
+      "id": 86,
+      "title": "Conductor\u2019s Baton",
+      "description": "Conduct a four-beat pattern by tapping the correct beat buttons in order.",
+      "path": "games/unique-batch-03/086-conductor-s-baton.html",
+      "mechanic": "Conductor\u2019s Baton"
+    },
+    {
+      "id": 87,
+      "title": "Drum Fill Duel",
+      "description": "Match the drummer\u2019s requested rhythm by choosing kick, snare, and cymbal hits.",
+      "path": "games/unique-batch-03/087-drum-fill-duel.html",
+      "mechanic": "Drum Fill Duel"
+    },
+    {
+      "id": 88,
+      "title": "Type Racer Sprint",
+      "description": "Type the sentence accurately before the timer runs out.",
+      "path": "games/unique-batch-03/088-type-racer-sprint.html",
+      "mechanic": "Type Racer Sprint"
+    },
+    {
+      "id": 89,
+      "title": "Reflex Reactor",
+      "description": "Tap only when the signal turns green. False starts cost a life.",
+      "path": "games/unique-batch-03/089-reflex-reactor.html",
+      "mechanic": "Reflex Reactor"
+    },
+    {
+      "id": 90,
+      "title": "Pixel Aim Trainer",
+      "description": "Hit the moving targets before they vanish.",
+      "path": "games/unique-batch-03/090-pixel-aim-trainer.html",
+      "mechanic": "Pixel Aim Trainer"
+    },
+    {
+      "id": 91,
+      "title": "Shape Rotation Lab",
+      "description": "Rotate the shape to match the target orientation.",
+      "path": "games/unique-batch-03/091-shape-rotation-lab.html",
+      "mechanic": "Shape Rotation Lab"
+    },
+    {
+      "id": 92,
+      "title": "Gravity Flip Runner",
+      "description": "Switch gravity to avoid spikes on both floor and ceiling.",
+      "path": "games/unique-batch-03/092-gravity-flip-runner.html",
+      "mechanic": "Gravity Flip Runner"
+    },
+    {
+      "id": 93,
+      "title": "Bridge Builder Mini",
+      "description": "Place supports under the bridge to carry a moving truck across the gap.",
+      "path": "games/unique-batch-03/093-bridge-builder-mini.html",
+      "mechanic": "Bridge Builder Mini"
+    },
+    {
+      "id": 94,
+      "title": "Water Jug Riddle",
+      "description": "Measure exactly four units using 3-unit and 5-unit jugs. Fill, empty, and pour between them.",
+      "path": "games/unique-batch-03/094-water-jug-riddle.html",
+      "mechanic": "Water Jug Riddle"
+    },
+    {
+      "id": 95,
+      "title": "Intersection Controller",
+      "description": "Change traffic lights to prevent collisions while letting cars cross.",
+      "path": "games/unique-batch-03/095-intersection-controller.html",
+      "mechanic": "Intersection Controller"
+    },
+    {
+      "id": 96,
+      "title": "Paper Plane Navigator",
+      "description": "Adjust pitch to glide through rings while managing altitude and speed.",
+      "path": "games/unique-batch-03/096-paper-plane-navigator.html",
+      "mechanic": "Paper Plane Navigator"
+    },
+    {
+      "id": 97,
+      "title": "Constellation Connect",
+      "description": "Connect the stars in the requested order without lifting your finger.",
+      "path": "games/unique-batch-03/097-constellation-connect.html",
+      "mechanic": "Constellation Connect"
+    },
+    {
+      "id": 98,
+      "title": "Orbit Stabilizer",
+      "description": "Adjust orbital speed to keep a satellite inside a stable band for ten ticks.",
+      "path": "games/unique-batch-03/098-orbit-stabilizer.html",
+      "mechanic": "Orbit Stabilizer"
+    },
+    {
+      "id": 99,
+      "title": "Cargo Bay Tetris",
+      "description": "Load cargo crates into a ship with limited capacity without exceeding the weight limit.",
+      "path": "games/unique-batch-03/099-cargo-bay-tetris.html",
+      "mechanic": "Cargo Bay Tetris"
+    },
+    {
+      "id": 100,
+      "title": "Timeblock Tactician",
+      "description": "Fit tasks into a six-slot schedule without overlaps; each task has a time window.",
+      "path": "games/unique-batch-03/100-timeblock-tactician.html",
+      "mechanic": "Timeblock Tactician"
+    }
+  ],
+  "legacy_preserved_games": [
+    {
+      "id": 32,
+      "title": "Vector-Physics Pac-Man",
+      "path": "pacman.html",
+      "mechanic": "Maze chase"
+    },
+    {
+      "id": 33,
+      "title": "Candy Cascade",
+      "path": "candy-crush.html",
+      "mechanic": "Match-three puzzle"
+    }
+  ],
+  "note": "100 unique games = 31 Part 1 standalone games + 2 preserved originals (Pac-Man and Candy Cascade) + 67 new Part 3 games. Part 2 pages remain archived but are excluded from the unique-game count because their core mechanics repeat Part 1."
+}

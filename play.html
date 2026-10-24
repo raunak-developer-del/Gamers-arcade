@@ -26,7 +26,7 @@
 <div class="game-chip" id="familyChip">ARCADE CHALLENGE</div>
 <h1 class="hero-title" id="gameTitle">Loading…</h1>
 <p id="gameDescription" class="subline"></p>
-<header><div class="topstats"><span>Score: <b id="score">0</b></span><button id="restart" class="primary">↻ Restart run</button></div></header>
+<header><div class="topstats"><span>Score: <b id="score">0</b></span><span class="game-chip">⭐ Total XP: <b id="totalXP">0</b></span><button id="restart" class="primary">↻ Restart run</button></div></header>
 <section id="stage" aria-live="polite"></section><p id="status">Get ready!</p>
 <div class="foot">Gamers’ Arcade · Single-player engine · Your progress is stored on this device.</div>
 </div>
@@ -75,6 +75,9 @@
    document.getElementById('familyChip').textContent=game.family+' · GAME '+String(game.id).padStart(3,'0')+' / 500';
    document.getElementById('gameDescription').textContent=window.ARCADE_GAME.description;
    loading.hidden=true;document.getElementById('gameShell').hidden=false;
+   const xpDisplay=document.getElementById('totalXP');
+   function refreshXP(){try{xpDisplay.textContent=(Number(localStorage.getItem('ga-xp-total'))||0).toLocaleString()}catch(e){xpDisplay.textContent='Unavailable'}}
+   refreshXP();window.addEventListener('arcade:xp-updated',refreshXP);window.addEventListener('pageshow',refreshXP);
    const script=document.createElement('script');script.src='batch4-runtime.js';script.onload=()=>{};script.onerror=()=>{loading.hidden=false;loading.innerHTML='<span class="error">Could not load the game engine. Refresh the page or check the uploaded files.</span>'};document.body.appendChild(script);
  }catch(e){loading.innerHTML='<span class="error">Game list could not load. Make sure batch4-games-manifest.json is in the same folder as play.html.</span>';console.error(e)}
  let deferredPrompt=null;const installBtn=document.getElementById('installBtn');

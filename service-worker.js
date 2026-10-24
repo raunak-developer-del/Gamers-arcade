@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gamers-arcade-single-player-v1';
+const CACHE_NAME = 'gamers-arcade-single-player-v2';
 const CORE_FILES = [
  './','./index.html','./play.html','./batch4-games.html',
  './batch4-games-manifest.json','./batch4-runtime.js','./batch4-games.css',

@@ -1,89 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070711"><title>Live Leaderboard · Gamers’ Arcade</title>
-<style>
-:root{--c:#00f5ff;--p:#b84dff;--bg:#070711;--muted:#9ba5c7}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#211944,transparent 50%),var(--bg);color:#f4f7ff;font:15px system-ui,Arial}
-.shell{max-width:950px;margin:auto;padding:0 16px}a{color:var(--c);text-decoration:none}
-nav{height:68px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff18}
-.brand{font-weight:950;color:white}.brand b{color:var(--c)}.hero{padding:32px 0}
-.eyebrow{color:var(--c);font-size:11px;font-weight:900;letter-spacing:.13em}
-h1{font-size:clamp(32px,6vw,54px);margin:12px 0}h1 span{background:linear-gradient(90deg,var(--c),#a78bfa,#ff4fd8);color:transparent;background-clip:text}
-.muted{color:var(--muted);line-height:1.6}.panel{background:linear-gradient(145deg,#15152b,#0d0d19);border:1px solid #2d2d4b;border-radius:18px;padding:17px;margin:15px 0}
-.pill{display:inline-block;border:1px solid #3b365c;border-radius:99px;padding:7px 10px;color:#bfc6e0;font-size:12px;margin:3px}
-.status{border-color:#795a22;color:#ffd789}.live{border-color:#166534;color:#86efac}
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}button,select{background:#121228;color:#f4f7ff;border:1px solid #3b365c;border-radius:10px;padding:10px 12px;font:inherit}
-button{cursor:pointer}button:hover{border-color:var(--c)}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:13px 8px;border-bottom:1px solid #ffffff12}
-.table th{color:var(--muted);font-size:11px}.rank{color:var(--c);font-weight:900}.empty{text-align:center;padding:24px;color:var(--muted)}
-footer{padding:24px 0;color:var(--muted);font-size:12px}@media(max-width:520px){.table th:nth-child(3),.table td:nth-child(3){display:none}.panel{padding:12px}}
-</style>
-<script src="supabase-config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080812">
+  <title>Leaderboard | Gamers' Arcade</title>
+  <style>
+    :root { --bg:#080812; --panel:#121225; --cyan:#00f5ff; --purple:#a855f7; --text:#f5f5ff; --muted:#aaaac5; --border:rgba(0,245,255,.25); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(ellipse at top,#20103c 0%,transparent 55%),var(--bg); color:var(--text); font-family:system-ui,-apple-system,sans-serif; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px 6%; border-bottom:1px solid var(--border); background:rgba(8,8,18,.85); }
+    .logo { color:var(--cyan); font-weight:900; font-size:1.2rem; text-decoration:none; text-shadow:0 0 14px rgba(0,245,255,.45); }
+    nav { display:flex; flex-wrap:wrap; gap:16px; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.9rem; }
+    nav a:hover { color:var(--cyan); }
+    main { width:min(900px,92%); margin:48px auto; }
+    .hero { text-align:center; margin-bottom:32px; }
+    .eyebrow { color:var(--purple); text-transform:uppercase; letter-spacing:3px; font-size:.75rem; font-weight:800; }
+    h1 { margin:10px 0; font-size:clamp(2rem,7vw,3.6rem); line-height:1.1; }
+    h1 span { color:var(--cyan); text-shadow:0 0 24px rgba(0,245,255,.35); }
+    .subtitle { color:var(--muted); line-height:1.6; }
+    .panel { padding:22px; border:1px solid var(--border); border-radius:20px; background:rgba(18,18,37,.92); box-shadow:0 0 35px rgba(168,85,247,.08); }
+    .panel-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:20px; }
+    h2 { font-size:1.15rem; margin:0; }
+    .live-label { color:var(--cyan); font-size:.75rem; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; text-align:left; }
+    th { color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:1px; padding:14px 10px; }
+    td { padding:17px 10px; border-top:1px solid rgba(255,255,255,.07); }
+    tbody tr:hover { background:rgba(0,245,255,.04); }
+    .rank { color:var(--cyan); font-weight:900; }
+    .top-rank { color:#facc15; }
+    .score { color:var(--cyan); font-weight:800; font-variant-numeric:tabular-nums; }
+    #status { color:var(--muted); text-align:center; padding:28px 10px; line-height:1.6; }
+    .actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:24px; }
+    .btn { display:inline-block; padding:12px 18px; border:1px solid var(--cyan); border-radius:10px; background:transparent; color:var(--cyan); text-decoration:none; font-weight:750; cursor:pointer; }
+    .btn.primary { background:var(--cyan); color:#080812; }
+    .btn:hover { box-shadow:0 0 20px rgba(0,245,255,.22); }
+    footer { padding:28px 16px; color:var(--muted); text-align:center; font-size:.85rem; }
+    @media(max-width:520px) { header { align-items:flex-start; flex-direction:column; } main { margin-top:32px; } .panel { padding:14px 10px; } th,td { padding:13px 7px; font-size:.85rem; } }
+  </style>
 </head>
 <body>
-<nav class="shell"><a class="brand" href="index.html">✦ GAMERS’ <b>ARCADE</b></a><div><a href="profile.html">Profile</a>　<a href="index.html">Home</a></div></nav>
-<main class="shell">
-<header class="hero"><div class="eyebrow">REAL SCORES · SHARED WORLDWIDE</div><h1>GLOBAL <span>LEADERBOARD.</span></h1>
-<p class="muted">Rankings load from your connected Supabase database. No demo players are displayed.</p></header>
-<section class="panel">
-<div class="row"><h2>🌍 Rankings</h2><span id="status" class="pill status">NOT CONFIGURED</span></div>
-<div class="controls">
-<select id="period" aria-label="Time period"><option value="all">All-time XP</option><option value="week">This week XP</option></select>
-<select id="game" aria-label="Game filter"><option value="all">All games</option></select>
-<button id="refresh">Refresh rankings</button>
-</div>
-<p id="message" class="muted">Add your Supabase project URL and publishable/anon key to supabase-config.js, run the SQL setup, and deploy the score function. Until then this page will not pretend to be live.</p>
-<div style="overflow-x:auto"><table class="table"><thead><tr><th>RANK</th><th>PLAYER</th><th>COUNTRY</th><th>XP</th></tr></thead><tbody id="rows"><tr><td colspan="4" class="empty">No live connection configured.</td></tr></tbody></table></div>
-</section>
-<section class="panel"><h2>Submit a score (integration test)</h2>
-<p class="muted">This form is disabled until the Supabase URL and public key are configured. For production, require authentication and add stronger anti-cheat/rate limiting before accepting competitive scores.</p>
-<div class="controls"><input id="name" maxlength="24" placeholder="Gamer name" aria-label="Gamer name"><input id="country" maxlength="2" value="IN" placeholder="Country code" aria-label="2-letter country code"><input id="gameId" maxlength="64" value="pacman" placeholder="Game ID" aria-label="Game ID"><input id="score" type="number" min="0" max="100000000" value="0" aria-label="Score"><input id="xp" type="number" min="0" max="100000000" value="0" aria-label="XP"><button id="submit" disabled>Submit test score</button></div>
-<p id="submitMessage" class="muted"></p></section>
-<footer>Gamers’ Arcade · Real rankings require a configured online backend.</footer>
-</main>
-<script>
-const cfg=window.ARCADE_SUPABASE_CONFIG||{};
-const configured=cfg.url && cfg.anonKey && /^https:\/\//.test(cfg.url) && !cfg.url.includes("PASTE_YOUR");
-const statusEl=document.getElementById("status"), message=document.getElementById("message"), rows=document.getElementById("rows");
-let client=null;
-const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function setStatus(text,live=false){statusEl.textContent=text;statusEl.className="pill "+(live?"live":"status")}
-function getPlayerId(){let id=localStorage.getItem("gamersArcadePlayerId");if(!id){id="player_"+crypto.randomUUID().replaceAll("-","");localStorage.setItem("gamersArcadePlayerId",id)}return id}
-async function loadRanks(){
- if(!client){rows.innerHTML='<tr><td colspan="4" class="empty">No live connection configured.</td></tr>';return}
- message.textContent="Loading real rankings…";
- try{
-  const period=document.getElementById("period").value, game=document.getElementById("game").value;
-  let q=client.from("arcade_scores").select("player_id,gamer_name,country_code,game_id,xp,submitted_at").order("xp",{ascending:false}).limit(100);
-  if(period==="week"){const d=new Date(Date.now()-7*24*60*60*1000).toISOString();q=q.gte("submitted_at",d)}
-  if(game!=="all")q=q.eq("game_id",game);
-  const {data,error}=await q;if(error)throw error;
-  const best=new Map();
-  for(const s of data||[]){const old=best.get(s.player_id);if(!old||Number(s.xp)>Number(old.xp))best.set(s.player_id,s)}
-  const list=[...best.values()].sort((a,b)=>Number(b.xp)-Number(a.xp)).slice(0,100);
-  const games=[...new Set((data||[]).map(s=>s.game_id))].sort(), gameSelect=document.getElementById("game"), prev=gameSelect.value;
-  gameSelect.innerHTML='<option value="all">All games</option>'+games.map(g=>`<option value="${escapeHTML(g)}">${escapeHTML(g)}</option>`).join("");
-  if(games.includes(prev))gameSelect.value=prev;
-  rows.innerHTML=list.length?list.map((p,i)=>`<tr><td class="rank">#${i+1}</td><td>${escapeHTML(p.gamer_name)}</td><td>${escapeHTML(p.country_code)}</td><td>${Number(p.xp).toLocaleString()}</td></tr>`).join(""):'<tr><td colspan="4" class="empty">No real scores yet. Be the first player after setup!</td></tr>';
-  setStatus("CONNECTED · LIVE DATA",true);message.textContent=`Loaded ${list.length} ranked player(s) from the shared database. Refresh to check for updates.`;
- }catch(e){setStatus("CONNECTION ERROR");message.textContent="Could not load live rankings: "+e.message;rows.innerHTML='<tr><td colspan="4" class="empty">Live data unavailable. Check setup and database policies.</td></tr>'}
-}
-if(configured&&window.supabase){client=window.supabase.createClient(cfg.url,cfg.anonKey);document.getElementById("submit").disabled=false;setStatus("CONNECTING");loadRanks()}else{setStatus("NOT CONFIGURED")}
-document.getElementById("refresh").addEventListener("click",loadRanks);
-document.getElementById("period").addEventListener("change",loadRanks);
-document.getElementById("game").addEventListener("change",loadRanks);
-document.getElementById("submit").addEventListener("click",async()=>{
- const out=document.getElementById("submitMessage");out.textContent="Submitting…";
- try{
-  if(!client)throw new Error("Supabase is not configured.");
-  const payload={player_id:getPlayerId(),gamer_name:document.getElementById("name").value.trim(),country_code:document.getElementById("country").value.trim().toUpperCase(),game_id:document.getElementById("gameId").value.trim(),score:Number(document.getElementById("score").value),xp:Number(document.getElementById("xp").value)};
-  if(!payload.gamer_name)throw new Error("Enter a gamer name.");
-  if(!Number.isFinite(payload.score)||payload.score<0||!Number.isFinite(payload.xp)||payload.xp<0)throw new Error("Enter valid non-negative numbers.");
-  const res=await fetch(cfg.url+"/functions/v1/submit-score",{method:"POST",headers:{"Content-Type":"application/json","apikey":cfg.anonKey,Authorization:"Bearer "+cfg.anonKey},body:JSON.stringify(payload)});
-  const result=await res.json();if(!res.ok||!result.ok)throw new Error(result.error||"Score submission failed.");
-  out.textContent="Score accepted by the server. Refreshing rankings…";await loadRanks();
- }catch(e){out.textContent="Not submitted: "+e.message}
-});
-</script></body></html>
+  <header>
+    <a class="logo" href="./index.html">🎮 GAMERS' ARCADE</a>
+    <nav aria-label="Main navigation">
+      <a href="./index.html">Home</a>
+      <a href="./play.html">Play</a>
+      <a href="./profile.html">Profile</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Global Rankings</div>
+      <h1>Hall of <span>Gamers</span></h1>
+      <p class="subtitle">Play hard. Score big. Claim your place on the leaderboard.</p>
+    </section>
+    <section class="panel" aria-labelledby="ranking-title">
+      <div class="panel-heading">
+        <h2 id="ranking-title">🏆 Top 50 Players</h2>
+        <span class="live-label">● ARCADE SCORES</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Score</th></tr></thead>
+          <tbody id="leaderboard"><tr><td colspan="3" id="status">Loading leaderboard...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <div class="actions">
+      <a class="btn primary" href="./index.html">🎮 Play Games</a>
+      <button class="btn" id="refresh-button" type="button">↻ Refresh Scores</button>
+    </div>
+  </main>
+  <footer>© Gamers' Arcade · Every score is another legend in the making.</footer>
+  <script type="module">
+    import { supabase } from './supabase.js';
+    const leaderboard = document.getElementById('leaderboard');
+    const refreshButton = document.getElementById('refresh-button');
+
+    function showStatus(message) {
+      leaderboard.replaceChildren();
+      const row = document.createElement('tr');
+      const cell = document.createElement('td');
+      cell.colSpan = 3;
+      cell.id = 'status';
+      cell.textContent = message;
+      row.appendChild(cell);
+      leaderboard.appendChild(row);
+    }
+
+    function formatScore(score) {
+      const number = Number(score);
+      return Number.isFinite(number) ? Math.trunc(number).toLocaleString('en-IN') : '—';
+    }
+
+    async function loadLeaderboard() {
+      refreshButton.disabled = true;
+      showStatus('Loading scores...');
+      try {
+        const { data, error } = await supabase
+          .from('arcade_scores')
+          .select('username, score')
+          .order('score', { ascending: false })
+          .limit(50);
+        if (error) throw error;
+        if (!data || data.length === 0) {
+          showStatus('No scores yet. Play a game and be the first!');
+          return;
+        }
+        leaderboard.replaceChildren();
+        data.forEach((entry, index) => {
+          const row = document.createElement('tr');
+          const rankCell = document.createElement('td');
+          rankCell.className = index < 3 ? 'rank top-rank' : 'rank';
+          rankCell.textContent = ['🥇', '🥈', '🥉'][index] ?? `#${index + 1}`;
+          const playerCell = document.createElement('td');
+          playerCell.textContent = entry.username || 'Player';
+          const scoreCell = document.createElement('td');
+          scoreCell.className = 'score';
+          scoreCell.textContent = formatScore(entry.score);
+          row.append(rankCell, playerCell, scoreCell);
+          leaderboard.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Leaderboard error:', error);
+        showStatus('Unable to load scores. Check your connection, table columns, and Supabase read permissions.');
+      } finally {
+        refreshButton.disabled = false;
+      }
+    }
+    refreshButton.addEventListener('click', loadLeaderboard);
+    loadLeaderboard();
+  </script>
+</body>
+</html>

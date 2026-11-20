@@ -1,0 +1,18 @@
+{
+  "name": "Gamers' Arcade",
+  "short_name": "Arcade",
+  "description": "Play, compete, achieve and level up.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070914",
+  "theme_color": "#070914",
+  "icons": [
+    {
+      "src": "console.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

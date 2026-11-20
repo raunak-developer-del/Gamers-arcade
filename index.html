@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070914">
+  <meta name="description" content="Gamers' Arcade — play, compete, achieve and level up.">
+  <title>Gamers' Arcade</title>
+  <link rel="icon" href="console.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="catalog.js"></script>
+  <script defer src="engine.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Gamers' Arcade home"><span class="brand-mark">⌘</span><span>Gamers’<br>Arcade</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="active" href="#home">⌂ <span>Home</span></a>
+      <a href="#games">🎮 <span>Games</span></a>
+      <a href="#achievements">🏆 <span>Achievements</span></a>
+      <a href="#leaderboard">▥ <span>Leaderboard</span></a>
+      <a href="#profile">♙ <span>Profile</span></a>
+    </nav>
+    <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games…" aria-label="Search games"></label>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> YOUR NEXT HIGH SCORE STARTS HERE</div>
+        <h1>Gamers’ <span>Arcade</span></h1>
+        <p class="hero-sub">500 Games <b>·</b> 100 Families <b>·</b> 5 Variants Each</p>
+        <p class="hero-tagline">Play <i>•</i> Compete <i>•</i> Achieve <i>•</i> Collect Tokens <i>•</i> Level Up!</p>
+      </div>
+      <div class="console-wrap"><img src="console.png" alt="Neon handheld gaming console" class="console-art"></div>
+    </section>
+
+    <section class="stats" aria-label="Arcade statistics">
+      <article class="stat"><span class="stat-icon cyan">🎮</span><div><strong>500</strong><small>Playable Games</small></div></article>
+      <article class="stat"><span class="stat-icon blue">▱</span><div><strong>100</strong><small>Game Families</small></div></article>
+      <article class="stat"><span class="stat-icon pink">☆</span><div><strong>5</strong><small>Variants Each</small></div></article>
+      <article class="stat"><span class="stat-icon gold">🏆</span><div><strong id="achievementCount">0</strong><small>Achievements</small></div></article>
+      <article class="stat"><span class="stat-icon cyan">✧</span><div><strong id="xpCount">0</strong><small>Player XP</small></div></article>
+      <article class="stat"><span class="stat-icon gold">◎</span><div><strong id="tokenCount">0</strong><small>Arcade Tokens</small></div></article>
+    </section>
+
+    <div class="hero-actions">
+      <a class="button primary" href="#games">▶ &nbsp; Play Games Now</a>
+      <a class="button secondary" href="#profile">♙ &nbsp; My Profile</a>
+    </div>
+
+    <section class="section categories-section">
+      <div class="section-heading"><div><span class="section-icon">🎮</span><h2>Explore by Category</h2></div><a href="#games">View All Games <b>→</b></a></div>
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="section-heading"><div><span class="section-icon">✦</span><h2>Game Library</h2></div><span class="muted" id="gameCount">Loading games…</span></div>
+      <div class="library-tools">
+        <input id="librarySearch" type="search" placeholder="Find your next game…">
+        <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option></select>
+      </div>
+      <div id="gameGrid" class="game-grid"></div>
+      <p id="emptyState" class="empty-state" hidden>No games match your search. Try another title or category.</p>
+    </section>
+
+    <section class="section lower-grid">
+      <article class="panel" id="profile">
+        <div class="section-heading"><div><span class="section-icon">♙</span><h2>Player Profile</h2></div><span class="local-tag">LOCAL PROFILE</span></div>
+        <label class="profile-label" for="playerName">Player name</label>
+        <div class="profile-edit"><input id="playerName" maxlength="20" placeholder="Enter player name"><button id="saveProfile" class="small-button">Save</button></div>
+        <div class="profile-stats"><div><strong id="profileXP">0</strong><small>XP</small></div><div><strong id="profileTokens">0</strong><small>Tokens</small></div><div><strong id="playedCount">0</strong><small>Games played</small></div></div>
+        <p class="muted tiny">Your profile and progress are stored on this device.</p>
+      </article>
+      <article class="panel" id="achievements">
+        <div class="section-heading"><div><span class="section-icon">🏆</span><h2>Achievements</h2></div></div>
+        <div id="achievementList" class="achievement-list"></div>
+      </article>
+    </section>
+
+    <section class="section panel" id="leaderboard">
+      <div class="section-heading"><div><span class="section-icon">▥</span><h2>Local Leaderboard</h2></div><span class="local-tag">THIS DEVICE</span></div>
+      <p class="muted">Your best runs will appear here. A shared online leaderboard can be added in a later version.</p>
+      <div id="leaderboardList" class="leaderboard-list"></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">⌘</span><span>Gamers’ Arcade</span></a><span>Phase 1 · Foundation</span><span>500-game architecture · Local-first</span></footer>
+
+  <dialog id="gameDialog" class="game-dialog">
+    <div class="dialog-head"><div><span class="local-tag">ARCADE GAME</span><h2 id="dialogTitle">Game</h2></div><button id="closeGame" class="close-button" aria-label="Close game">✕</button></div>
+    <p id="dialogDescription" class="muted"></p>
+    <div class="game-hud"><span>Score: <strong id="currentScore">0</strong></span><span>Best: <strong id="bestScore">0</strong></span></div>
+    <canvas id="gameCanvas" width="640" height="400"></canvas>
+    <p id="gameMessage" class="game-message">Press Start to play.</p>
+    <div class="dialog-actions"><button id="startGame" class="button primary">▶ Start Game</button><button id="gameAction" class="button secondary">Action</button></div>
+    <p class="tiny muted">Keyboard: arrow keys / WASD · Touch: use the on-screen controls when available.</p>
+  </dialog>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   const STORE = "gamers_arcade_player_v1";
   const SUPABASE_URL = "https://zvfxbbsucbuvlmggkhgu.supabase.co";
   // Replace this placeholder with the project's sb_publishable_ key.
-  const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_otXlcqkiRXK344Nosn7ufQ_c90bMTGH";
   const defaults = {name:"Player",xp:0,tokens:0,played:0,achievements:[],scores:[]};
   let player, supabase = null, currentUser = null, onlineReady = false, boardMode = "global", realtimeChannel = null;
   try { player = {...defaults,...JSON.parse(localStorage.getItem(STORE)||"{}")}; } catch { player={...defaults}; }

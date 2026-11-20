@@ -1,4 +1,4 @@
-const CACHE="gamers-arcade-phase1-v1";
+const CACHE="gamers-arcade-phase2-v2";
 const CORE=["./","./index.html","./styles.css","./app.js","./engine.js","./catalog.js","./manifest.webmanifest","./console.png"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

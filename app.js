@@ -29,10 +29,10 @@
     $("gameGrid").innerHTML="";
     list.forEach(g=>{
       const card=document.createElement("article");card.className="game-card";
-      card.innerHTML=`<span class="game-icon">${g.icon}</span><h3>${g.title}</h3><p>${g.description}</p><button type="button">Play game →</button>`;
+      card.innerHTML=`<span class="game-icon">${g.icon}</span><h3>${g.title}</h3><p>${g.description}</p><p class="game-meta">${g.category} · ${g.difficulty} · Variant ${g.variantNumber}/5</p><button type="button">Play game →</button>`;
       card.querySelector("button").addEventListener("click",()=>openGame(g));$("gameGrid").append(card);
     });
-    $("gameCount").textContent=`${list.length} starter games`;
+    $("gameCount").textContent=`${list.length} games shown · 500 total`;
     $("emptyState").hidden=list.length!==0;
   }
   function openGame(g){

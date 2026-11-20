@@ -10,6 +10,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
   <script defer src="catalog.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="engine.js"></script>
   <script defer src="app.js"></script>
 </head>
@@ -68,11 +69,16 @@
 
     <section class="section lower-grid">
       <article class="panel" id="profile">
-        <div class="section-heading"><div><span class="section-icon">♙</span><h2>Player Profile</h2></div><span class="local-tag">LOCAL PROFILE</span></div>
+        <div class="section-heading"><div><span class="section-icon">♙</span><h2>Player Profile</h2></div><span class="local-tag" id="profileMode">ONLINE-READY PROFILE</span></div>
         <label class="profile-label" for="playerName">Player name</label>
         <div class="profile-edit"><input id="playerName" maxlength="20" placeholder="Enter player name"><button id="saveProfile" class="small-button">Save</button></div>
         <div class="profile-stats"><div><strong id="profileXP">0</strong><small>XP</small></div><div><strong id="profileTokens">0</strong><small>Tokens</small></div><div><strong id="playedCount">0</strong><small>Games played</small></div></div>
-        <p class="muted tiny">Your profile and progress are stored on this device.</p>
+        <p class="muted tiny" id="profileStorageNote">Local progress is saved on this device. Sign in to sync scores online.</p>
+        <div class="auth-box">
+          <label class="profile-label" for="authEmail">Email for online account</label>
+          <div class="profile-edit"><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><button id="signInButton" class="small-button">Sign in</button></div>
+          <div class="auth-actions"><button id="signOutButton" class="small-button" hidden>Sign out</button><span id="authStatus" class="tiny muted">Online leaderboard requires sign-in.</span></div>
+        </div>
       </article>
       <article class="panel" id="achievements">
         <div class="section-heading"><div><span class="section-icon">🏆</span><h2>Achievements</h2></div></div>
@@ -81,19 +87,20 @@
     </section>
 
     <section class="section panel" id="leaderboard">
-      <div class="section-heading"><div><span class="section-icon">▥</span><h2>Local Leaderboard</h2></div><span class="local-tag">THIS DEVICE</span></div>
-      <p class="muted">Your best runs will appear here. A shared online leaderboard can be added in a later version.</p>
+      <div class="section-heading"><div><span class="section-icon">▥</span><h2>Global Leaderboard</h2></div><span class="local-tag" id="leaderboardMode">ONLINE</span></div>
+      <p class="muted" id="leaderboardNote">Sign in to submit scores. Global rankings appear here when the Supabase database is configured.</p>
+      <div class="leaderboard-tabs"><button class="small-button active" id="globalBoardTab">Overall XP</button><button class="small-button" id="localBoardTab">This device</button></div>
       <div id="leaderboardList" class="leaderboard-list"></div>
     </section>
   </main>
 
-  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">⌘</span><span>Gamers’ Arcade</span></a><span>Phase 2 · 500-Game Expansion</span><span>500-game architecture · Local-first</span></footer>
+  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">⌘</span><span>Gamers’ Arcade</span></a><span>Phase 3 · Online Arcade Upgrade</span><span>500 games · Global competition</span></footer>
 
   <dialog id="gameDialog" class="game-dialog">
     <div class="dialog-head"><div><span class="local-tag">ARCADE GAME</span><h2 id="dialogTitle">Game</h2></div><button id="closeGame" class="close-button" aria-label="Close game">✕</button></div>
     <p id="dialogDescription" class="muted"></p>
     <div class="game-hud"><span>Score: <strong id="currentScore">0</strong></span><span>Best: <strong id="bestScore">0</strong></span></div>
-    <canvas id="gameCanvas" width="640" height="400"></canvas>
+    <div class="canvas-wrap"><canvas id="gameCanvas" width="640" height="400"></canvas><span id="fpsCounter" class="fps-counter">FPS: --</span></div>
     <p id="gameMessage" class="game-message">Press Start to play.</p>
     <div class="dialog-actions"><button id="startGame" class="button primary">▶ Start Game</button><button id="gameAction" class="button secondary">Action</button></div>
     <p class="tiny muted">Keyboard: arrow keys / WASD · Touch: use the on-screen controls when available.</p>

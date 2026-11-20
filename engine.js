@@ -6,7 +6,11 @@
   const bestNode = document.getElementById("bestScore");
   const messageNode = document.getElementById("gameMessage");
   const keys = new Set();
+  let backgroundCache=null;
+  function makeBackground(){const c=document.createElement("canvas");c.width=canvas.width;c.height=canvas.height;const x=c.getContext("2d");const grad=x.createLinearGradient(0,0,c.width,c.height);grad.addColorStop(0,"#071a31");grad.addColorStop(1,"#100a27");x.fillStyle=grad;x.fillRect(0,0,c.width,c.height);x.strokeStyle="#14395c";x.globalAlpha=.6;for(let a=0;a<c.width;a+=40){x.beginPath();x.moveTo(a,0);x.lineTo(a,c.height);x.stroke()}for(let b=0;b<c.height;b+=40){x.beginPath();x.moveTo(0,b);x.lineTo(c.width,b);x.stroke()}return c;}
   let game = null, running = false, raf = 0, score = 0, best = 0, frame = 0, objects = [], player = {};
+  let lastTime=0, accumulator=0, fpsFrames=0, fpsStamp=0, measuredFPS=0;
+  const fpsNode=document.getElementById("fpsCounter");
   const rand = (a,b) => Math.random() * (b-a) + a;
   const saveBest = () => {
     if (!game) return;
@@ -16,15 +20,9 @@
     bestNode.textContent = best;
   };
   function baseScreen(title, subtitle) {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-    grad.addColorStop(0,"#071a31"); grad.addColorStop(1,"#100a27");
-    ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.strokeStyle="#14395c";ctx.globalAlpha=.6;
-    for(let x=0;x<canvas.width;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke()}
-    for(let y=0;y<canvas.height;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke()}
-    ctx.globalAlpha=1;ctx.textAlign="center";
-    ctx.fillStyle="#e9f8ff";ctx.font="bold 27px Inter, sans-serif";ctx.fillText(title,canvas.width/2,70);
+    if(!backgroundCache)backgroundCache=makeBackground();
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(backgroundCache,0,0);
+    ctx.textAlign="center";ctx.fillStyle="#e9f8ff";ctx.font="bold 27px Inter, sans-serif";ctx.fillText(title,canvas.width/2,70);
     ctx.fillStyle="#8da9ce";ctx.font="15px Inter, sans-serif";ctx.fillText(subtitle,canvas.width/2,100);
   }
   function finish(text) {
@@ -48,7 +46,19 @@
     else if(g.kind==="orbit") startOrbit();
     else startTarget();
   }
-  function loop(draw){if(!running)return;frame++;draw();raf=requestAnimationFrame(()=>loop(draw))}
+  function loop(draw){
+    if(!running)return;
+    raf=requestAnimationFrame(now=>{
+      if(!running)return;
+      if(!lastTime){lastTime=now;fpsStamp=now;}
+      const delta=Math.min(100,now-lastTime);lastTime=now;accumulator+=delta;
+      // Fixed 60 Hz simulation prevents games running twice as fast on 120 Hz displays.
+      while(accumulator>=1000/60&&running){frame++;draw();accumulator-=1000/60;}
+      fpsFrames++;
+      if(now-fpsStamp>=500){measuredFPS=Math.round(fpsFrames*1000/(now-fpsStamp));fpsNode.textContent="FPS: "+measuredFPS;fpsFrames=0;fpsStamp=now;}
+      if(running)loop(draw);
+    });
+  }
   function startTarget(){
     let target={x:rand(70,570),y:rand(130,350),r:24};
     const draw=()=>{baseScreen(game.title,"Tap/click the glowing target · 20 seconds");drawTarget(target.x,target.y,target.r);ctx.fillStyle="#d9eaff";ctx.font="14px Inter";ctx.fillText("TAP TARGET",target.x,target.y+45);if(frame%65===0)target={x:rand(50,590),y:rand(135,355),r:rand(16,26)};if(frame%60===0&&frame>0&&frame/60>=20)finish("Time is up!")};
@@ -85,7 +95,7 @@
   function startMath(){let a=Math.floor(rand(2,20)),b=Math.floor(rand(2,20)),answer=a+b;baseScreen(game.title,"Solve the equation");ctx.fillStyle="#00eaff";ctx.font="bold 38px Inter";ctx.fillText(a+" + "+b+" = ?",320,230);let v=prompt(a+" + "+b+" = ?");if(Number(v)===answer){setScore(100);finish("Correct answer!")}else finish("The answer was "+answer+".")}
   function startOrbit(){let angle=0;const draw=()=>{baseScreen(game.title,"Tap / click when the orb reaches the cyan target");let cx=320,cy=245,r=110;ctx.strokeStyle="#435a8a";ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();ctx.fillStyle="#00eaff";ctx.beginPath();ctx.arc(cx+r,cy,12,0,Math.PI*2);ctx.fill();let x=cx+Math.cos(angle)*r,y=cy+Math.sin(angle)*r;drawTarget(x,y,13);angle+=.035};const hit=()=>{let delta=Math.min(Math.abs(angle%(Math.PI*2)),Math.abs(angle%(Math.PI*2)-Math.PI*2));if(delta<.18){setScore(score+25);finish("Perfect orbit catch!")}else messageNode.textContent="Not quite — try again or restart."};canvas.addEventListener("pointerdown",hit);loop(draw);gameCleanup=()=>canvas.removeEventListener("pointerdown",hit)}
   function startPaddle(kind){let bx=320,by=210,vx=3,vy=3,pad=280;const draw=()=>{baseScreen(game.title,"Move your paddle with mouse / touch or ← →");ctx.fillStyle="#00eaff";ctx.fillRect(pad-55,360,110,12);ctx.beginPath();ctx.arc(bx,by,9,0,Math.PI*2);ctx.fillStyle="#ff36c9";ctx.fill();bx+=vx;by+=vy;if(bx<10||bx>630)vx*=-1;if(by<115)vy*=-1;if(by>350&&bx>pad-65&&bx<pad+65){vy*=-1;setScore(score+5)}if(by>400)finish("Ball missed!");pad=Math.max(55,Math.min(585,pad+(keys.has("ArrowLeft")?-5:0)+(keys.has("ArrowRight")?5:0)));if(kind==="breakout"){for(let i=0;i<5;i++){ctx.fillStyle=["#00eaff","#a855f7","#ff36c9"][i%3];ctx.fillRect(55+i*108,130,85,18)}}};const move=e=>{const r=canvas.getBoundingClientRect();pad=(e.clientX-r.left)*canvas.width/r.width};canvas.addEventListener("pointermove",move);loop(draw);gameCleanup=()=>canvas.removeEventListener("pointermove",move)}
-  function stop(){running=false;cancelAnimationFrame(raf);gameCleanup();gameCleanup=()=>{};ctx.clearRect(0,0,canvas.width,canvas.height)}
+  function stop(){running=false;cancelAnimationFrame(raf);gameCleanup();gameCleanup=()=>{};lastTime=0;accumulator=0;fpsNode.textContent="FPS: --";keys.clear();ctx.clearRect(0,0,canvas.width,canvas.height)}
   window.ArcadeEngine={start,stop};
   window.addEventListener("keydown",e=>{keys.add(e.key);if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)&&document.getElementById("gameDialog").open)e.preventDefault()});
   window.addEventListener("keyup",e=>keys.delete(e.key));
